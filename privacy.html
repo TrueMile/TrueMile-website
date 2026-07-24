@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<title>TrueMile — Privacy Policy</title>
+<meta name="description" content="TrueMile's privacy policy: what data we collect, how and why we use it, who we share it with, and how you can request deletion of your data.">
+<meta property="og:title" content="TrueMile — Privacy Policy">
+<meta property="og:description" content="What data TrueMile collects, how we use it, and how to request deletion of your data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truemile.ai/privacy">
+<style>
+  :root {
+    --bg: #f7f8f7; --surface: #ffffff; --surface-2: #eef1ef;
+    --ink: #16201a; --ink-2: #48524b; --ink-3: #7c857e;
+    --line: #e4e8e5; --line-strong: #d3d9d4;
+    --brand: #14a24a; --brand-2: #0f8a3e; --brand-soft: #e7f5ec;
+    --logo-a: #ff7a45; --logo-b: #f0402e;
+    --warn-bg: #fbf3df; --warn-line: #e6c874; --warn-ink: #8a5d05;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d110f; --surface: #14181500; --surface: #141815; --surface-2: #1c221d;
+      --ink: #e9efe9; --ink-2: #a3aca4; --ink-3: #6c766d;
+      --line: #242b25; --line-strong: #333c34;
+      --brand: #2fbd63; --brand-2: #26a854; --brand-soft: #12271a;
+      --warn-bg: #2a2210; --warn-line: #5c4a1c; --warn-ink: #e0b64a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d110f; --surface: #141815; --surface-2: #1c221d;
+    --ink: #e9efe9; --ink-2: #a3aca4; --ink-3: #6c766d;
+    --line: #242b25; --line-strong: #333c34;
+    --brand: #2fbd63; --brand-2: #26a854; --brand-soft: #12271a;
+    --warn-bg: #2a2210; --warn-line: #5c4a1c; --warn-ink: #e0b64a;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8f7; --surface: #ffffff; --surface-2: #eef1ef;
+    --ink: #16201a; --ink-2: #48524b; --ink-3: #7c857e;
+    --line: #e4e8e5; --line-strong: #d3d9d4;
+    --brand: #14a24a; --brand-2: #0f8a3e; --brand-soft: #e7f5ec;
+    --warn-bg: #fbf3df; --warn-line: #e6c874; --warn-ink: #8a5d05;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; font-size: 16px; }
+
+  header.site { border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 10; }
+  header.site .inner { max-width: 1080px; margin: 0 auto; padding: 15px 24px; display: flex; align-items: center; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo .mark { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--logo-a), var(--logo-b)); display: grid; place-items: center; color: #fff; }
+  .logo .mark svg { width: 17px; height: 17px; }
+  .logo .wn { font-weight: 700; font-size: 17px; letter-spacing: -.01em; }
+  header.site nav { margin-left: auto; display: flex; gap: 22px; align-items: center; }
+  header.site nav a { color: var(--ink-2); text-decoration: none; font-size: 14px; font-weight: 500; }
+  header.site nav a:hover { color: var(--ink); }
+  .theme-btn { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); display: grid; place-items: center; color: var(--ink-2); cursor: pointer; }
+  .theme-btn:hover { color: var(--ink); }
+
+  .layout { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 940px) { .layout { grid-template-columns: 232px 1fr; align-items: start; } }
+
+  aside.toc { display: none; }
+  @media (min-width: 940px) {
+    aside.toc { display: block; position: sticky; top: 92px; padding-top: 48px; }
+    aside.toc .toc-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+    aside.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: t; }
+    aside.toc li { margin: 0; }
+    aside.toc a { display: block; padding: 5px 0 5px 14px; border-left: 2px solid var(--line); color: var(--ink-3); text-decoration: none; font-size: 13px; line-height: 1.35; }
+    aside.toc a:hover { color: var(--ink); border-color: var(--line-strong); }
+    aside.toc a.active { color: var(--brand); border-color: var(--brand); font-weight: 600; }
+  }
+
+  main { padding: 48px 0 80px; max-width: 720px; }
+  .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin: 0 0 12px; }
+  h1 { font-family: var(--serif); font-size: clamp(32px, 5vw, 44px); line-height: 1.08; letter-spacing: -.015em; margin: 0 0 14px; font-weight: 600; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--ink-3); font-size: 13.5px; font-family: var(--mono); margin-bottom: 26px; }
+  .meta b { color: var(--ink-2); font-weight: 600; }
+
+  .draft { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 12px; padding: 15px 18px; margin-bottom: 34px; display: flex; gap: 13px; align-items: flex-start; }
+  .draft svg { color: var(--warn-ink); flex: none; margin-top: 2px; }
+  .draft .d-t { font-weight: 700; color: var(--warn-ink); font-size: 14px; margin-bottom: 3px; }
+  .draft p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+  .intro { font-size: 17.5px; color: var(--ink-2); line-height: 1.65; margin-bottom: 12px; }
+
+  section.doc { scroll-margin-top: 92px; padding-top: 34px; }
+  section.doc h2 { font-family: var(--serif); font-size: 25px; letter-spacing: -.01em; margin: 0 0 8px; font-weight: 600; display: flex; align-items: baseline; gap: 12px; }
+  section.doc h2 .n { font-family: var(--mono); font-size: 14px; color: var(--brand); font-weight: 500; }
+  section.doc h3 { font-size: 16px; margin: 22px 0 6px; font-weight: 650; }
+  p { margin: 0 0 14px; }
+  a.inline { color: var(--brand); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--brand) 40%, transparent); }
+  a.inline:hover { border-color: var(--brand); }
+  ul.clean { margin: 0 0 16px; padding-left: 0; list-style: none; }
+  ul.clean li { position: relative; padding-left: 22px; margin-bottom: 9px; }
+  ul.clean li::before { content: ""; position: absolute; left: 4px; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+  ul.clean li b { font-weight: 650; }
+  .ph { background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 5px; padding: 0 6px; font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+  .callout { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--brand); border-radius: 10px; padding: 14px 17px; margin: 6px 0 18px; font-size: 14.5px; color: var(--ink-2); }
+  .callout b { color: var(--ink); }
+
+  table.subp { width: 100%; border-collapse: collapse; margin: 6px 0 18px; font-size: 14px; }
+  table.subp th, table.subp td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.subp th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  table.subp td:first-child { font-weight: 600; white-space: nowrap; }
+  .tbl-wrap { overflow-x: auto; }
+
+  footer.site { border-top: 1px solid var(--line); margin-top: 40px; }
+  footer.site .inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; color: var(--ink-3); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer.site a { color: var(--ink-2); text-decoration: none; }
+  footer.site a:hover { color: var(--ink); }
+
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 3px; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="inner">
+    <a class="logo" href="#top" style="text-decoration:none;color:inherit">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+      <span class="wn">TrueMile</span>
+    </a>
+    <nav>
+      <a href="#collect">What we collect</a>
+      <a href="#rights">Your rights</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="theme" aria-label="Toggle theme"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<div class="layout" id="top">
+  <aside class="toc">
+    <div class="toc-label">On this page</div>
+    <ol id="toc-list"></ol>
+  </aside>
+
+  <main>
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <div class="meta">
+      <span><b>Effective:</b> July 24, 2026</span>
+      <span><b>Last updated:</b> July 24, 2026</span>
+    </div>
+
+    <p class="intro">TrueMile provides an AI-powered planning and dispatch platform for dedicated-freight fleets. This policy explains what information we collect, how we use and share it, and the choices and rights you have. It covers our website, our dispatcher and administrative applications, and our own business records. Personal information we handle on a Customer's behalf as a processor is governed by our agreement and Data Processing Addendum with that Customer, as explained in <a class="inline" href="#who">Who we are</a>.</p>
+
+    <section class="doc" id="who">
+      <h2><span class="n">01</span> Who we are</h2>
+      <p>"TrueMile," "we," "us," or "our" refers to TrueMile, the operator of the TrueMile platform used by trucking fleets ("Customers") to plan routes, assign loads, communicate with drivers over messaging channels including WhatsApp, and analyze operations. You can reach us any time at <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>.</p>
+      <div class="callout"><b>A note on our role.</b> For much of the data we handle — especially driver, vehicle, and load information — our Customer (the fleet) decides why and how the data is used. In those cases the Customer is the <b>controller</b> (or "business") and TrueMile acts as a <b>processor</b> (or "service provider") under our agreement with them. Where we determine the purposes ourselves — for example, our website and our own account records — TrueMile is the controller. This distinction affects how privacy rights are exercised (see <a class="inline" href="#rights">Your rights</a>).</div>
+      <p><b>Scope.</b> This Privacy Policy describes the data practices for which TrueMile is the controller. It does <b>not</b> govern personal information we process on a Customer's behalf as a processor — that processing is governed by our services agreement and <b>Data Processing Addendum (DPA)</b> with that Customer. Where the two ever conflict for Customer-controlled data, the DPA governs.</p>
+    </section>
+
+    <section class="doc" id="collect">
+      <h2><span class="n">02</span> Information we collect</h2>
+
+      <h3>Website visitors</h3>
+      <ul class="clean">
+        <li><b>Contact details</b> you submit through forms — name, company, email, phone, and anything in your message.</li>
+        <li><b>Usage &amp; device data</b> — IP address, browser type, pages viewed, and referring links, collected through cookies and similar technologies (see <a class="inline" href="#cookies">Cookies</a>).</li>
+      </ul>
+
+      <h3>Customer account &amp; platform users</h3>
+      <ul class="clean">
+        <li><b>Account information</b> — user names, work email addresses, roles and permissions, and authentication data (including single sign-on identifiers where used).</li>
+        <li><b>Billing information</b> — plan, subscription, and invoicing details.</li>
+        <li><b>Product usage &amp; audit logs</b> — actions taken in the console, approvals, overrides, and access records.</li>
+      </ul>
+
+      <h3>Fleet, driver, and operational data (processed on behalf of Customers)</h3>
+      <p>To deliver the service, our Customers connect their operational systems to TrueMile. Through those integrations we process:</p>
+      <ul class="clean">
+        <li><b>Driver information</b> — name, mobile phone number, commercial driver's-license and endorsement details, home terminal/ZIP, employment identifiers, and hours-of-service records.</li>
+        <li><b>Telematics data</b> — vehicle GPS location, movement, and engine/ELD data received from the fleet's electronic-logging provider (e.g. Samsara).</li>
+        <li><b>Transportation data</b> — loads, lanes, assignments, shippers, receivers, brokers, and rate information received from the fleet's transportation-management system (e.g. PCS) and load boards.</li>
+        <li><b>Communications</b> — messages exchanged with drivers over messaging channels (e.g. WhatsApp), emails exchanged with brokers, and documents such as bills of lading, proofs of delivery, and receipts.</li>
+        <li><b>Derived signals</b> — planning, performance, dwell-time, and behavioral indicators (including driver-stress and retention signals) that our models compute from the data above.</li>
+      </ul>
+      <div class="callout">We collect this operational data from our Customers and their connected providers, not directly from drivers. Drivers with questions about this data should first contact their employer (the fleet), which controls it.</div>
+
+      <h3>Sensitive information</h3>
+      <p>Some of the data above is treated as <b>sensitive personal information</b> under laws such as California's CPRA. We apply heightened safeguards to, and limit our use of, the following to what is needed to provide the service:</p>
+      <ul class="clean">
+        <li><b>Precise geolocation</b> — driver and vehicle GPS position from the fleet's telematics provider.</li>
+        <li><b>Communications content</b> — the contents of messages exchanged with drivers, which we process to operate the service.</li>
+        <li><b>Behavioral &amp; driver-stress signals</b> — indicators our models derive to support planning and retention. These describe an individual worker and are among the most sensitive data we handle; we use them only to provide the service to the employing fleet, never to build a profile sold or shared for unrelated purposes, and per-fleet driver models are never shared across Customers (see <a class="inline" href="#ai">AI and automated processing</a>).</li>
+      </ul>
+      <p>We do not use sensitive personal information to infer characteristics unrelated to the service, and we honor applicable rights to limit its use.</p>
+    </section>
+
+    <section class="doc" id="use">
+      <h2><span class="n">03</span> How we use information</h2>
+      <ul class="clean">
+        <li><b>Provide the service</b> — generate fleet plans, assign and re-plan loads, operate driver and broker communications, and surface analytics to dispatchers and managers.</li>
+        <li><b>Communicate with drivers and brokers</b> on behalf of our Customers, including trip confirmations, check-ins, document handling, and rate negotiation.</li>
+        <li><b>Improve and secure the platform</b> — monitor performance and reliability, debug, prevent abuse, and protect the integrity of the service.</li>
+        <li><b>Train and evaluate our models</b> — subject to the constraints in <a class="inline" href="#ai">AI and automated processing</a> below.</li>
+        <li><b>Support and billing</b> — respond to requests, administer accounts, and process payments.</li>
+        <li><b>Legal and compliance</b> — meet our legal obligations and enforce our agreements.</li>
+      </ul>
+      <p>Where required, we rely on an appropriate legal basis for each purpose (such as performance of a contract, legitimate interests, consent, or compliance with a legal obligation).</p>
+    </section>
+
+    <section class="doc" id="ai">
+      <h2><span class="n">04</span> AI and automated processing</h2>
+      <p>TrueMile uses optimization solvers and large language models to plan operations and draft communications. We design the platform on a few principles that are relevant to your privacy:</p>
+      <div class="callout"><b>A human stays in the loop for consequential decisions.</b> The platform does not autonomously commit money or bind a driver's schedule. Load bookings and other material actions are surfaced to a human dispatcher, who reviews and approves them before they take effect.</div>
+      <ul class="clean">
+        <li><b>Language models draft and summarize; they are not the system of record.</b> Operational facts come from the connected source systems, not model output.</li>
+        <li><b>Your data is not used to train foundation models.</b> We access language-model and embedding providers through their API / commercial tiers, under terms that <b>prohibit those providers from using your data to train their models</b>. We do not sell your data or share it for cross-context behavioral advertising.</li>
+        <li><b>Per-fleet models stay within that fleet.</b> Signals specific to a Customer's drivers (such as driver-stress or performance models) are not shared across Customers. Certain data about third-party actors — for example, shipper dwell patterns or broker behavior — may be used across Customers because it describes the actor, not the fleet.</li>
+      </ul>
+      <p>We use third-party model providers to process text (see <a class="inline" href="#share">How we share information</a>). Because a person reviews consequential decisions, we do not make decisions producing legal or similarly significant effects based solely on automated processing. If you are subject to laws granting rights regarding automated decisions, see <a class="inline" href="#rights">Your rights</a>.</p>
+    </section>
+
+    <section class="doc" id="comms">
+      <h2><span class="n">05</span> Driver messaging &amp; consent</h2>
+      <p>On behalf of our Customers we send operational messages to drivers over messaging platforms such as WhatsApp. These messages relate to the driver's work — trip assignments, check-ins, and document collection. Message content is processed to operate the service and may be retained as described in <a class="inline" href="#retention">Data retention</a>. Standard carrier or platform message and data rates may apply. Drivers may opt out of non-essential messages by replying <b>STOP</b> to any message, or by contacting us at <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a> or their fleet; because these channels support the employment relationship, opt-out arrangements are coordinated with the employing fleet.</p>
+    </section>
+
+    <section class="doc" id="share">
+      <h2><span class="n">06</span> How we share information</h2>
+      <p>We do not sell personal information. We share it only as needed to run the service:</p>
+      <ul class="clean">
+        <li><b>With our Customers</b> — the fleet whose operations the data relates to.</li>
+        <li><b>With service providers (sub-processors)</b> who process data on our instructions under contract, listed below.</li>
+        <li><b>With counterparties you direct us to</b> — for example, forwarding a bill of lading to the broker on a load.</li>
+        <li><b>For legal reasons</b> — to comply with law, respond to lawful requests, or protect rights, safety, and the security of the service.</li>
+        <li><b>In a business transfer</b> — in connection with a merger, acquisition, or sale of assets, subject to this policy.</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table class="subp">
+          <thead><tr><th>Sub-processor</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Amazon Web Services</td><td>Cloud hosting, database, and file storage (United States)</td></tr>
+            <tr><td>Anthropic</td><td>Large-language-model processing for drafting and summarization</td></tr>
+            <tr><td>OpenAI</td><td>Text embeddings for search and retrieval</td></tr>
+            <tr><td>Samsara</td><td>Electronic-logging and telematics data from the Customer's fleet</td></tr>
+            <tr><td>PCS (TMS)</td><td>Transportation-management data from the Customer's fleet</td></tr>
+            <tr><td>Meta / WhatsApp Business</td><td>Driver messaging channel</td></tr>
+            <tr><td>DAT &amp; Truckstop</td><td>Freight-market and load-board data</td></tr>
+            <tr><td>Email &amp; infrastructure providers</td><td>Transactional and broker email, caching, workflow orchestration, monitoring</td></tr>
+            <tr><td>Cloud infrastructure &amp; monitoring</td><td>Caching, workflow orchestration, and observability providers that support the service (United States)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="doc" id="retention">
+      <h2><span class="n">07</span> Data retention</h2>
+      <p>We keep personal information for as long as needed to provide the service to our Customers and to meet our legal, accounting, and contractual obligations. Retention periods vary by data type. As illustrative examples of our current practice:</p>
+      <ul class="clean">
+        <li><b>Operational &amp; account records</b> (loads, assignments, driver profiles, users) — kept for the life of the Customer relationship, then deleted or returned per our agreement.</li>
+        <li><b>Real-time vehicle position records</b> — kept for a short operational window (on the order of ~24 hours) and then purged.</li>
+        <li><b>Failed-message / processing queues</b> — retained approximately 30 days for reliability and debugging, then cleared.</li>
+        <li><b>Raw integration payloads</b> — stored briefly for reprocessing and audit, then aged out.</li>
+      </ul>
+      <p>When a Customer relationship ends, we delete or return personal information in accordance with our agreement with that Customer.</p>
+    </section>
+
+    <section class="doc" id="security">
+      <h2><span class="n">08</span> How we protect information</h2>
+      <p>We use technical and organizational safeguards appropriate to the sensitivity of the data, including encryption of data in transit and at rest, strict logical isolation of each Customer's data at the database layer, least-privilege access controls, managed secret storage with periodic rotation, and audit logging. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+    </section>
+
+    <section class="doc" id="transfers">
+      <h2><span class="n">09</span> Data location &amp; international transfers</h2>
+      <p>TrueMile processes and stores data primarily in the United States. If we transfer personal information across borders in a way that triggers legal transfer requirements, we implement an appropriate safeguard (such as Standard Contractual Clauses) as required by applicable law.</p>
+    </section>
+
+    <section class="doc" id="rights">
+      <h2><span class="n">10</span> Your rights &amp; data deletion</h2>
+      <p>Depending on where you live and your relationship with us, you may have rights to access, correct, delete, or port your personal information, to object to or restrict certain processing, and to withdraw consent. Residents of California and certain other U.S. states, and individuals in the EU/UK, may have specific statutory rights. We do not sell personal information or share it for cross-context behavioral advertising, and where you have the right to <b>limit the use of sensitive personal information</b> (such as precise geolocation), we honor it.</p>
+
+      <h3>How to request deletion of your data</h3>
+      <p>You can request that we delete personal information we hold about you at any time. To make a deletion request, email <a class="inline" href="mailto:privacy@truemile.ai"><b>privacy@truemile.ai</b></a> with the subject line "Data Deletion Request" and the phone number or account associated with your data. We will confirm your request, delete the data we control, and — where the data was provided by your fleet (which controls it) — forward your request to that fleet and support its handling. We will complete verified requests within the time required by applicable law (generally within 30–45 days) and let you know when it is done.</p>
+      <div class="callout"><b>Drivers whose data a fleet uploads:</b> your employer (the fleet) is the controller of that operational data. You may email us at <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a> and we will act on and route your request, or you may contact your fleet directly.</div>
+
+      <p>To exercise any other right, contact us at <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>. We will verify your request and respond within the timeframe required by applicable law, and we will not discriminate against you for exercising your rights.</p>
+    </section>
+
+    <section class="doc" id="cookies">
+      <h2><span class="n">11</span> Cookies &amp; similar technologies</h2>
+      <p>Our website uses cookies and similar technologies to operate the site, remember preferences, and understand usage. You can control cookies through your browser settings, and where required we present a consent choice on the site.</p>
+    </section>
+
+    <section class="doc" id="children">
+      <h2><span class="n">12</span> Children's privacy</h2>
+      <p>TrueMile is a business tool and is not directed to children. We do not knowingly collect personal information from anyone under 16. If you believe a child has provided us information, contact us and we will delete it.</p>
+    </section>
+
+    <section class="doc" id="changes">
+      <h2><span class="n">13</span> Changes to this policy</h2>
+      <p>We may update this policy from time to time. When we make material changes, we will update the "Last updated" date above and, where appropriate, provide additional notice. Your continued use of the service after an update means you accept the revised policy.</p>
+    </section>
+
+    <section class="doc" id="contact">
+      <h2><span class="n">14</span> Contact us</h2>
+      <p>Questions about this policy or our data practices? Reach us at:</p>
+      <ul class="clean">
+        <li><b>Email:</b> <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a></li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 TrueMile · All rights reserved.</span>
+    <span><a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  // build TOC from sections
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.doc'));
+  var list = document.getElementById('toc-list');
+  var links = [];
+  secs.forEach(function (s) {
+    var h = s.querySelector('h2');
+    var title = h ? h.textContent.replace(/^\s*\d+\s*/, '').trim() : s.id;
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + s.id; a.textContent = title;
+    li.appendChild(a); list.appendChild(li);
+    links.push({ a: a, s: s });
+  });
+
+  // active-section highlight
+  if ('IntersectionObserver' in window) {
+    var byId = {};
+    links.forEach(function (l) { byId[l.s.id] = l.a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.a.classList.remove('active'); });
+          if (byId[e.target.id]) byId[e.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
+    secs.forEach(function (s) { io.observe(s); });
+  }
+
+  // theme toggle
+  document.getElementById('theme').addEventListener('click', function () {
+    var r = document.documentElement;
+    var cur = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    r.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
