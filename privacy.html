@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Privacy Policy — TrueMile</title>
+<meta name="description" content="TrueMile privacy policy: what data we collect, how we use it, how we handle WhatsApp Business Platform data, and how to request deletion."/>
+<meta name="robots" content="index,follow"/>
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#E8501E">
+
+<meta property="og:title" content="Privacy Policy — TrueMile">
+<meta property="og:description" content="How TrueMile collects, uses, shares, and protects data across our fleet optimization platform.">
+<meta property="og:url" content="https://truemile.ai/privacy">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --charcoal:#1A1A1A;
+  --orange:#E8501E;
+  --orange-soft:rgba(232,80,30,.10);
+  --orange-soft-2:rgba(232,80,30,.06);
+  --orange-deep:#C9420E;
+  --teal:#0E8378;
+  --paper:#FAFAF9;
+  --paper-warm:#F3F1ED;
+  --paper-line:rgba(0,0,0,.08);
+  --paper-line-soft:rgba(0,0,0,.05);
+  --ink:#0A0A0A;
+  --ink-dim:#5B5B5B;
+  --ink-mute:#8A8A8A;
+  --white:#FFFFFF;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,250,249,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--paper-line-soft);}
+.nb{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;color:var(--ink);letter-spacing:-.01em;text-decoration:none;}
+.nl{font-size:13px;color:var(--ink-dim);text-decoration:none;transition:color .2s;font-weight:500;}
+.nl:hover{color:var(--ink);}
+
+/* HEADER */
+.doc-header{max-width:760px;margin:0 auto;padding:72px 48px 40px;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;padding:7px 14px;background:var(--orange-soft);border:1px solid rgba(232,80,30,.18);border-radius:100px;}
+.eyebrow .ed{width:5px;height:5px;border-radius:50%;background:var(--orange);}
+.eyebrow .et{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-deep);}
+.doc-header h1{font-size:clamp(40px,6vw,64px);font-weight:600;letter-spacing:-.04em;line-height:1.02;color:var(--ink);margin-bottom:18px;}
+.doc-updated{font-family:var(--mono);font-size:12px;color:var(--ink-mute);letter-spacing:.04em;text-transform:uppercase;font-weight:600;}
+.doc-intro{font-size:16px;color:var(--ink-dim);line-height:1.7;margin-top:24px;}
+.doc-intro p{margin-bottom:14px;}
+.doc-intro p:last-child{margin-bottom:0;}
+
+/* DELETION CALLOUT */
+.callout{max-width:760px;margin:8px auto 0;padding:0 48px;}
+.callout-box{background:var(--orange-soft-2);border:1px solid rgba(232,80,30,.18);border-left:3px solid var(--orange);border-radius:10px;padding:20px 22px;}
+.callout-label{font-family:var(--mono);font-size:10px;color:var(--orange-deep);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.callout-box p{font-size:14px;color:var(--ink);line-height:1.6;}
+.callout-box a{color:var(--orange-deep);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(232,80,30,.35);}
+.callout-box a:hover{border-bottom-color:var(--orange-deep);}
+
+/* TOC */
+.toc{max-width:760px;margin:40px auto 0;padding:0 48px;}
+.toc-inner{background:var(--white);border:1px solid var(--paper-line);border-radius:10px;padding:22px 26px;}
+.toc-head{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:14px;}
+.toc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;}
+.toc-list a{display:flex;gap:10px;font-size:13.5px;color:var(--ink-dim);text-decoration:none;transition:color .18s;line-height:1.4;}
+.toc-list a:hover{color:var(--orange-deep);}
+.toc-list a .n{font-family:var(--mono);font-size:11px;color:var(--orange);font-weight:600;min-width:18px;}
+
+/* CONTENT */
+.doc-body{max-width:760px;margin:0 auto;padding:56px 48px 40px;}
+section.clause{padding:36px 0;border-top:1px solid var(--paper-line-soft);scroll-margin-top:84px;}
+section.clause:first-child{border-top:none;padding-top:20px;}
+.clause-num{font-family:var(--mono);font-size:11px;color:var(--orange);font-weight:600;letter-spacing:.1em;margin-bottom:10px;}
+h2{font-size:23px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:16px;line-height:1.25;}
+h3{font-size:15px;font-weight:600;color:var(--ink);margin:22px 0 8px;letter-spacing:-.01em;}
+p{font-size:15px;color:var(--ink-dim);line-height:1.7;margin-bottom:14px;}
+p:last-child{margin-bottom:0;}
+p strong,li strong{color:var(--ink);font-weight:600;}
+a.inline{color:var(--orange-deep);text-decoration:none;border-bottom:1px solid rgba(232,80,30,.3);font-weight:500;}
+a.inline:hover{border-bottom-color:var(--orange-deep);}
+ul{list-style:none;margin:8px 0 16px;}
+ul li{position:relative;padding-left:20px;font-size:15px;color:var(--ink-dim);line-height:1.65;margin-bottom:10px;}
+ul li::before{content:'';position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--orange);}
+ul li:last-child{margin-bottom:0;}
+
+/* Sub-block for platform data section */
+.subblock{background:var(--white);border:1px solid var(--paper-line);border-radius:10px;padding:6px 24px;margin-top:18px;}
+.subblock h3{margin:18px 0 8px;padding-top:0;}
+.subblock h3:first-child{margin-top:16px;}
+.subblock h3 + p{margin-bottom:16px;}
+
+/* FOOTER */
+footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;max-width:900px;margin:0 auto;}
+.ftb{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;}
+.ftnav{display:flex;gap:24px;}
+.ftnav a{font-size:13px;color:var(--ink-dim);text-decoration:none;transition:color .2s;}
+.ftnav a:hover{color:var(--ink);}
+.ftc{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.06em;width:100%;text-align:center;padding-top:20px;border-top:1px solid var(--paper-line-soft);margin-top:8px;}
+
+@media(max-width:640px){
+  nav{padding:0 22px;}
+  .doc-header,.callout,.toc,.doc-body{padding-left:22px;padding-right:22px;}
+  .doc-header{padding-top:52px;}
+  .toc-list{grid-template-columns:1fr;}
+  footer{padding:32px 22px;flex-direction:column;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nb" href="/">
+    <svg width="28" height="28" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+      <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
+      <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="44" cy="14" r="4.5" fill="white"/>
+    </svg>
+    TrueMile
+  </a>
+  <a href="/" class="nl">← Back to site</a>
+</nav>
+
+<header class="doc-header">
+  <div class="eyebrow"><div class="ed"></div><span class="et">Legal</span></div>
+  <h1>Privacy Policy</h1>
+  <div class="doc-updated">Last updated: July 23, 2026</div>
+  <div class="doc-intro">
+    <p>This Privacy Policy describes how TrueMile ("TrueMile," "we," "us," or "our") collects, uses, and shares information in connection with our AI dispatch and fleet optimization platform, our websites, and related services (collectively, the "Services").</p>
+    <p>The Services are provided primarily to business customers ("Organizations") such as motor carriers, fleets, and brokers. Where we process personal data about drivers, dispatchers, or other individuals on behalf of an Organization, we act as a service provider or processor and handle that data only in accordance with our agreement with that Organization and its instructions.</p>
+  </div>
+</header>
+
+<div class="callout">
+  <div class="callout-box">
+    <div class="callout-label">How to request deletion of your data</div>
+    <p>You can request access to, correction of, or deletion of your personal data at any time by emailing <a href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>. Drivers can also opt out of messaging at any time by replying <strong>STOP</strong> to any TrueMile WhatsApp message. See <a href="#choices">Your choices</a> and <a href="#whatsapp">WhatsApp Business Platform and Meta data</a> below for details.</p>
+  </div>
+</div>
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-inner">
+    <div class="toc-head">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#collect"><span class="n">01</span> Information we collect</a></li>
+      <li><a href="#use"><span class="n">02</span> How we use information</a></li>
+      <li><a href="#share"><span class="n">03</span> How we share information</a></li>
+      <li><a href="#retention"><span class="n">04</span> Data retention</a></li>
+      <li><a href="#security"><span class="n">05</span> Security</a></li>
+      <li><a href="#whatsapp"><span class="n">06</span> WhatsApp Business Platform &amp; Meta data</a></li>
+      <li><a href="#choices"><span class="n">07</span> Your choices</a></li>
+      <li><a href="#transfers"><span class="n">08</span> International transfers</a></li>
+      <li><a href="#children"><span class="n">09</span> Children's privacy</a></li>
+      <li><a href="#changes"><span class="n">10</span> Changes to this policy</a></li>
+      <li><a href="#contact"><span class="n">11</span> Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="doc-body">
+
+  <section class="clause" id="collect">
+    <div class="clause-num">01</div>
+    <h2>Information we collect</h2>
+    <p>We collect and process the following types of information:</p>
+    <ul>
+      <li><strong>Account and profile information</strong> — such as name, email address, organization, role, and authentication identifiers (for example, email/password credentials or identity-provider information such as Google Sign-In).</li>
+      <li><strong>Fleet and operational data</strong> — such as driver assignments, load and shipment details, routes, schedules, home-time windows, and preferences provided by your Organization.</li>
+      <li><strong>Telematics and ELD data</strong> — including vehicle location, hours-of-service data, and vehicle health and diagnostic information, where those integrations are enabled by your Organization.</li>
+      <li><strong>Driver contact and messaging data</strong> — such as driver phone numbers, messaging opt-in status, and the content of dispatch communications sent and received (including through the WhatsApp Business Platform). See Section 06.</li>
+      <li><strong>Usage and device information</strong> — such as log data, browser type, device identifiers, IP address, and how you interact with the Services.</li>
+      <li><strong>Support and communications</strong> — including messages you send us, feedback, and information you provide during onboarding, training, or support interactions.</li>
+    </ul>
+  </section>
+
+  <section class="clause" id="use">
+    <div class="clause-num">02</div>
+    <h2>How we use information</h2>
+    <p>We use information for purposes including to:</p>
+    <ul>
+      <li>provide, operate, and maintain the Services;</li>
+      <li>authenticate users and secure access to the platform;</li>
+      <li>enable dispatch, planning, and optimization workflows across your fleet;</li>
+      <li>send operational and dispatch communications to drivers on behalf of your Organization — such as load assignments, pickup and delivery details, schedule changes, ETAs, and confirmations;</li>
+      <li>generate AI-driven recommendations, planning, and optimization outputs, which may involve third-party AI and machine-learning service providers acting as our subprocessors under contractual confidentiality and security obligations;</li>
+      <li>analyze usage to improve the performance, reliability, and user experience of the Services, and to develop new features and capabilities;</li>
+      <li>provide support, respond to inquiries, and communicate with you; and</li>
+      <li>meet legal, regulatory, and compliance obligations, and enforce our agreements.</li>
+    </ul>
+    <p>We do not use the personal data we process on behalf of Organizations for advertising or for building profiles unrelated to the Services.</p>
+  </section>
+
+  <section class="clause" id="share">
+    <div class="clause-num">03</div>
+    <h2>How we share information</h2>
+    <p>We do not sell personal data. We may share information in the following circumstances:</p>
+    <ul>
+      <li><strong>With your Organization</strong> that provides you access to the Services, consistent with its internal policies and its agreement with TrueMile.</li>
+      <li><strong>With service providers</strong> that perform services on our behalf — such as cloud hosting, database, monitoring, error-tracking, analytics, and communication tools — subject to appropriate contractual safeguards.</li>
+      <li><strong>With integration partners</strong> such as ELD providers, TMS platforms, load boards, messaging platforms (including the WhatsApp Business Platform), and mapping or telematics vendors, where your Organization has enabled those integrations.</li>
+      <li><strong>For legal, safety, and security reasons</strong> — such as to comply with law, respond to lawful requests, protect the rights and safety of TrueMile, our customers, or others, or to detect and prevent fraud or security incidents.</li>
+      <li><strong>In a business transfer</strong> — such as a merger, acquisition, financing, or sale of all or a portion of our assets, where information may be transferred as part of the transaction.</li>
+    </ul>
+  </section>
+
+  <section class="clause" id="retention">
+    <div class="clause-num">04</div>
+    <h2>Data retention</h2>
+    <p>We retain information for as long as necessary to provide the Services, to support your Organization's legitimate business needs, to comply with legal or regulatory obligations, to resolve disputes, and to enforce our agreements. Retention periods may vary depending on the type of data and the context in which it was collected. When data is no longer needed, we delete or anonymize it in accordance with our retention practices and applicable law.</p>
+  </section>
+
+  <section class="clause" id="security">
+    <div class="clause-num">05</div>
+    <h2>Security</h2>
+    <p>We use reasonable technical and organizational measures designed to protect information from unauthorized access, use, alteration, or destruction — including encryption in transit and at rest, role-based access controls, and access auditing. No system can be guaranteed to be 100% secure, and you are responsible for maintaining the security of your account credentials and devices.</p>
+  </section>
+
+  <section class="clause" id="whatsapp">
+    <div class="clause-num">06</div>
+    <h2>WhatsApp Business Platform and Meta data</h2>
+    <p>Where your Organization enables driver communications through the WhatsApp Business Platform, TrueMile sends and receives operational messages with drivers on your Organization's behalf. Our use of the WhatsApp Business Platform and any data received from Meta is consistent with the Meta Platform Terms, the WhatsApp Business Messaging Policy, and applicable Meta developer policies.</p>
+
+    <div class="subblock">
+      <h3>Data accessed</h3>
+      <p>Through the WhatsApp Business Platform, we access the driver's phone number and WhatsApp profile name, the content and templates of messages exchanged, the WhatsApp Business Account (WABA) and phone-number identifiers, message delivery and read status, related event metadata, and messaging opt-in and opt-out status. We store the phone number, associated WhatsApp identifiers, opt-in status, and the message history needed to operate dispatch communications and link them to the correct Organization and driver.</p>
+
+      <h3>Data usage</h3>
+      <p>Meta and WhatsApp data is used solely to deliver the operational and dispatch communications requested by your Organization — such as load assignments, pickup and delivery details, schedule changes, ETAs, and confirmations — and to confirm delivery and receipt of those messages. We do not use this data for advertising or for unrelated profiling.</p>
+
+      <h3>Data sharing</h3>
+      <p>We do not sell Meta or WhatsApp data. It is shared only with our core infrastructure providers (for example, our cloud hosting and database vendors) under contracts requiring the same level of protection, with your Organization according to its configuration of the Services, and with Meta as necessary to transmit messages through the WhatsApp Business Platform.</p>
+
+      <h3>Data storage and protection</h3>
+      <p>Stored phone numbers, WhatsApp identifiers, and message records reside in our managed PostgreSQL databases, which are encrypted in transit and at rest. Access is restricted to authorized personnel, audited, and governed by role-based access controls consistent with our broader security program.</p>
+
+      <h3>Data retention and deletion</h3>
+      <p>We retain Meta and WhatsApp data only while your Organization has the integration enabled or as needed to comply with legal obligations. Administrators can remove the integration at any time. Drivers can opt out of messaging at any time by replying <strong>STOP</strong>, and any user may request deletion of their WhatsApp data by contacting <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>. We will delete or anonymize the relevant records within a reasonable period, subject to legal requirements.</p>
+    </div>
+  </section>
+
+  <section class="clause" id="choices">
+    <div class="clause-num">07</div>
+    <h2>Your choices</h2>
+    <p>Depending on your role and your Organization's configuration, you may have choices regarding certain data and communications, including:</p>
+    <ul>
+      <li>updating or correcting account profile information;</li>
+      <li>managing certain notification preferences within the Services;</li>
+      <li>opting out of WhatsApp messaging at any time by replying <strong>STOP</strong> to any message; and</li>
+      <li>requesting access, correction, or deletion of personal data by emailing <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>, or through your Organization where applicable.</li>
+    </ul>
+    <p>Many privacy rights and requests must be managed through your Organization, which controls how the Services are used in its operations.</p>
+  </section>
+
+  <section class="clause" id="transfers">
+    <div class="clause-num">08</div>
+    <h2>International transfers</h2>
+    <p>TrueMile may process and store information in countries other than the country where you are located. When we transfer personal data internationally, we do so in accordance with applicable data protection laws and, where required, use appropriate safeguards.</p>
+  </section>
+
+  <section class="clause" id="children">
+    <div class="clause-num">09</div>
+    <h2>Children's privacy</h2>
+    <p>The Services are not directed to children and are intended for use only in a business and professional context. We do not knowingly collect personal data from children.</p>
+  </section>
+
+  <section class="clause" id="changes">
+    <div class="clause-num">10</div>
+    <h2>Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. If we make material changes, we will provide notice through the Services or by other reasonable means and update the "Last updated" date above. Your continued use of the Services after the changes become effective indicates your acknowledgment of the updated policy.</p>
+  </section>
+
+  <section class="clause" id="contact">
+    <div class="clause-num">11</div>
+    <h2>Contact</h2>
+    <p>If you have questions about this Privacy Policy or how we handle personal data, or to make a privacy request, please contact us at <a class="inline" href="mailto:privacy@truemile.ai">privacy@truemile.ai</a>, or reach out to your TrueMile representative.</p>
+  </section>
+
+</main>
+
+<footer>
+  <a class="ftb" href="/">
+    <svg width="22" height="22" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+      <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
+      <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="44" cy="14" r="4.5" fill="white"/>
+    </svg>
+    TrueMile
+  </a>
+  <div class="ftnav">
+    <a href="/">Home</a>
+    <a href="/#how">Agents</a>
+    <a href="/#contact">Book demo</a>
+  </div>
+  <div class="ftc">© 2026 TrueMile</div>
+</footer>
+
+</body>
+</html>
