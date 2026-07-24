@@ -592,6 +592,9 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 .ftb{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);}
 .ftc{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.06em;}
 .ftm{font-size:13px;color:var(--ink-dim);max-width:42ch;text-align:center;line-height:1.65;font-weight:400;}
+.ftr{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.ftlink{font-size:13px;color:var(--ink-dim);text-decoration:none;font-weight:500;transition:color .2s;}
+.ftlink:hover{color:var(--orange);}
 
 .container{max-width:1160px;margin:0 auto;}
 
@@ -617,6 +620,7 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
   .fg{grid-template-columns:1fr;}
   .cta-i{grid-template-columns:1fr;gap:48px;}
   footer{flex-direction:column;gap:20px;text-align:center;padding:36px 24px;}
+  .ftr{align-items:center;}
   .timeline-row{grid-template-columns:100px 1fr;}
   .timeline-days{margin-left:114px;}
   .fit-grid{grid-template-columns:repeat(2,1fr);}
@@ -1066,7 +1070,10 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
     TrueMile
   </div>
   <div class="ftm">Agentic optimization infrastructure for mid-market trucking. Plan the week. Adapt in real time. Turn idle time into revenue.</div>
-  <div class="ftc">© 2026 TrueMile</div>
+  <div class="ftr">
+    <a href="/privacy" class="ftlink">Privacy Policy</a>
+    <div class="ftc">© 2026 TrueMile</div>
+  </div>
 </footer>
 
 <script>
