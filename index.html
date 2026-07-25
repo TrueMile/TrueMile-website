@@ -588,6 +588,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 
 /* CTA */
 .cta{background:var(--charcoal);padding:112px 48px;position:relative;overflow:hidden;}
+.cta-img{position:absolute;inset:0;background-image:url('/hero-truck.jpg');background-size:cover;background-position:center 62%;opacity:.28;pointer-events:none;}
+.cta-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.72) 55%,rgba(26,26,26,.45) 100%);pointer-events:none;}
 .cta::before{content:'';position:absolute;top:50%;left:75%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(232,80,30,.16) 0%,transparent 65%);pointer-events:none;filter:blur(60px);}
 .cta-i{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1160px;margin:0 auto;position:relative;z-index:1;}
 .cl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
@@ -1101,6 +1103,7 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
         <line x1="50" y1="50" x2="70" y2="88"/>
         <line x1="50" y1="50" x2="36" y2="90"/>
         <line x1="50" y1="50" x2="10" y2="62"/>
+        <line x1="50" y1="50" x2="26" y2="42"/>
         <line x1="50" y1="50" x2="74" y2="47"/>
       </svg>
       <div class="hub-center">
@@ -1134,6 +1137,9 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
       <div class="hub-sat" style="left:10%;top:62%;animation-delay:4.9s;" title="Gmail">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       </div>
+      <div class="hub-sat" style="left:26%;top:42%;animation-delay:5.6s;" title="Samsara · ELD & telematics">
+        <img src="/logos/samsara.svg" alt="Samsara" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;22 12 18 12 15 21 9 3 6 12 2 12&quot;/></svg>'">
+      </div>
       <div class="hub-pill" style="left:74%;top:47%;">
         <span class="hub-pill-plus">+</span> Your TMS &amp; carrier portals
       </div>
@@ -1141,10 +1147,11 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
     <div>
       <div class="pill-eyebrow reveal"><span class="ed"></span> Integrations</div>
       <div class="fhh reveal">Plugs into what you<br><em>already run.</em></div>
-      <div class="how-d reveal" style="margin-top:20px;">Loads in from every source — EDI tenders, load boards, customer portals, email. Comms out on the channels your drivers and brokers already use. No rip-and-replace.</div>
+      <div class="how-d reveal" style="margin-top:20px;">Loads in from every source — EDI tenders, load boards, customer portals, email. Live truck and driver signals from your ELD. Comms out on the channels your drivers and brokers already use. No rip-and-replace.</div>
       <div class="name-chips reveal">
         <span class="name-chip">Truckstop</span>
         <span class="name-chip">EDI</span>
+        <span class="name-chip">Samsara · ELD</span>
         <span class="name-chip">Carrier portals</span>
         <span class="name-chip">WhatsApp</span>
         <span class="name-chip">Microsoft Teams</span>
@@ -1262,6 +1269,8 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 
 <!-- CTA -->
 <div class="cta" id="contact">
+  <div class="cta-img"></div>
+  <div class="cta-scrim"></div>
   <div class="cta-i">
     <div>
       <div class="cl">Get started</div>
