@@ -69,24 +69,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nc:hover{background:var(--orange);transform:translateY(-1px);}
 
 /* HERO */
-.hero-wrap{position:relative;background:var(--paper);padding:150px 48px 90px;overflow:hidden;}
+.hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 45%/cover no-repeat;padding:96px 48px 40px;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
 .hero-wrap::before{
   content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(10,10,10,.12) 1px,transparent 1px);
-  background-size:24px 24px;
-  background-position:0 0;
+  background:radial-gradient(ellipse 62% 50% at 50% 26%,rgba(8,7,6,.55) 0%,rgba(8,7,6,.28) 55%,transparent 75%),linear-gradient(180deg,rgba(18,14,11,.48) 0%,rgba(16,13,10,.36) 38%,rgba(12,10,8,.48) 68%,rgba(8,7,6,.84) 100%);
   pointer-events:none;
-  mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 30%,transparent 80%);
-  -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 30%,transparent 80%);
 }
 .hero-wrap::after{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(232,80,30,.08) 0%,transparent 65%);
+  background:radial-gradient(ellipse 60% 42% at 50% 96%,rgba(232,80,30,.20) 0%,transparent 65%);
   pointer-events:none;
 }
 .hero-orbit{position:absolute;inset:0;pointer-events:none;z-index:1;}
-.orbit-svg{position:absolute;left:50%;top:0;transform:translateX(-50%);width:1400px;height:100%;opacity:.5;}
-.orbit-svg ellipse{fill:none;stroke:rgba(10,10,10,.22);stroke-width:1;stroke-dasharray:2 7;}
+.orbit-svg{position:absolute;left:50%;top:-6%;transform:translateX(-50%);width:1400px;height:80%;opacity:.6;}
+.orbit-svg ellipse{fill:none;stroke:rgba(255,255,255,.38);stroke-width:1;stroke-dasharray:2 7;}
 .agent-chip{position:absolute;display:flex;align-items:center;gap:9px;background:var(--white);border:1px solid var(--paper-line);border-radius:100px;padding:6px 12px 6px 7px;box-shadow:0 10px 30px rgba(26,26,26,.10),0 2px 8px rgba(26,26,26,.05);animation:chipFloat 6.5s ease-in-out infinite;white-space:nowrap;}
 .chip-avatar{width:24px;height:24px;border-radius:50%;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:0.5625rem;color:var(--orange-deep);flex-shrink:0;}
 .chip-avatar.teal{background:var(--teal-soft);color:var(--teal);}
@@ -96,23 +92,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .chip-pill{font-family:var(--mono);font-size:0.5rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--teal-soft);color:var(--teal);padding:3px 9px;border-radius:100px;}
 .chip-pill.solid{background:var(--teal);color:#fff;}
 @keyframes chipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
-.chip-1{left:6%;top:32%;animation-delay:0s;}
-.chip-2{right:6%;top:24%;animation-delay:.9s;}
-.chip-3{right:3%;top:62%;animation-delay:1.8s;}
-.chip-4{left:3%;top:63%;animation-delay:2.7s;}
+.chip-1{left:15%;top:24%;animation-delay:0s;}
+.chip-2{right:15%;top:18%;animation-delay:.9s;}
+.chip-3{right:11%;top:44%;animation-delay:1.8s;}
+.chip-4{left:11%;top:46%;animation-delay:2.7s;}
 
-.hero-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:1020px;margin:0 auto;position:relative;z-index:2;}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;padding:8px 16px;background:var(--orange-soft);border:1px solid rgba(232,80,30,.18);border-radius:100px;opacity:0;animation:fup .7s .2s ease forwards;}
-.ed{width:5px;height:5px;border-radius:50%;background:var(--orange);}
-.et{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-deep);}
-.hero-inner h1{font-family:var(--sans);font-size:clamp(2.875rem,6.6vw,6rem);font-weight:600;line-height:1.03;letter-spacing:-.025em;margin-bottom:30px;color:var(--ink);opacity:0;animation:fup .8s .4s ease forwards;text-align:center;}
+.hero-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:1020px;margin:0 auto;position:relative;z-index:2;width:100%;flex:1;padding-bottom:16vh;will-change:opacity,transform;}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;margin-bottom:24px;padding:10px 20px;background:rgba(10,8,6,.34);border:1px solid rgba(255,255,255,.30);border-radius:100px;backdrop-filter:blur(8px);opacity:0;animation:fup .7s .2s ease forwards;}
+.ed{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.et{font-family:var(--mono);font-size:0.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
+.hero-inner h1{font-family:var(--sans);font-size:clamp(2.5rem,5.1vw,4.625rem);font-weight:600;line-height:1.04;letter-spacing:-.022em;margin-bottom:22px;color:#fff;opacity:0;animation:fup .8s .4s ease forwards;text-align:center;text-shadow:0 2px 4px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.5),0 18px 60px rgba(0,0,0,.55);}
 .hero-inner h1 em{font-style:normal;font-weight:600;color:var(--orange);}
-.hero-sub{font-size:1.25rem;color:var(--ink-dim);line-height:1.6;max-width:62ch;font-weight:400;margin:0 auto 44px;opacity:0;animation:fup .8s .6s ease forwards;text-align:center;}
+.hero-sub{font-size:1.125rem;color:rgba(255,255,255,.82);line-height:1.6;max-width:58ch;font-weight:400;margin:0 auto 32px;opacity:0;animation:fup .8s .6s ease forwards;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.55),0 4px 16px rgba(0,0,0,.5);}
 .hbtns{display:flex;gap:14px;align-items:center;justify-content:center;opacity:0;animation:fup .8s .8s ease forwards;}
-.bp{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--charcoal);color:var(--white);font-size:0.875rem;font-weight:500;border-radius:6px;text-decoration:none;transition:background .2s,transform .15s;cursor:pointer;border:none;font-family:var(--sans);}
-.bp:hover{background:var(--orange);transform:translateY(-1px);}
-.bs{display:inline-flex;align-items:center;padding:14px 24px;background:transparent;color:var(--ink-dim);font-size:0.875rem;font-weight:500;border:1px solid var(--paper-line);border-radius:6px;text-decoration:none;transition:border-color .2s,color .2s;}
-.bs:hover{border-color:var(--charcoal);color:var(--ink);}
+.bp{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--orange);color:var(--white);font-size:0.875rem;font-weight:500;border-radius:6px;text-decoration:none;transition:background .2s,transform .15s;cursor:pointer;border:none;font-family:var(--sans);box-shadow:0 12px 32px rgba(232,80,30,.35);}
+.bp:hover{background:var(--orange-deep);transform:translateY(-1px);}
+.bs{display:inline-flex;align-items:center;padding:14px 24px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);font-size:0.875rem;font-weight:500;border:1px solid rgba(255,255,255,.35);border-radius:6px;text-decoration:none;transition:border-color .2s,color .2s;backdrop-filter:blur(6px);}
+.bs:hover{border-color:#fff;color:#fff;}
 
 /* AGENT DEMO SECTION */
 .agent-demo-section{padding:96px 48px 120px;background:var(--paper);position:relative;overflow:hidden;}
@@ -411,8 +407,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .feed-item-msg strong{font-weight:600;}
 
 /* METRICS BANNER */
-.metrics-band{background:var(--paper);padding:0 48px 96px;max-width:1200px;margin:0 auto;}
-.metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;}
+.metrics-band{background:transparent;padding:0 48px 96px;max-width:1200px;margin:-130px auto 0;position:relative;z-index:5;}
+.metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(10,8,6,.35),0 8px 24px rgba(10,8,6,.18);}
 .metric{background:var(--white);padding:28px 22px;display:flex;flex-direction:column;gap:6px;}
 .metric-label{font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
 .metric-value{font-size:2rem;font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1;}
@@ -624,6 +620,31 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 
 .container{max-width:1160px;margin:0 auto;}
 
+/* Glass metrics ticker inside hero */
+.hero-metrics{position:relative;z-index:2;margin:0 auto;will-change:opacity,transform;}
+.hero-ticker{display:flex;align-items:stretch;justify-content:center;background:rgba(12,10,8,.56);border:1px solid rgba(255,255,255,.18);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,.35);padding:5px 6px;flex-wrap:wrap;}
+.tick{display:flex;align-items:center;gap:12px;padding:15px 30px;border-right:1px solid rgba(255,255,255,.12);}
+.tick:last-child{border-right:none;}
+.tick-label{font-family:var(--mono);font-size:0.7188rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;}
+.tick-value{font-size:1.6875rem;font-weight:600;letter-spacing:-.02em;color:var(--orange);white-space:nowrap;text-shadow:0 2px 12px rgba(232,80,30,.25);}
+@media(max-width:1000px){
+  .hero-metrics .metrics-strip{grid-template-columns:repeat(3,1fr);}
+  .hero-metrics .metric:nth-child(3n){border-right:none;}
+  .hero-metrics .metric{border-bottom:1px solid rgba(255,255,255,.10);}
+}
+@media(max-width:640px){
+  .hero-metrics .metrics-strip{grid-template-columns:1fr 1fr;}
+  .hero-wrap{min-height:auto;padding-top:100px;}
+}
+/* Nav over hero: dark transparent, flips to light glass on scroll */
+nav.over-hero{background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,0) 100%);backdrop-filter:none;border-bottom:none;}
+nav.over-hero .nb{color:#fff;}
+nav.over-hero .nl{color:rgba(255,255,255,.78);}
+nav.over-hero .nl:hover{color:#fff;}
+nav.over-hero .nc{background:#fff;color:var(--ink);}
+nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
+
+
 @keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -679,7 +700,7 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 </head>
 <body>
 
-<nav>
+<nav class="over-hero" id="topnav">
   <div class="nb">
     <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
       <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
@@ -697,7 +718,7 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 </nav>
 
 <!-- HERO -->
-<div class="hero-wrap">
+<div class="hero-wrap" id="hero">
   <div class="hero-orbit">
     <svg class="orbit-svg" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMax slice">
       <ellipse cx="700" cy="640" rx="320" ry="230"/>
@@ -734,35 +755,13 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
       <a href="#demo" class="bs">Watch an agent work</a>
     </div>
   </div>
-</div>
-
-<!-- METRICS BAND -->
-<div class="metrics-band">
-  <div class="metrics-strip">
-    <div class="metric">
-      <div class="metric-label">Revenue per truck</div>
-      <div class="metric-value"><em>+15%</em></div>
-      <div class="metric-desc">Average lift across pilot fleets</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Utilization</div>
-      <div class="metric-value"><em>+12%</em></div>
-      <div class="metric-desc">More trucks loaded, fewer idle days</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Rate per mile</div>
-      <div class="metric-value"><em>+9%</em></div>
-      <div class="metric-desc">Smarter load selection</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Driver retention</div>
-      <div class="metric-value"><em>+20%</em></div>
-      <div class="metric-desc">Home time &amp; preferences honored</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">Dispatcher time</div>
-      <div class="metric-value"><em>−50%</em></div>
-      <div class="metric-desc">The manual work, handled by agents</div>
+  <div class="hero-metrics">
+    <div class="hero-ticker">
+      <div class="tick"><span class="tick-label">Revenue / truck</span><span class="tick-value">+15%</span></div>
+      <div class="tick"><span class="tick-label">Utilization</span><span class="tick-value">+12%</span></div>
+      <div class="tick"><span class="tick-label">Rate / mile</span><span class="tick-value">+9%</span></div>
+      <div class="tick"><span class="tick-label">Driver retention</span><span class="tick-value">+20%</span></div>
+      <div class="tick"><span class="tick-label">Dispatcher time</span><span class="tick-value">−50%</span></div>
     </div>
   </div>
 </div>
@@ -1323,6 +1322,41 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Hero fades out smoothly as you scroll into the page
+(function(){
+  const inner = document.querySelector('.hero-inner');
+  const metrics = document.querySelector('.hero-metrics');
+  const orbit = document.querySelector('.hero-orbit');
+  let ticking = false;
+  function apply(){
+    ticking = false;
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const p = Math.min(1, Math.max(0, y / (vh * 0.55)));
+    const ease = p * p * (3 - 2 * p);
+    if(inner){ inner.style.opacity = 1 - ease; inner.style.transform = 'translateY(' + (-ease * 46) + 'px)'; }
+    if(metrics){ metrics.style.opacity = Math.max(0, 1 - ease * 1.15); metrics.style.transform = 'translateY(' + (-ease * 26) + 'px)'; }
+    if(orbit){ orbit.style.opacity = 0.65 * (1 - ease); }
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ ticking = true; requestAnimationFrame(apply); }
+  }, {passive:true});
+  apply();
+})();
+
+
+// Nav flips from dark-over-hero to light glass on scroll
+(function(){
+  const nav = document.getElementById('topnav');
+  const flip = () => {
+    if(window.scrollY > window.innerHeight * 0.7){ nav.classList.remove('over-hero'); }
+    else { nav.classList.add('over-hero'); }
+  };
+  window.addEventListener('scroll', flip, {passive:true});
+  flip();
+})();
+
 
 document.getElementById('submitBtn')?.addEventListener('click',function(e){
   e.preventDefault();this.textContent='Submitted ✓';
