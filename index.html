@@ -62,10 +62,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nc:hover{background:var(--orange);transform:translateY(-1px);}
 
 /* HERO */
-.hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 38%/cover no-repeat;padding:190px 48px 110px;overflow:hidden;min-height:92vh;display:flex;align-items:flex-end;}
+.hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 45%/cover no-repeat;padding:150px 48px 64px;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center;}
 .hero-wrap::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,16,12,.30) 0%,rgba(20,16,12,.18) 34%,rgba(12,10,8,.55) 66%,rgba(8,7,6,.88) 100%);
+  background:linear-gradient(180deg,rgba(18,14,11,.52) 0%,rgba(16,13,10,.38) 38%,rgba(12,10,8,.46) 68%,rgba(8,7,6,.82) 100%);
   pointer-events:none;
 }
 .hero-wrap::after{
@@ -90,11 +90,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .chip-3{right:4%;top:48%;animation-delay:1.8s;}
 .chip-4{left:4%;top:50%;animation-delay:2.7s;}
 
-.hero-inner{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;max-width:1020px;margin:0 auto;position:relative;z-index:2;width:100%;}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;padding:8px 16px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:100px;backdrop-filter:blur(8px);opacity:0;animation:fup .7s .2s ease forwards;}
-.ed{width:5px;height:5px;border-radius:50%;background:var(--orange);}
-.et{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#fff;}
-.hero-inner h1{font-family:var(--sans);font-size:clamp(46px,6.6vw,96px);font-weight:600;line-height:1.03;letter-spacing:-.045em;margin-bottom:26px;color:#fff;opacity:0;animation:fup .8s .4s ease forwards;text-align:center;text-shadow:0 2px 24px rgba(0,0,0,.35);}
+.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1020px;margin:2vh auto 0;position:relative;z-index:2;width:100%;}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:30px;padding:11px 22px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);border-radius:100px;backdrop-filter:blur(8px);opacity:0;animation:fup .7s .2s ease forwards;}
+.ed{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.et{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
+.hero-inner h1{font-family:var(--sans);font-size:clamp(42px,5.6vw,82px);font-weight:600;line-height:1.03;letter-spacing:-.045em;margin-bottom:26px;color:#fff;opacity:0;animation:fup .8s .4s ease forwards;text-align:center;text-shadow:0 2px 24px rgba(0,0,0,.35);}
 .hero-inner h1 em{font-style:normal;font-weight:600;color:var(--orange);}
 .hero-sub{font-size:19px;color:rgba(255,255,255,.82);line-height:1.6;max-width:60ch;font-weight:400;margin:0 auto 40px;opacity:0;animation:fup .8s .6s ease forwards;text-align:center;text-shadow:0 1px 12px rgba(0,0,0,.4);}
 .hbtns{display:flex;gap:14px;align-items:center;justify-content:center;opacity:0;animation:fup .8s .8s ease forwards;}
@@ -400,8 +400,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .feed-item-msg strong{font-weight:600;}
 
 /* METRICS BANNER */
-.metrics-band{background:var(--paper);padding:0 48px 96px;max-width:1200px;margin:0 auto;}
-.metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;}
+.metrics-band{background:transparent;padding:0 48px 96px;max-width:1200px;margin:-130px auto 0;position:relative;z-index:5;}
+.metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(10,8,6,.35),0 8px 24px rgba(10,8,6,.18);}
 .metric{background:var(--white);padding:28px 22px;display:flex;flex-direction:column;gap:6px;}
 .metric-label{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
 .metric-value{font-size:32px;font-weight:600;color:var(--ink);letter-spacing:-.03em;line-height:1;}
@@ -613,6 +613,34 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 
 .container{max-width:1160px;margin:0 auto;}
 
+/* Glass metrics bar inside hero */
+.hero-metrics{position:relative;z-index:2;width:100%;max-width:1160px;margin:auto auto 0;}
+.hero-metrics .metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:rgba(16,13,10,.42);border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.35);}
+.hero-metrics .metric{background:transparent;padding:26px 22px;border-right:1px solid rgba(255,255,255,.10);}
+.hero-metrics .metric:last-child{border-right:none;}
+.hero-metrics .metric-label{color:rgba(255,255,255,.55);}
+.hero-metrics .metric-value{color:#fff;}
+.hero-metrics .metric-desc{color:rgba(255,255,255,.6);}
+.scroll-hint{position:relative;z-index:2;margin-top:26px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+.scroll-hint span{display:block;margin-top:6px;animation:hintBob 1.8s ease-in-out infinite;}
+@keyframes hintBob{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+@media(max-width:1000px){
+  .hero-metrics .metrics-strip{grid-template-columns:repeat(3,1fr);}
+  .hero-metrics .metric:nth-child(3n){border-right:none;}
+  .hero-metrics .metric{border-bottom:1px solid rgba(255,255,255,.10);}
+}
+@media(max-width:640px){
+  .hero-metrics .metrics-strip{grid-template-columns:repeat(2,1fr);}
+}
+/* Nav over hero: dark transparent, flips to light glass on scroll */
+nav.over-hero{background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,0) 100%);backdrop-filter:none;border-bottom:none;}
+nav.over-hero .nb{color:#fff;}
+nav.over-hero .nl{color:rgba(255,255,255,.78);}
+nav.over-hero .nl:hover{color:#fff;}
+nav.over-hero .nc{background:#fff;color:var(--ink);}
+nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
+
+
 @keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -668,7 +696,7 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 </head>
 <body>
 
-<nav>
+<nav class="over-hero" id="topnav">
   <div class="nb">
     <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
       <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
@@ -723,16 +751,15 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
       <a href="#demo" class="bs">Watch an agent work</a>
     </div>
   </div>
-</div>
-
-<!-- METRICS BAND -->
-<div class="metrics-band">
-  <div class="metrics-strip">
+  <div class="hero-metrics">
+<div class="metrics-strip">
     <div class="metric">
       <div class="metric-label">Revenue per truck</div>
       <div class="metric-value"><em>+15%</em></div>
       <div class="metric-desc">Average lift across pilot fleets</div>
-    </div>
+  </div>
+  <div class="scroll-hint">Start scrolling<span>↓</span></div>
+</div>
     <div class="metric">
       <div class="metric-label">Utilization</div>
       <div class="metric-value"><em>+12%</em></div>
@@ -1312,6 +1339,18 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 <script>
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Nav flips from dark-over-hero to light glass on scroll
+(function(){
+  const nav = document.getElementById('topnav');
+  const flip = () => {
+    if(window.scrollY > window.innerHeight * 0.7){ nav.classList.remove('over-hero'); }
+    else { nav.classList.add('over-hero'); }
+  };
+  window.addEventListener('scroll', flip, {passive:true});
+  flip();
+})();
+
 
 document.getElementById('submitBtn')?.addEventListener('click',function(e){
   e.preventDefault();this.textContent='Submitted ✓';
