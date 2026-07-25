@@ -62,7 +62,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nc:hover{background:var(--orange);transform:translateY(-1px);}
 
 /* HERO */
-.hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 45%/cover no-repeat;padding:118px 48px 44px;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center;}
+.hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 45%/cover no-repeat;padding:96px 48px 40px;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
 .hero-wrap::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(18,14,11,.52) 0%,rgba(16,13,10,.38) 38%,rgba(12,10,8,.46) 68%,rgba(8,7,6,.82) 100%);
@@ -90,7 +90,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .chip-3{right:4%;top:48%;animation-delay:1.8s;}
 .chip-4{left:4%;top:50%;animation-delay:2.7s;}
 
-.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1020px;margin:1vh auto 0;position:relative;z-index:2;width:100%;will-change:opacity,transform;}
+.hero-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:1020px;margin:0 auto;position:relative;z-index:2;width:100%;flex:1;will-change:opacity,transform;}
 .eyebrow{display:inline-flex;align-items:center;gap:11px;margin-bottom:24px;padding:10px 20px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);border-radius:100px;backdrop-filter:blur(8px);opacity:0;animation:fup .7s .2s ease forwards;}
 .ed{width:7px;height:7px;border-radius:50%;background:var(--orange);}
 .et{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
@@ -613,14 +613,13 @@ footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);paddi
 
 .container{max-width:1160px;margin:0 auto;}
 
-/* Glass metrics bar inside hero */
-.hero-metrics{position:relative;z-index:2;width:100%;max-width:1160px;margin:auto auto 0;will-change:opacity,transform;}
-.hero-metrics .metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:rgba(16,13,10,.42);border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.35);}
-.hero-metrics .metric{background:transparent;padding:20px 20px;border-right:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:5px;}
-.hero-metrics .metric:last-child{border-right:none;}
-.hero-metrics .metric-label{color:rgba(255,255,255,.55);}
-.hero-metrics .metric-value{color:#fff;font-size:27px;}
-.hero-metrics .metric-desc{color:rgba(255,255,255,.6);font-size:11.5px;}
+/* Glass metrics ticker inside hero */
+.hero-metrics{position:relative;z-index:2;margin:0 auto;will-change:opacity,transform;}
+.hero-ticker{display:flex;align-items:stretch;justify-content:center;background:rgba(16,13,10,.46);border:1px solid rgba(255,255,255,.16);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,.35);padding:5px 6px;flex-wrap:wrap;}
+.tick{display:flex;align-items:center;gap:11px;padding:11px 26px;border-right:1px solid rgba(255,255,255,.12);}
+.tick:last-child{border-right:none;}
+.tick-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.62);white-space:nowrap;}
+.tick-value{font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--orange);white-space:nowrap;}
 @media(max-width:1000px){
   .hero-metrics .metrics-strip{grid-template-columns:repeat(3,1fr);}
   .hero-metrics .metric:nth-child(3n){border-right:none;}
@@ -750,32 +749,12 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
     </div>
   </div>
   <div class="hero-metrics">
-    <div class="metrics-strip">
-      <div class="metric">
-        <div class="metric-label">Revenue per truck</div>
-        <div class="metric-value"><em>+15%</em></div>
-        <div class="metric-desc">Average lift across pilot fleets</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Utilization</div>
-        <div class="metric-value"><em>+12%</em></div>
-        <div class="metric-desc">More trucks loaded, fewer idle days</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Rate per mile</div>
-        <div class="metric-value"><em>+9%</em></div>
-        <div class="metric-desc">Smarter load selection</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Driver retention</div>
-        <div class="metric-value"><em>+20%</em></div>
-        <div class="metric-desc">Home time &amp; preferences honored</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Dispatcher time</div>
-        <div class="metric-value"><em>−50%</em></div>
-        <div class="metric-desc">The manual work, handled by agents</div>
-      </div>
+    <div class="hero-ticker">
+      <div class="tick"><span class="tick-label">Revenue / truck</span><span class="tick-value">+15%</span></div>
+      <div class="tick"><span class="tick-label">Utilization</span><span class="tick-value">+12%</span></div>
+      <div class="tick"><span class="tick-label">Rate / mile</span><span class="tick-value">+9%</span></div>
+      <div class="tick"><span class="tick-label">Driver retention</span><span class="tick-value">+20%</span></div>
+      <div class="tick"><span class="tick-label">Dispatcher time</span><span class="tick-value">−50%</span></div>
     </div>
   </div>
 </div>
