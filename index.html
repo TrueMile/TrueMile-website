@@ -727,6 +727,16 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   .hub-sat img{width:19px;height:19px;}
   .hub-pill{top:76%;font-size:.6rem;padding:5px 10px;}
 }
+
+/* Mobile ticker v3: guaranteed stacked rows */
+@media(max-width:700px){
+  .hero-ticker{display:grid;grid-template-columns:1fr;border-radius:18px;padding:6px 16px;}
+  .tick{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);gap:10px;}
+  .tick:last-child{border-bottom:none;}
+  .tick-label{font-size:.66rem;}
+  .tick-value{font-size:1.35rem;}
+  .hero-inner h1{font-size:2.15rem;}
+}
 </style>
 </head>
 <body>
@@ -779,7 +789,7 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   </div>
   <div class="hero-inner">
     <div class="eyebrow"><div class="ed"></div><span class="et">A 24/7 operations team for your fleet</span></div>
-    <h1>AI agents that <em>run</em> your<br>trucking operations.</h1>
+    <h1>AI agents that <em>run</em> your <br>trucking operations.</h1>
     <p class="hero-sub">They plan the week, assign loads to drivers, adapt when things break, and handle every driver and broker conversation.</p>
     <div class="hbtns">
       <a href="#contact" class="bp">Book demo →</a>
