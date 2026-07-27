@@ -696,6 +696,37 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   .lb-id{display:none;}
   .hub{height:300px;}
 }
+
+/* Mobile polish */
+@media(max-width:640px){
+  .hero-inner h1{font-size:2.3rem;line-height:1.08;}
+  .hero-inner h1 br{display:none;}
+  .hero-inner{padding-bottom:0;}
+  .eyebrow{padding:8px 14px;margin-bottom:20px;}
+  .et{font-size:.625rem;letter-spacing:.08em;white-space:nowrap;}
+  .hero-wrap{padding:92px 20px 40px;}
+  .hero-sub{font-size:1rem;margin-bottom:26px;}
+  .hero-metrics{margin-top:34px;}
+  .hero-ticker{border-radius:16px;}
+  .tick{padding:12px 18px;}
+  .tick-value{font-size:1.35rem;}
+}
+
+/* Mobile polish v2 */
+@media(max-width:700px){
+  /* eyebrow: one clean line, dot aligned */
+  .eyebrow{gap:8px;padding:8px 13px;}
+  .ed{flex-shrink:0;width:6px;height:6px;}
+  .et{font-size:.6rem;letter-spacing:.05em;white-space:nowrap;}
+  /* integrations hub: smaller nodes, decluttered */
+  .hub{height:330px;}
+  .hub-center{width:62px;height:62px;border-radius:16px;}
+  .hub-center svg{width:32px;height:32px;}
+  .hub-sat{width:42px;height:42px;}
+  .hub-sat svg{width:15px;height:15px;}
+  .hub-sat img{width:19px;height:19px;}
+  .hub-pill{top:76%;font-size:.6rem;padding:5px 10px;}
+}
 </style>
 </head>
 <body>
@@ -1037,7 +1068,7 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   <div class="fx-band reveal">
     <div class="fx-band-label">03 · Fill idle time with revenue</div>
     <div class="fx-band-head">Idle truck-days.<br><em>Filled with the right load.</em></div>
-    <div class="fx-band-body">Every gap the Planner finds gets handed to Find &amp; Fill. It scans every load board and broker network — then ranks loads by fit, not just rate. Home-time windows, market positioning, pickup timing, empty-mile recovery, driver preferences. The right load surfaces automatically.</div>
+    <div class="fx-band-body">Every gap the planning agent finds is handed to the sourcing agent, which scans every load board and broker network, then ranks loads by fit, not just rate. Home-time windows, market positioning, pickup timing, empty-mile recovery, driver preferences. The right load surfaces automatically.</div>
   </div>
   <div class="fx-card-wrap reveal">
     <div class="ui-card" style="max-width:720px;margin:0 auto;">
@@ -1331,6 +1362,10 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   let ticking = false;
   function apply(){
     ticking = false;
+    if(window.matchMedia('(max-width:700px)').matches){
+      [inner, metrics, orbit].forEach(el => { if(el){ el.style.opacity=''; el.style.transform=''; } });
+      return;
+    }
     const y = window.scrollY;
     const vh = window.innerHeight;
     const p = Math.min(1, Math.max(0, y / (vh * 0.55)));
