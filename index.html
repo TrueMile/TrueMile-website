@@ -610,6 +610,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .jobs-foot{margin-top:28px;font-size:0.9375rem;color:var(--ink-dim);line-height:1.6;}
 .jobs-foot a{color:var(--orange);text-decoration:none;font-weight:600;}
 .jobs-foot a:hover{color:var(--orange-deep);}
+button.job-card{width:100%;text-align:left;font:inherit;border:none;cursor:pointer;}
+
+/* APPLICATION MODAL */
+.apply-overlay{position:fixed;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:48px 20px;z-index:200;overflow-y:auto;opacity:0;transition:opacity .2s;}
+.apply-overlay.open{display:flex;opacity:1;}
+.apply-modal{background:var(--paper);border:1px solid var(--paper-line);border-radius:18px;max-width:560px;width:100%;padding:40px;position:relative;box-shadow:0 30px 80px rgba(26,26,26,.32);margin:auto;transform:translateY(8px);transition:transform .2s;}
+.apply-overlay.open .apply-modal{transform:none;}
+.apply-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--paper-line);background:var(--paper-warm);color:var(--ink-dim);font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,color .18s;}
+.apply-close:hover{background:var(--charcoal);color:var(--white);}
+.apply-eyebrow{font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.apply-role{font-family:var(--sans);font-size:1.375rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin-bottom:26px;padding-right:40px;}
+.apply-field{margin-bottom:16px;}
+.apply-label{display:block;font-size:0.8125rem;font-weight:600;color:var(--ink);margin-bottom:7px;}
+.apply-label span{color:var(--orange);}
+.apply-input{width:100%;padding:12px 14px;background:var(--white);border:1px solid var(--paper-line);border-radius:8px;color:var(--ink);font-size:0.9375rem;font-family:var(--sans);transition:border-color .18s;appearance:none;}
+.apply-input::placeholder{color:var(--ink-mute);}
+.apply-input:focus{outline:none;border-color:var(--orange);}
+textarea.apply-input{resize:vertical;min-height:82px;line-height:1.5;}
+.apply-drop{border:1.5px dashed var(--paper-line);border-radius:10px;background:var(--white);padding:20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .18s,background .18s;}
+.apply-drop:hover,.apply-drop.drag{border-color:var(--orange);background:var(--orange-soft);}
+.apply-drop-btn{flex-shrink:0;font-family:var(--sans);font-size:0.8125rem;font-weight:600;padding:9px 16px;border-radius:100px;border:1px solid var(--charcoal);background:var(--white);color:var(--ink);white-space:nowrap;}
+.apply-drop-txt{font-size:0.8125rem;color:var(--ink-dim);line-height:1.45;min-width:0;}
+.apply-drop-txt b{color:var(--ink);font-weight:600;word-break:break-word;}
+.apply-submit{width:100%;margin-top:22px;padding:15px;background:var(--orange);color:var(--white);font-size:0.9375rem;font-weight:600;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);transition:background .18s,transform .15s;}
+.apply-submit:hover{background:var(--orange-deep);transform:translateY(-1px);}
+.apply-submit:disabled{opacity:.55;cursor:default;transform:none;}
+.apply-note{font-size:0.6875rem;color:var(--ink-mute);text-align:center;margin-top:12px;font-family:var(--mono);letter-spacing:.03em;line-height:1.5;}
+.apply-note a{color:var(--orange);text-decoration:none;}
 
 /* CTA */
 .cta{background:var(--charcoal);padding:112px 48px;position:relative;overflow:hidden;}
@@ -720,6 +748,9 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   .jobs{padding:80px 24px;}
   .job-card{padding:22px 20px;gap:14px;}
   .job-title{font-size:1.0625rem;}
+  .apply-overlay{padding:20px 12px;}
+  .apply-modal{padding:28px 22px;}
+  .apply-role{font-size:1.1875rem;}
 }
 
 /* Mobile polish */
@@ -1349,10 +1380,10 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
       <div class="jobs-d reveal">Backed by Y Combinator, live with real fleets, built by operators who grew up in the business. Hard problems, fast shipping, real ownership from day one. If that's you, come talk to us.</div>
     </div>
     <div class="job-list reveal">
-      <a class="job-card" href="mailto:harpeet@truemile.ai?subject=Forward%20Deployed%20Engineer">
+      <button type="button" class="job-card" data-role="Founding Forward Deployed Engineer / Integrations">
         <div class="job-main">
-          <div class="job-title">Forward Deployed Engineer</div>
-          <div class="job-desc">Own customer go-lives end to end. Wire up ELDs and TMS systems, tune the agents against real fleet data, and turn pilots into production.</div>
+          <div class="job-title">Founding Forward Deployed Engineer / Integrations</div>
+          <div class="job-desc">Own carrier go-lives end to end. Wire up ELDs, TMS, and telematics, tune the agents against live fleet data, and turn pilots into production. You own the last mile from demo to dispatch.</div>
           <div class="job-tags">
             <span class="job-tag">Engineering</span>
             <span class="job-tag loc">San Francisco · On-site</span>
@@ -1360,11 +1391,11 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
           </div>
         </div>
         <span class="job-arrow">→</span>
-      </a>
-      <a class="job-card" href="mailto:careers@truemile.ai?subject=Founding%20Engineer">
+      </button>
+      <button type="button" class="job-card" data-role="Founding Full-Stack Engineer">
         <div class="job-main">
-          <div class="job-title">Founding Engineer</div>
-          <div class="job-desc">Build the platform the agents run on. Orchestration, integrations, and the product surface operators live in every day. Big surfaces, high ownership.</div>
+          <div class="job-title">Founding Full-Stack Engineer</div>
+          <div class="job-desc">Ship the product carriers run their day on. Full stack across the entire operation, with the agents wired in behind it. Take features from spec to shipped, and keep them shipped.</div>
           <div class="job-tags">
             <span class="job-tag">Engineering</span>
             <span class="job-tag loc">San Francisco · On-site</span>
@@ -1372,23 +1403,48 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
           </div>
         </div>
         <span class="job-arrow">→</span>
-      </a>
-      <a class="job-card" href="mailto:careers@truemile.ai?subject=Founding%20Account%20Executive">
-        <div class="job-main">
-          <div class="job-title">Founding Account Executive</div>
-          <div class="job-desc">Sell to mid-market carriers with operator credibility. Run demos on live data, own pilots through go-live, and build the GTM playbook from scratch.</div>
-          <div class="job-tags">
-            <span class="job-tag">Go-to-market</span>
-            <span class="job-tag loc">San Francisco · On-site</span>
-            <span class="job-tag">Full-time</span>
-          </div>
-        </div>
-        <span class="job-arrow">→</span>
-      </a>
+      </button>
     </div>
-    <div class="jobs-foot reveal">Don't see your role? Email <a href="mailto:careers@truemile.ai">careers@truemile.ai</a> and tell us what you'd own.</div>
+    <div class="jobs-foot reveal">Don't see your role? Email <a href="mailto:harpreet@truemile.ai">harpreet@truemile.ai</a> and tell us what you'd own.</div>
   </div>
 </section>
+
+<!-- APPLICATION MODAL -->
+<div class="apply-overlay" id="applyOverlay" aria-hidden="true">
+  <div class="apply-modal" role="dialog" aria-modal="true" aria-labelledby="applyRole">
+    <button type="button" class="apply-close" id="applyClose" aria-label="Close">✕</button>
+    <div class="apply-eyebrow">Apply · TrueMile</div>
+    <div class="apply-role" id="applyRole">Role</div>
+
+    <div class="apply-field">
+      <label class="apply-label" for="applyName">Name <span>*</span></label>
+      <input class="apply-input" id="applyName" type="text" placeholder="Your name" autocomplete="name"/>
+    </div>
+    <div class="apply-field">
+      <label class="apply-label" for="applyEmail">Email <span>*</span></label>
+      <input class="apply-input" id="applyEmail" type="email" placeholder="you@example.com" autocomplete="email"/>
+    </div>
+    <div class="apply-field">
+      <label class="apply-label" for="applyLink">LinkedIn / GitHub / portfolio</label>
+      <input class="apply-input" id="applyLink" type="text" placeholder="Optional, but helps"/>
+    </div>
+    <div class="apply-field">
+      <label class="apply-label" for="applyNote">Why you</label>
+      <textarea class="apply-input" id="applyNote" placeholder="A few lines. What you've shipped, why carriers."></textarea>
+    </div>
+    <div class="apply-field">
+      <label class="apply-label">Resume <span>*</span></label>
+      <div class="apply-drop" id="applyDrop">
+        <span class="apply-drop-btn">Upload file</span>
+        <span class="apply-drop-txt" id="applyDropTxt">or drag and drop here <b></b></span>
+      </div>
+      <input type="file" id="applyFile" accept=".pdf,.doc,.docx" style="display:none"/>
+    </div>
+
+    <button type="button" class="apply-submit" id="applySubmit">Submit application →</button>
+    <div class="apply-note">Goes straight to <a href="mailto:harpreet@truemile.ai">harpreet@truemile.ai</a>. PDF or Word.</div>
+  </div>
+</div>
 
 <!-- CTA -->
 <div class="cta" id="contact">
@@ -1485,6 +1541,111 @@ document.getElementById('submitBtn')?.addEventListener('click',function(e){
   this.style.cssText+=';background:#1A1A1A;color:white;';
   setTimeout(()=>{this.textContent='Book demo →';this.style.cssText='';},3000);
 });
+
+// ============================================
+// CAREERS — application modal + resume upload
+// ============================================
+(function(){
+  // Where applications go. Leave blank to hand off to the applicant's mail client
+  // (they get a pre-filled email to harpreet@truemile.ai and attach the resume).
+  // To receive the resume FILE automatically, set this to an endpoint that accepts
+  // multipart/form-data — your own API route, or a service like Formspree/Web3Forms.
+  // Posted fields: role, name, email, link, note, resume (the file).
+  const APPLY_ENDPOINT = "";
+  const APPLY_EMAIL = "harpreet@truemile.ai";
+
+  const overlay = document.getElementById('applyOverlay');
+  if(!overlay) return;
+  const roleEl = document.getElementById('applyRole');
+  const drop = document.getElementById('applyDrop');
+  const dropTxt = document.querySelector('#applyDropTxt b');
+  const fileInput = document.getElementById('applyFile');
+  const submit = document.getElementById('applySubmit');
+  const nameEl = document.getElementById('applyName');
+  const emailEl = document.getElementById('applyEmail');
+  const linkEl = document.getElementById('applyLink');
+  const noteEl = document.getElementById('applyNote');
+  let lastFocus = null;
+
+  function open(role){
+    roleEl.textContent = role;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    lastFocus = document.activeElement;
+    setTimeout(()=>nameEl.focus(), 50);
+  }
+  function close(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    submit.disabled = false;
+    submit.textContent = 'Submit application →';
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.job-card[data-role]').forEach(card=>{
+    card.addEventListener('click',()=>open(card.getAttribute('data-role')));
+  });
+  document.getElementById('applyClose').addEventListener('click',close);
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && overlay.classList.contains('open')) close(); });
+
+  function setFile(f){ if(!f) return; fileInput._file = f; dropTxt.textContent = f.name; }
+  drop.addEventListener('click',()=>fileInput.click());
+  fileInput.addEventListener('change',()=>setFile(fileInput.files[0]));
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag');}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag');}));
+  drop.addEventListener('drop',e=>{ if(e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]); });
+
+  function fail(msg){ submit.disabled=false; submit.textContent='Submit application →'; alert(msg); }
+
+  submit.addEventListener('click', async ()=>{
+    const name = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const file = fileInput._file;
+    if(!name) return fail('Add your name.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('Add a valid email.');
+    if(!file) return fail('Attach your resume.');
+
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+    const role = roleEl.textContent;
+
+    if(!APPLY_ENDPOINT){
+      const body =
+        'Role: ' + role + '\n' +
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Link: ' + (linkEl.value.trim() || '—') + '\n\n' +
+        (noteEl.value.trim() || '') + '\n\n' +
+        '(Resume to attach: ' + file.name + ')';
+      window.location.href = 'mailto:' + APPLY_EMAIL +
+        '?subject=' + encodeURIComponent('Application — ' + role) +
+        '&body=' + encodeURIComponent(body);
+      submit.textContent = 'Opening email…';
+      setTimeout(()=>{ close(); alert('Your email draft is open. Attach ' + file.name + ' and hit send.'); }, 600);
+      return;
+    }
+
+    try{
+      const fd = new FormData();
+      fd.append('role', role);
+      fd.append('name', name);
+      fd.append('email', email);
+      fd.append('link', linkEl.value.trim());
+      fd.append('note', noteEl.value.trim());
+      fd.append('subject', 'Application — ' + role);
+      fd.append('resume', file, file.name);
+      const res = await fetch(APPLY_ENDPOINT, { method:'POST', body: fd });
+      if(!res.ok) throw new Error('bad status');
+      submit.textContent = 'Submitted ✓';
+      setTimeout(()=>{ close(); alert('Application sent. Thanks — we read every one.'); }, 700);
+    }catch(err){
+      fail('Could not send that. Email ' + APPLY_EMAIL + ' directly.');
+    }
+  });
+})();
 
 // ============================================
 // AGENT DEMO ANIMATION — viewport-gated
