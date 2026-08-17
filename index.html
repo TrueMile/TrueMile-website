@@ -612,6 +612,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .jobs-foot a:hover{color:var(--orange-deep);}
 button.job-card{width:100%;text-align:left;font:inherit;border:none;cursor:pointer;}
 
+/* WHO FITS */
+.fit{margin-top:20px;background:var(--white);border:1px solid var(--paper-line);border-radius:14px;padding:34px 38px;}
+.fit-eyebrow{font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+.fit-list{display:flex;flex-direction:column;gap:13px;margin-bottom:24px;}
+.fit-item{position:relative;padding-left:22px;font-size:0.9375rem;color:var(--ink-dim);line-height:1.55;}
+.fit-item::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.fit-close{font-family:var(--sans);font-size:1.0625rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.4;padding-top:22px;border-top:1px solid var(--paper-line);}
+.fit-close em{font-style:normal;color:var(--orange);}
+
 /* APPLICATION MODAL */
 .apply-overlay{position:fixed;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:48px 20px;z-index:200;overflow-y:auto;opacity:0;transition:opacity .2s;}
 .apply-overlay.open{display:flex;opacity:1;}
@@ -751,6 +760,7 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
   .apply-overlay{padding:20px 12px;}
   .apply-modal{padding:28px 22px;}
   .apply-role{font-size:1.1875rem;}
+  .fit{padding:24px 22px;}
 }
 
 /* Mobile polish */
@@ -1405,6 +1415,15 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
         <span class="job-arrow">→</span>
       </button>
     </div>
+    <div class="fit reveal">
+      <div class="fit-eyebrow">Who's a good fit</div>
+      <div class="fit-list">
+        <div class="fit-item">Lean team, high standards, real ownership from day one.</div>
+        <div class="fit-item">Comfortable with Python, TypeScript, and FastAPI.</div>
+        <div class="fit-item">Hard technical work at a startup or big tech, or ex-founder, or someone who obsesses over projects they've shipped live.</div>
+      </div>
+      <div class="fit-close">Grinders who move fast and finish. <em>That's the bar.</em></div>
+    </div>
     <div class="jobs-foot reveal">Don't see your role? Email <a href="mailto:harpreet@truemile.ai">harpreet@truemile.ai</a> and tell us what you'd own.</div>
   </div>
 </section>
@@ -1457,10 +1476,10 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
       <div class="cd">Book a demo and see TrueMile run on your actual data. Per-truck pricing. No long-term contracts. Mid-market fleets — 50 to 1,000 trucks.</div>
     </div>
     <div class="cf">
-      <input class="fi" type="email" placeholder="Work email" required/>
+      <input class="fi" id="demoEmail" type="email" placeholder="Work email" required/>
       <div class="fr">
-        <input class="fi" type="text" placeholder="Company name" required/>
-        <select class="fs" required>
+        <input class="fi" id="demoCompany" type="text" placeholder="Company name" required/>
+        <select class="fs" id="demoFleet" required>
           <option value="" disabled selected>Fleet size</option>
           <option>50–100 trucks</option>
           <option>100–250 trucks</option>
@@ -1469,7 +1488,7 @@ nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
           <option>1,000+ trucks</option>
         </select>
       </div>
-      <input class="fi" type="text" placeholder="MC number"/>
+      <input class="fi" id="demoMc" type="text" placeholder="MC number"/>
       <button class="fsb" id="submitBtn">Book demo →</button>
       <div class="fno">Per-truck pricing · No commitment</div>
     </div>
@@ -1536,23 +1555,54 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
 
-document.getElementById('submitBtn')?.addEventListener('click',function(e){
-  e.preventDefault();this.textContent='Submitted ✓';
-  this.style.cssText+=';background:#1A1A1A;color:white;';
-  setTimeout(()=>{this.textContent='Book demo →';this.style.cssText='';},3000);
+// Shared Formspree endpoint for demo requests and job applications.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqpzyoaz";
+
+document.getElementById('submitBtn')?.addEventListener('click', async function(e){
+  e.preventDefault();
+  const btn = this;
+  const email = document.getElementById('demoEmail').value.trim();
+  const company = document.getElementById('demoCompany').value.trim();
+  const fleet = document.getElementById('demoFleet').value;
+  const mc = document.getElementById('demoMc').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ alert('Add a valid work email.'); return; }
+  if(!company){ alert('Add your company name.'); return; }
+  if(!fleet){ alert('Select your fleet size.'); return; }
+
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try{
+    const fd = new FormData();
+    fd.append('type', 'Demo request');
+    fd.append('email', email);
+    fd.append('company', company);
+    fd.append('fleet_size', fleet);
+    fd.append('mc_number', mc || '—');
+    fd.append('_subject', 'Demo request — ' + company);
+    const res = await fetch(FORMSPREE_ENDPOINT, { method:'POST', body: fd, headers:{ 'Accept':'application/json' } });
+    if(!res.ok) throw new Error('bad status');
+    btn.textContent = 'Submitted ✓';
+    btn.style.cssText += ';background:#1A1A1A;color:white;';
+    setTimeout(()=>{
+      btn.disabled = false; btn.textContent = 'Book demo →'; btn.style.cssText = '';
+      ['demoEmail','demoCompany','demoMc'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+      document.getElementById('demoFleet').selectedIndex = 0;
+    }, 3000);
+  }catch(err){
+    btn.disabled = false; btn.textContent = 'Book demo →';
+    alert('Could not send that. Email harpreet@truemile.ai directly.');
+  }
 });
 
 // ============================================
 // CAREERS — application modal + resume upload
 // ============================================
 (function(){
-  // Where applications go. Leave blank to hand off to the applicant's mail client
-  // (they get a pre-filled email to harpreet@truemile.ai and attach the resume).
-  // To receive the resume FILE automatically, set this to an endpoint that accepts
-  // multipart/form-data — your own API route, or a service like Formspree/Web3Forms.
-  // Posted fields: role, name, email, link, note, resume (the file).
-  const APPLY_ENDPOINT = "";
+  // Job applications post to the shared Formspree form (resume attached).
+  // Note: file uploads require a paid Formspree plan; on free tier the text
+  // fields still send and submit falls back to a pre-filled email to harpreet@.
+  const APPLY_ENDPOINT = FORMSPREE_ENDPOINT;
   const APPLY_EMAIL = "harpreet@truemile.ai";
+  const APPLY_CONFIGURED = !!APPLY_ENDPOINT;
 
   const overlay = document.getElementById('applyOverlay');
   if(!overlay) return;
@@ -1612,7 +1662,7 @@ document.getElementById('submitBtn')?.addEventListener('click',function(e){
     submit.textContent = 'Sending…';
     const role = roleEl.textContent;
 
-    if(!APPLY_ENDPOINT){
+    if(!APPLY_CONFIGURED){
       const body =
         'Role: ' + role + '\n' +
         'Name: ' + name + '\n' +
@@ -1637,7 +1687,7 @@ document.getElementById('submitBtn')?.addEventListener('click',function(e){
       fd.append('note', noteEl.value.trim());
       fd.append('subject', 'Application — ' + role);
       fd.append('resume', file, file.name);
-      const res = await fetch(APPLY_ENDPOINT, { method:'POST', body: fd });
+      const res = await fetch(APPLY_ENDPOINT, { method:'POST', body: fd, headers:{ 'Accept':'application/json' } });
       if(!res.ok) throw new Error('bad status');
       submit.textContent = 'Submitted ✓';
       setTimeout(()=>{ close(); alert('Application sent. Thanks — we read every one.'); }, 700);
