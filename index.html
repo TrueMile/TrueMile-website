@@ -1,2418 +1,3607 @@
-<!doctype html>
-<html lang="en">
+html lang="en">
+
 <head>
+
 <meta charset="utf-8"/>
+
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
 <title>TrueMile — AI agents that run trucking operations</title>
 
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
 <link rel="manifest" href="/site.webmanifest">
+
 <meta name="theme-color" content="#E8501E">
 
 <meta property="og:title" content="TrueMile">
+
 <meta property="og:description" content="A 24/7 operations team for your fleet. AI agents that run your trucking operations: planning the week, assigning loads, adapting when things break, and handling broker and driver communications.">
+
 <meta property="og:url" content="https://truemile.ai">
+
 <meta property="og:type" content="website">
+
 <meta name="twitter:card" content="summary_large_image">
+
 <meta name="twitter:title" content="TrueMile">
+
 <meta name="twitter:description" content="AI agents that run trucking operations.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+
 /* Gilroy — self-hosted (drop woff2 files in repo root). Poppins loads as the look-alike fallback. */
+
 @font-face{font-family:'Gilroy';src:url('gilroy-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+
 @font-face{font-family:'Gilroy';src:url('gilroy-medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+
 @font-face{font-family:'Gilroy';src:url('gilroy-semibold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+
 @font-face{font-family:'Gilroy';src:url('gilroy-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+
 </style>
+
 <style>
+
 :root{
+
   --charcoal:#1A1A1A;
+
   --charcoal-soft:#232323;
+
   --orange:#E8501E;
+
   --orange-soft:rgba(232,80,30,.10);
+
   --orange-soft-2:rgba(232,80,30,.06);
+
   --orange-deep:#C9420E;
+
   --teal:#0E8378;
+
   --teal-soft:rgba(14,131,120,.10);
+
   --amber:#D9A441;
+
   --amber-soft:rgba(217,164,65,.12);
+
   --blue:#5577A0;
+
   --blue-soft:rgba(85,119,160,.10);
+
   --red:#B85A52;
+
   --red-soft:rgba(184,90,82,.10);
+
   --paper:#FAFAF9;
+
   --paper-warm:#F3F1ED;
+
   --paper-line:rgba(0,0,0,.08);
+
   --paper-line-soft:rgba(0,0,0,.05);
+
   --ink:#0A0A0A;
+
   --ink-dim:#5B5B5B;
+
   --ink-mute:#8A8A8A;
+
   --white:#FFFFFF;
+
   --sans:'Gilroy','Poppins','Inter',system-ui,-apple-system,sans-serif;
+
   --mono:'Courier New',Courier,monospace;
+
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
 html{scroll-behavior:smooth;}
+
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,250,249,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--paper-line-soft);}
+
 .nb{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1rem;color:var(--ink);letter-spacing:-.01em;}
+
 .nr{display:flex;gap:32px;align-items:center;}
+
 .nl{font-size:0.8125rem;color:var(--ink-dim);text-decoration:none;transition:color .2s;font-weight:500;}
+
 .nl:hover{color:var(--ink);}
+
 .nc{font-size:0.8125rem;font-weight:500;color:var(--white);background:var(--charcoal);padding:10px 20px;border-radius:6px;text-decoration:none;transition:background .2s,transform .15s;}
+
 .nc:hover{background:var(--orange);transform:translateY(-1px);}
 
 /* HERO */
+
 .hero-wrap{position:relative;background:var(--charcoal) url('hero-truck.jpg') center 45%/cover no-repeat;padding:96px 48px 40px;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;}
+
 .hero-wrap::before{
+
   content:'';position:absolute;inset:0;
+
   background:radial-gradient(ellipse 62% 50% at 50% 26%,rgba(8,7,6,.55) 0%,rgba(8,7,6,.28) 55%,transparent 75%),linear-gradient(180deg,rgba(18,14,11,.48) 0%,rgba(16,13,10,.36) 38%,rgba(12,10,8,.48) 68%,rgba(8,7,6,.84) 100%);
+
   pointer-events:none;
+
 }
+
 .hero-wrap::after{
+
   content:'';position:absolute;inset:0;
+
   background:radial-gradient(ellipse 60% 42% at 50% 96%,rgba(232,80,30,.20) 0%,transparent 65%);
+
   pointer-events:none;
+
 }
+
 .hero-orbit{position:absolute;inset:0;pointer-events:none;z-index:1;}
+
 .orbit-svg{position:absolute;left:50%;top:-6%;transform:translateX(-50%);width:1400px;height:80%;opacity:.6;}
+
 .orbit-svg ellipse{fill:none;stroke:rgba(255,255,255,.38);stroke-width:1;stroke-dasharray:2 7;}
+
 .agent-chip{position:absolute;display:flex;align-items:center;gap:9px;background:var(--white);border:1px solid var(--paper-line);border-radius:100px;padding:6px 12px 6px 7px;box-shadow:0 10px 30px rgba(26,26,26,.10),0 2px 8px rgba(26,26,26,.05);animation:chipFloat 6.5s ease-in-out infinite;white-space:nowrap;}
+
 .chip-avatar{width:24px;height:24px;border-radius:50%;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:0.5625rem;color:var(--orange-deep);flex-shrink:0;}
+
 .chip-avatar.teal{background:var(--teal-soft);color:var(--teal);}
+
 .chip-body{display:flex;flex-direction:column;line-height:1.25;}
+
 .chip-t{font-size:0.6875rem;font-weight:600;color:var(--ink);}
+
 .chip-s{font-family:var(--mono);font-size:0.5312rem;color:var(--ink-mute);letter-spacing:.03em;}
+
 .chip-pill{font-family:var(--mono);font-size:0.5rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--teal-soft);color:var(--teal);padding:3px 9px;border-radius:100px;}
+
 .chip-pill.solid{background:var(--teal);color:#fff;}
+
 @keyframes chipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+
 .chip-1{left:15%;top:24%;animation-delay:0s;}
+
 .chip-2{right:15%;top:18%;animation-delay:.9s;}
+
 .chip-3{right:11%;top:44%;animation-delay:1.8s;}
+
 .chip-4{left:11%;top:46%;animation-delay:2.7s;}
 
 .hero-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:1020px;margin:0 auto;position:relative;z-index:2;width:100%;flex:1;padding-bottom:16vh;will-change:opacity,transform;}
+
 .eyebrow{display:inline-flex;align-items:center;gap:11px;margin-bottom:24px;padding:10px 20px;background:rgba(10,8,6,.34);border:1px solid rgba(255,255,255,.30);border-radius:100px;backdrop-filter:blur(8px);opacity:0;animation:fup .7s .2s ease forwards;}
+
 .ed{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+
 .et{font-family:var(--mono);font-size:0.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;}
+
 .hero-inner h1{font-family:var(--sans);font-size:clamp(2.5rem,5.1vw,4.625rem);font-weight:600;line-height:1.04;letter-spacing:-.022em;margin-bottom:22px;color:#fff;opacity:0;animation:fup .8s .4s ease forwards;text-align:center;text-shadow:0 2px 4px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.5),0 18px 60px rgba(0,0,0,.55);}
+
 .hero-inner h1 em{font-style:normal;font-weight:600;color:var(--orange);}
+
 .hero-sub{font-size:1.125rem;color:rgba(255,255,255,.82);line-height:1.6;max-width:58ch;font-weight:400;margin:0 auto 32px;opacity:0;animation:fup .8s .6s ease forwards;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.55),0 4px 16px rgba(0,0,0,.5);}
+
 .hbtns{display:flex;gap:14px;align-items:center;justify-content:center;opacity:0;animation:fup .8s .8s ease forwards;}
+
 .bp{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--orange);color:var(--white);font-size:0.875rem;font-weight:500;border-radius:6px;text-decoration:none;transition:background .2s,transform .15s;cursor:pointer;border:none;font-family:var(--sans);box-shadow:0 12px 32px rgba(232,80,30,.35);}
+
 .bp:hover{background:var(--orange-deep);transform:translateY(-1px);}
+
 .bs{display:inline-flex;align-items:center;padding:14px 24px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);font-size:0.875rem;font-weight:500;border:1px solid rgba(255,255,255,.35);border-radius:6px;text-decoration:none;transition:border-color .2s,color .2s;backdrop-filter:blur(6px);}
+
 .bs:hover{border-color:#fff;color:#fff;}
 
 /* AGENT DEMO SECTION */
+
 .agent-demo-section{padding:96px 48px 120px;background:var(--paper);position:relative;overflow:hidden;}
+
 .agent-demo-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(232,80,30,.06) 0%,transparent 65%);pointer-events:none;}
+
 .agent-demo-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
+
 .agent-demo-head{text-align:center;margin-bottom:48px;}
+
 .agent-demo-label{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+
 .agent-demo-title{font-family:var(--sans);font-size:clamp(2.5rem,5vw,4rem);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;color:var(--ink);}
+
 .agent-demo-title em{font-style:normal;font-weight:600;color:var(--orange);}
+
 .agent-demo-desc{font-size:1.0625rem;color:var(--ink-dim);line-height:1.65;max-width:54ch;margin:0 auto;font-weight:400;}
 
 .agent-card-wrap{display:flex;justify-content:center;}
+
 .agent-card{
+
   position:relative;z-index:1;width:100%;max-width:680px;
+
   background:var(--white);
+
   border:1px solid var(--paper-line);
+
   border-radius:16px;overflow:hidden;
+
   box-shadow:0 30px 80px rgba(26,26,26,.10),0 8px 24px rgba(26,26,26,.04);
+
   display:flex;flex-direction:column;
+
 }
+
 .agent-card-head{
+
   padding:13px 18px;
+
   border-bottom:1px solid var(--paper-line);
+
   display:flex;align-items:center;justify-content:space-between;
+
   flex-shrink:0;
+
 }
+
 .agent-card-body{
+
   position:relative;overflow:hidden;
+
   height:240px;
+
   flex-shrink:0;
+
 }
+
 .agent-card-body > div{
+
   position:absolute;inset:0;
+
 }
 
 .agent-card-divider{
+
   padding:11px 18px;
+
   background:var(--paper-warm);
+
   border-top:1px solid var(--paper-line);
+
   border-bottom:1px solid var(--paper-line);
+
   display:flex;align-items:center;justify-content:space-between;
+
   flex-shrink:0;
+
 }
+
 .agent-card-divider-title{
+
   display:flex;align-items:center;gap:8px;
+
   font-size:0.8125rem;font-weight:600;color:var(--ink);
+
 }
+
 .agent-card-divider-meta{
+
   font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);
+
   letter-spacing:.06em;text-transform:uppercase;
+
 }
+
 .agent-card-title{
+
   display:flex;align-items:center;gap:8px;
+
   font-size:0.8125rem;font-weight:600;color:var(--ink);
+
 }
+
 .agent-pulse{
+
   width:7px;height:7px;border-radius:50%;background:var(--teal);
+
   box-shadow:0 0 0 4px rgba(14,131,120,.18);
+
   animation:agentPulse 1.8s ease-in-out infinite;
+
 }
+
 @keyframes agentPulse{0%,100%{box-shadow:0 0 0 4px rgba(14,131,120,.18);}50%{box-shadow:0 0 0 8px rgba(14,131,120,.04);}}
+
 .agent-card-meta{font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);letter-spacing:.06em;text-transform:uppercase;}
 
 .hero-stage{padding:20px 22px;display:flex;flex-direction:column;gap:12px;justify-content:flex-start;
+
   opacity:0;transition:opacity .35s ease;pointer-events:none;}
+
 .hero-stage.active{opacity:1;pointer-events:auto;}
+
 .hero-stage-label{
+
   font-family:var(--mono);font-size:0.625rem;color:var(--teal);
+
   letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+
   display:flex;align-items:center;gap:8px;
+
 }
+
 .hero-stage-label::before{
+
   content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);
+
   animation:agentPulse 1.2s ease-in-out infinite;
+
 }
 
 .hero-input-wrap{
+
   display:flex;gap:8px;align-items:stretch;
+
   padding:6px;
+
   background:var(--paper-warm);
+
   border:1px solid var(--paper-line);
+
   border-radius:8px;
+
   transition:border-color .3s ease,background .3s ease;
+
 }
+
 .hero-input-wrap.focused{border-color:var(--teal);background:var(--white);}
+
 .hero-input{
+
   flex:1;display:flex;align-items:center;
+
   padding:8px 10px;
+
   font-family:var(--sans);font-size:0.8125rem;color:var(--ink);
+
   font-weight:500;min-height:30px;
+
 }
+
 .hero-input.placeholder{color:var(--ink-mute);font-weight:400;}
+
 .hero-input-cursor{
+
   display:inline-block;width:1.5px;height:14px;background:var(--ink);
+
   vertical-align:middle;margin-left:1px;
+
   animation:blink 1s step-end infinite;
+
 }
+
 @keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+
 .hero-send-btn{
+
   padding:8px 16px;background:var(--charcoal);color:white;
+
   border:none;border-radius:6px;
+
   font-size:0.75rem;font-weight:600;font-family:var(--sans);
+
   cursor:default;display:flex;align-items:center;
+
 }
 
 .hero-pending{
+
   padding:20px 22px;
+
   background:var(--amber-soft);
+
   display:flex;flex-direction:column;justify-content:flex-start;
+
   opacity:0;
+
   transition:opacity .35s ease;
+
   pointer-events:none;
+
 }
+
 .hero-pending.active{opacity:1;pointer-events:auto;}
+
 .hero-pending-label{
+
   font-family:var(--mono);font-size:0.5625rem;color:#9c7a2e;
+
   letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+
   margin-bottom:6px;
+
 }
+
 .hero-pending-msg{
+
   font-size:0.7812rem;color:var(--ink);line-height:1.4;font-weight:500;
+
   margin-bottom:10px;
+
 }
+
 .hero-pending-msg strong{font-weight:600;}
+
 .hero-reopt-btn{
+
   width:100%;padding:11px;
+
   background:var(--teal);color:white;
+
   border:none;border-radius:6px;
+
   font-size:0.8125rem;font-weight:600;font-family:var(--sans);
+
   cursor:default;
+
   display:flex;align-items:center;justify-content:center;gap:6px;
+
   transition:transform .15s ease,box-shadow .15s ease;
+
   position:relative;
+
 }
+
 .hero-reopt-btn.pressed{
+
   transform:scale(.97);
+
   box-shadow:0 0 0 4px rgba(14,131,120,.18);
+
 }
 
 .hero-replan{
+
   padding:20px 22px;
+
   display:flex;
+
   flex-direction:column;gap:12px;justify-content:flex-start;
+
   opacity:0;
+
   transition:opacity .35s ease;
+
   pointer-events:none;
+
 }
+
 .hero-replan.active{opacity:1;pointer-events:auto;}
+
 .hero-replan-eyebrow{
+
   font-family:var(--mono);font-size:0.625rem;color:var(--teal);
+
   letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+
   display:flex;align-items:center;gap:8px;
+
 }
+
 .hero-replan-eyebrow::before{
+
   content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);
+
   animation:agentPulse 1.2s ease-in-out infinite;
+
 }
+
 .hero-replan-title{
+
   font-size:1.0625rem;font-weight:600;color:var(--ink);line-height:1.3;
+
 }
+
 .hero-replan-bar{
+
   height:6px;background:var(--paper-warm);border-radius:999px;
+
   overflow:hidden;margin-top:2px;
+
 }
+
 .hero-replan-fill{
+
   height:100%;background:var(--teal);width:0%;
+
   border-radius:999px;
+
   transition:width .12s linear;
+
 }
+
 .hero-replan-status{
+
   font-family:var(--mono);font-size:0.6875rem;color:var(--ink-dim);
+
   line-height:1.4;min-height:15px;
+
 }
+
 .hero-replan-summary{
+
   display:flex;align-items:center;gap:10px;
+
   font-size:0.8125rem;color:var(--ink);
+
   margin-top:2px;opacity:0;
+
   transition:opacity .3s ease;
+
 }
+
 .hero-replan-summary.show{opacity:1;}
+
 .hero-replan-summary-check{
+
   width:20px;height:20px;border-radius:50%;
+
   background:var(--teal-soft);
+
   display:inline-flex;align-items:center;justify-content:center;
+
   flex-shrink:0;
+
 }
+
 .hero-replan-summary strong{font-weight:600;}
 
 .hero-notify{
+
   display:flex;flex-direction:column;
+
   opacity:0;
+
   transition:opacity .4s ease;
+
   pointer-events:none;
+
   overflow-y:auto;
+
 }
+
 .hero-notify.active{opacity:1;pointer-events:auto;}
+
 .hero-notify-head{
+
   padding:10px 18px;
+
   border-bottom:1px solid var(--paper-line);
+
   background:var(--paper-warm);
+
   flex-shrink:0;
+
 }
+
 .hero-notify-eyebrow{
+
   font-family:var(--mono);font-size:0.5625rem;color:var(--amber);
+
   letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+
   display:flex;align-items:center;gap:6px;margin-bottom:3px;
+
 }
+
 .hero-notify-eyebrow svg{flex-shrink:0;}
+
 .hero-notify-title{
+
   font-size:0.875rem;font-weight:600;color:var(--ink);line-height:1.2;
+
 }
+
 .hero-notify-sub{
+
   font-family:var(--mono);font-size:0.625rem;color:var(--ink-dim);
+
   margin-top:2px;line-height:1.4;
+
 }
 
 .hero-notify-card{
+
   padding:11px 18px 12px;
+
   background:var(--red-soft);
+
   border-top:1px solid rgba(184,90,82,.18);
+
   position:relative;
+
   flex-shrink:0;
+
 }
+
 .hero-notify-card::before{
+
   content:'';position:absolute;
+
   left:0;top:0;bottom:0;width:3px;
+
   background:var(--red);
+
 }
+
 .hero-notify-tag{
+
   font-family:var(--mono);font-size:0.5625rem;color:var(--red);
+
   letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+
   margin-bottom:6px;
+
   display:flex;justify-content:space-between;
+
 }
+
 .hero-notify-tag-count{
+
   background:rgba(184,90,82,.18);color:var(--red);
+
   padding:1px 7px;border-radius:100px;font-size:0.5312rem;
+
 }
+
 .hero-notify-name{
+
   font-size:0.8125rem;font-weight:600;color:var(--ink);
+
   display:flex;align-items:center;gap:6px;
+
 }
+
 .hero-notify-status{
+
   font-family:var(--mono);font-size:0.5625rem;color:var(--ink-mute);
+
   text-transform:uppercase;letter-spacing:.06em;font-weight:600;
+
   margin-top:2px;margin-bottom:6px;
+
 }
+
 .hero-notify-detail{
+
   font-size:0.75rem;color:var(--ink);line-height:1.4;
+
 }
+
 .hero-notify-detail strong{font-weight:600;}
+
 .hero-notify-actions{
+
   display:flex;gap:6px;margin-top:8px;
+
 }
+
 .hero-notify-btn{
+
   padding:5px 10px;
+
   background:var(--white);border:1px solid var(--paper-line);
+
   border-radius:6px;
+
   font-size:0.6875rem;color:var(--ink);font-weight:500;
+
   display:flex;align-items:center;gap:5px;
+
   font-family:var(--sans);
+
 }
+
 .hero-notify-btn-dot{
+
   width:6px;height:6px;border-radius:50%;background:var(--ink);
+
 }
 
 .hero-feed-body{
+
   flex:1;overflow:hidden;
+
 }
 
 .feed-item{
+
   padding:11px 16px 11px 34px;
+
   border-bottom:1px solid var(--paper-line-soft);
+
   position:relative;
+
   opacity:0;
+
   transition:opacity .4s ease;
+
   height:62px;
+
   display:flex;flex-direction:column;justify-content:center;
+
   overflow:hidden;
+
 }
+
 .feed-item.show{opacity:1;}
+
 .feed-item:last-child{border-bottom:none;}
+
 .feed-item::before{
+
   content:'';position:absolute;left:16px;top:50%;transform:translateY(-50%);
+
   width:8px;height:8px;border-radius:50%;
+
 }
+
 .feed-item.eld::before{background:var(--amber);box-shadow:0 0 0 3px var(--amber-soft);}
+
 .feed-item.maint::before{background:var(--red);box-shadow:0 0 0 3px var(--red-soft);}
+
 .feed-item.mci::before{background:var(--teal);box-shadow:0 0 0 3px var(--teal-soft);}
+
 .feed-item.broker::before{background:var(--orange);box-shadow:0 0 0 3px var(--orange-soft);}
+
 .feed-item-src{
+
   font-family:var(--mono);font-size:0.5625rem;color:var(--ink-mute);
+
   letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;font-weight:600;
+
 }
+
 .feed-item-msg{font-size:0.75rem;color:var(--ink);line-height:1.4;}
+
 .feed-item-msg strong{font-weight:600;}
 
 /* METRICS BANNER */
+
 .metrics-band{background:transparent;padding:0 48px 96px;max-width:1200px;margin:-130px auto 0;position:relative;z-index:5;}
+
 .metrics-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(10,8,6,.35),0 8px 24px rgba(10,8,6,.18);}
+
 .metric{background:var(--white);padding:28px 22px;display:flex;flex-direction:column;gap:6px;}
+
 .metric-label{font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+
 .metric-value{font-size:2rem;font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1;}
+
 .metric-value em{font-style:normal;color:var(--orange);}
+
 .metric-desc{font-size:0.7812rem;color:var(--ink-dim);line-height:1.4;margin-top:2px;}
 
 /* SECTION BANDS */
+
 .fx-section{padding:0;}
+
 .fx-band{padding:96px 64px 56px;max-width:1160px;margin:0 auto;}
+
 .fx-band-label{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+
 .fx-band-head{font-family:var(--sans);font-size:clamp(2.375rem,4.2vw,3.75rem);font-weight:600;line-height:1.05;letter-spacing:-.018em;margin-bottom:20px;color:var(--ink);}
+
 .fx-band-head em{font-style:normal;color:var(--orange);}
+
 .fx-band-body{font-size:1.0625rem;color:var(--ink-dim);line-height:1.65;max-width:54ch;font-weight:400;}
+
 .fx-card-wrap{padding:0 64px 104px;max-width:1160px;margin:0 auto;}
 
 .ui-card{background:var(--white);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.03);overflow:hidden;width:100%;position:relative;z-index:1;border:1px solid var(--paper-line);}
+
 .ui-bar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--paper-warm);border-bottom:1px solid var(--paper-line);}
+
 .ui-dots{display:flex;gap:5px;}
+
 .ui-dot{width:8px;height:8px;border-radius:50%;background:#d4d0c8;}
+
 .ui-url{font-family:var(--mono);font-size:0.625rem;color:var(--ink-dim);margin-left:6px;}
 
 .section-warm{background:var(--paper-warm);}
+
 .section-paper{background:var(--paper);}
 
 /* HOW IT WORKS */
+
 .how{background:var(--paper);color:var(--ink);padding:112px 48px;}
+
 .how-top{margin-bottom:64px;}
+
 .how-eyebrow{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+
 .how-h{font-family:var(--sans);font-size:clamp(2.25rem,4.2vw,3.5rem);font-weight:600;line-height:1.05;letter-spacing:-.018em;max-width:24ch;margin-bottom:20px;color:var(--ink);}
+
 .how-h em{font-style:normal;color:var(--orange);}
+
 .how-d{font-size:1.0625rem;color:var(--ink-dim);line-height:1.65;max-width:54ch;font-weight:400;}
 
 .agents-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;}
+
 .agent-tile{background:var(--white);padding:32px 28px;display:flex;flex-direction:column;gap:18px;}
+
 .agent-tile-header{display:flex;align-items:center;justify-content:space-between;}
+
 .agent-tile-num{font-family:var(--mono);font-size:0.6875rem;font-weight:600;color:var(--orange);letter-spacing:.1em;}
+
 .agent-tile-status{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.5625rem;font-weight:600;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;}
+
 .agent-tile-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:agentPulse 1.8s ease-in-out infinite;}
+
 .agent-tile-icon{width:36px;height:36px;border-radius:8px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;color:var(--orange);}
+
 .agent-tile-name{font-size:1rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.2;}
+
 .agent-tile-desc{font-size:0.8125rem;color:var(--ink-dim);line-height:1.55;flex:1;}
+
 .agent-tile-io{display:flex;flex-direction:column;gap:4px;padding-top:12px;border-top:1px solid var(--paper-line);}
+
 .agent-tile-io-line{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);letter-spacing:.04em;}
+
 .agent-tile-io-line.in::before{content:'IN';color:var(--blue);font-weight:700;background:var(--blue-soft);padding:1px 5px;border-radius:3px;font-size:0.5625rem;}
+
 .agent-tile-io-line.out::before{content:'OUT';color:var(--orange);font-weight:700;background:var(--orange-soft);padding:1px 5px;border-radius:3px;font-size:0.5625rem;}
 
 /* SET UP THE WEEK — timeline */
+
 .timeline-card{padding:0;}
+
 .timeline-head{padding:16px 20px;border-bottom:1px solid var(--paper-line);display:flex;justify-content:space-between;align-items:center;}
+
 .timeline-title{font-size:0.8125rem;font-weight:600;color:var(--ink);}
+
 .timeline-status{font-family:var(--mono);font-size:0.625rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:6px;}
+
 .timeline-body{padding:20px;}
+
 .timeline-row{display:grid;grid-template-columns:130px 1fr;gap:14px;margin-bottom:10px;align-items:center;}
+
 .timeline-row:last-child{margin-bottom:0;}
+
 .timeline-truck{display:flex;flex-direction:column;}
+
 .timeline-truck-name{font-family:var(--mono);font-size:0.6875rem;color:var(--ink);font-weight:600;}
+
 .timeline-truck-driver{font-size:0.6875rem;color:var(--ink-dim);margin-top:2px;}
+
 .timeline-bar{height:28px;background:var(--paper-warm);border-radius:5px;position:relative;display:flex;overflow:hidden;}
+
 .timeline-seg{height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.5625rem;font-weight:600;color:white;letter-spacing:.04em;position:relative;border-right:1px solid rgba(255,255,255,.4);}
+
 .timeline-seg:last-child{border-right:none;}
+
 .timeline-seg.load{background:var(--orange);}
+
 .timeline-seg.load-light{background:rgba(232,80,30,.45);color:var(--orange-deep);}
+
 .timeline-seg.empty{background:transparent;color:var(--ink-mute);}
+
 .timeline-seg.home{background:var(--teal);color:white;}
+
 .timeline-seg.maint{background:var(--red);color:white;}
+
 .timeline-days{display:grid;grid-template-columns:repeat(7,1fr);font-family:var(--mono);font-size:0.5625rem;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding-bottom:8px;margin-left:144px;}
+
 .timeline-days div{text-align:center;}
 
 .agent-thought{margin:0 20px 20px;padding:14px 16px;background:var(--paper-warm);border-left:3px solid var(--teal);border-radius:6px;font-size:0.7812rem;color:var(--ink);line-height:1.55;}
+
 .agent-thought-head{font-family:var(--mono);font-size:0.625rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;font-weight:600;display:flex;align-items:center;gap:6px;}
+
 .agent-thought-head::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:agentPulse 1.8s ease-in-out infinite;}
 
 /* COMMS WORKSPACE — reasoning sidebar + parallel threads */
+
 .comms-card{max-width:980px;margin:0 auto;}
+
 .comms-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--paper-line);flex-wrap:wrap;background:var(--white);}
+
 .comms-top-title{font-size:0.8438rem;font-weight:600;color:var(--ink);}
+
 .comms-top-title span{font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);font-weight:500;margin-left:6px;}
+
 .stat-row{display:flex;gap:8px;}
+
 .stat-box{background:var(--paper-warm);border:1px solid var(--paper-line);border-radius:8px;padding:7px 14px;text-align:center;min-width:92px;}
+
 .stat-num{font-family:var(--mono);font-size:0.9375rem;font-weight:600;color:var(--ink);line-height:1.2;}
+
 .stat-lab{font-family:var(--mono);font-size:0.5rem;color:var(--ink-mute);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:2px;}
+
 .stat-box.hot{background:var(--teal-soft);border-color:rgba(14,131,120,.25);}
+
 .stat-box.hot .stat-num{color:var(--teal);}
+
 .comms-body{display:grid;grid-template-columns:272px 1fr;background:var(--paper);}
+
 .think-panel{border-right:1px solid var(--paper-line);padding:16px;display:flex;flex-direction:column;gap:11px;background:var(--white);}
+
 .think-head{display:flex;align-items:center;gap:8px;font-size:0.7812rem;font-weight:600;color:var(--ink);}
+
 .think-time{margin-left:auto;font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);font-weight:500;}
+
 .think-spin{width:11px;height:11px;border:2px solid var(--orange-soft);border-top-color:var(--orange);border-radius:50%;animation:spin 1s linear infinite;flex-shrink:0;}
+
 @keyframes spin{to{transform:rotate(360deg);}}
+
 .think-panel p{font-size:0.75rem;color:var(--ink-dim);line-height:1.55;}
+
 .think-panel p strong{color:var(--ink);font-weight:600;}
+
 .think-pill{background:var(--paper-warm);border:1px solid var(--paper-line);border-radius:8px;padding:8px 11px;font-size:0.6875rem;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:7px;line-height:1.4;}
+
 .think-pill svg{flex-shrink:0;color:var(--ink-dim);}
+
 .think-pill.live{background:var(--orange-soft);border-color:rgba(232,80,30,.2);color:var(--orange-deep);}
+
 .think-pill.live svg{color:var(--orange-deep);}
+
 .threads-col{padding:14px;display:flex;flex-direction:column;gap:12px;}
+
 .thread-card{background:var(--white);border:1px solid var(--paper-line);border-radius:12px;padding:12px 14px;box-shadow:0 4px 14px rgba(26,26,26,.04);}
+
 .thread-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
 .live-badge{font-family:var(--mono);font-size:0.5625rem;font-weight:700;color:var(--orange-deep);background:var(--orange-soft);padding:3px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;letter-spacing:.06em;text-transform:uppercase;}
+
 .live-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--orange);animation:agentPulse 1.2s ease-in-out infinite;}
+
 .comms-thread-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap;}
+
 .comms-thread-name{font-size:0.7812rem;font-weight:600;color:var(--ink);}
+
 .comms-thread-name span{font-family:var(--mono);font-size:0.625rem;color:var(--ink-mute);font-weight:500;margin-left:6px;}
+
 .comms-tags{display:flex;gap:6px;align-items:center;}
+
 .comms-tag{font-family:var(--mono);font-size:0.5312rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:100px;}
+
 .comms-tag.call{background:var(--orange-soft);color:var(--orange-deep);}
+
 .comms-tag.email{background:var(--blue-soft);color:var(--blue);}
+
 .comms-tag.wa{background:var(--teal-soft);color:var(--teal);}
+
 .comms-tag.booked{background:var(--teal);color:white;}
+
 .comms-tag.backup{background:var(--amber-soft);color:#9c7a2e;}
+
 .chat-row{display:flex;margin-bottom:6px;}
+
 .chat-row:last-child{margin-bottom:0;}
+
 .chat-row.agent{justify-content:flex-end;}
+
 .chat-bubble{max-width:82%;padding:8px 12px;border-radius:12px;font-size:0.7812rem;line-height:1.45;}
+
 .chat-bubble.them{background:var(--paper-warm);color:var(--ink);border:1px solid var(--paper-line-soft);border-bottom-left-radius:4px;}
+
 .chat-bubble.agent{background:var(--charcoal);color:white;border-bottom-right-radius:4px;}
+
 .comms-foot{background:var(--teal-soft);border-top:1px solid rgba(14,131,120,.18);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;}
+
 .comms-foot-label{font-family:var(--mono);font-size:0.6875rem;font-weight:600;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+
 .comms-foot-rate{font-family:var(--mono);font-size:0.6875rem;color:var(--teal);font-weight:600;letter-spacing:.04em;}
 
 /* FILL IDLE TIME — negotiation-ladder styling */
+
 .lb-header{padding:14px 18px;border-bottom:1px solid var(--paper-line);display:flex;align-items:center;justify-content:space-between;background:var(--white);}
+
 .lb-title{font-size:0.8125rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+
 .lb-scanning{display:flex;align-items:center;gap:6px;font-size:0.6875rem;color:var(--teal);font-weight:600;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;}
+
 .lb-body{padding:6px 12px 12px;background:var(--paper);}
+
 .lb-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;padding:12px 14px;margin-top:8px;border:1px solid var(--paper-line);border-radius:10px;background:var(--white);align-items:center;box-shadow:0 2px 8px rgba(26,26,26,.03);}
+
 .lb-row.winner{background:var(--orange-soft-2);border-color:rgba(232,80,30,.35);}
+
 .lb-row.winner .lb-rate{color:var(--orange-deep);}
+
 .lb-tagicon{color:var(--amber);display:flex;align-items:center;}
+
 .lb-row-route{font-size:0.7812rem;font-weight:500;color:var(--ink);line-height:1.4;}
+
 .lb-row-meta{font-size:0.6875rem;color:var(--ink-dim);margin-top:2px;font-family:var(--mono);}
+
 .lb-id{font-family:var(--mono);font-size:0.6562rem;color:var(--ink-mute);letter-spacing:.04em;}
+
 .lb-rate{font-size:0.9375rem;font-weight:600;color:var(--ink);text-align:right;letter-spacing:-.01em;}
+
 .lb-rpm{font-size:0.625rem;color:var(--ink-dim);text-align:right;font-family:var(--mono);margin-top:2px;}
+
 .lb-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;background:var(--orange);color:var(--white);border-radius:20px;font-size:0.5938rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;font-family:var(--mono);margin-top:5px;}
+
 .fit-reasoning{padding:16px 18px;background:var(--paper-warm);border-top:1px solid var(--paper-line);}
+
 .fit-reasoning-head{font-family:var(--mono);font-size:0.625rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px;}
+
 .fit-reasoning-head::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:agentPulse 1.8s ease-in-out infinite;}
+
 .fit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--paper-line-soft);border-radius:6px;overflow:hidden;}
+
 .fit-cell{background:var(--white);padding:10px 12px;}
+
 .fit-cell-label{font-family:var(--mono);font-size:0.5625rem;color:var(--ink-mute);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+
 .fit-cell-value{font-size:0.75rem;color:var(--ink);font-weight:600;line-height:1.35;}
+
 .fit-cell-value.good{color:var(--teal);}
 
 .idle-callout{padding:14px 18px;background:var(--amber-soft);border-bottom:1px solid var(--paper-line);display:flex;align-items:center;gap:12px;}
+
 .idle-callout-icon{width:28px;height:28px;border-radius:50%;background:var(--amber);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8125rem;font-weight:700;flex-shrink:0;}
+
 .idle-callout-content{flex:1;}
+
 .idle-callout-label{font-family:var(--mono);font-size:0.5625rem;color:#9c7a2e;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:2px;}
+
 .idle-callout-msg{font-size:0.7812rem;color:var(--ink);font-weight:500;line-height:1.4;}
+
 .idle-callout-msg strong{font-weight:600;}
 
 /* INTEGRATIONS — hub & spoke */
+
 .integ{background:var(--paper-warm);padding:112px 48px;}
+
 .integ-i{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center;max-width:1160px;margin:0 auto;}
+
 .hub{position:relative;height:460px;}
+
 .hub-bg{position:absolute;inset:0;border-radius:18px;background-image:linear-gradient(rgba(10,10,10,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,10,.045) 1px,transparent 1px);background-size:58px 58px;}
+
 .hub-lines{position:absolute;inset:0;width:100%;height:100%;}
+
 .hub-lines line{stroke:rgba(232,80,30,.28);stroke-width:1.2;vector-effect:non-scaling-stroke;}
+
 .hub-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:24px;background:var(--charcoal);display:flex;align-items:center;justify-content:center;box-shadow:0 22px 48px rgba(26,26,26,.28),0 4px 14px rgba(26,26,26,.14);z-index:3;}
+
 .hub-sat{position:absolute;width:58px;height:58px;border-radius:50%;background:var(--white);border:1px solid var(--paper-line);box-shadow:0 12px 28px rgba(26,26,26,.10),0 2px 8px rgba(26,26,26,.05);display:flex;align-items:center;justify-content:center;color:var(--ink);z-index:2;transform:translate(-50%,-50%);animation:chipFloat 7s ease-in-out infinite;}
+
 .hub-pill{position:absolute;background:var(--white);border:1px solid var(--paper-line);border-radius:100px;padding:7px 13px;font-size:0.6875rem;font-weight:500;color:var(--ink);display:flex;gap:7px;align-items:center;box-shadow:0 10px 24px rgba(26,26,26,.08);z-index:2;transform:translate(-50%,-50%);white-space:nowrap;}
+
 .hub-pill-plus{width:16px;height:16px;border-radius:50%;background:var(--paper-warm);border:1px solid var(--paper-line);display:flex;align-items:center;justify-content:center;font-size:0.6875rem;color:var(--ink-dim);font-weight:600;}
+
 .pill-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--paper-line);border-radius:100px;padding:8px 16px;background:var(--white);font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:24px;}
+
 .pill-eyebrow .ed{background:var(--orange);}
+
 .name-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+
 .name-chip{font-family:var(--mono);font-size:0.625rem;padding:6px 13px;border:1px solid var(--paper-line);border-radius:100px;background:var(--white);color:var(--ink-dim);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
 
 /* FEATURES */
+
 .features{background:var(--paper-warm);color:var(--ink);padding:112px 48px;}
+
 .fh{margin-bottom:64px;}
+
 .fl{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+
 .fhh{font-family:var(--sans);font-size:clamp(2.25rem,4.2vw,3.5rem);font-weight:600;line-height:1.05;letter-spacing:-.018em;max-width:22ch;color:var(--ink);}
+
 .fhh em{font-style:normal;color:var(--orange);}
+
 .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:12px;overflow:hidden;}
+
 .fc{background:var(--white);padding:40px 32px;transition:background .2s;}
+
 .fc:hover{background:var(--paper);}
+
 .fn{font-family:var(--mono);font-size:0.6875rem;color:var(--orange);letter-spacing:.1em;margin-bottom:28px;font-weight:600;}
+
 .ftt{font-size:1.125rem;font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.3;letter-spacing:-.01em;}
+
 .fb{font-size:0.875rem;color:var(--ink-dim);line-height:1.7;font-weight:400;}
 
 /* CAREERS / JOBS */
+
 .jobs{background:var(--paper);color:var(--ink);padding:112px 48px;}
+
 .jobs-head{margin-bottom:56px;}
+
 .jobs-eyebrow{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+
 .jobs-h{font-family:var(--sans);font-size:clamp(2.25rem,4.2vw,3.5rem);font-weight:600;line-height:1.05;letter-spacing:-.018em;max-width:22ch;margin-bottom:20px;color:var(--ink);}
+
 .jobs-h em{font-style:normal;color:var(--orange);}
+
 .jobs-d{font-size:1.0625rem;color:var(--ink-dim);line-height:1.65;max-width:56ch;font-weight:400;}
+
 .job-list{display:flex;flex-direction:column;gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:14px;overflow:hidden;}
+
 .job-card{display:flex;align-items:center;gap:24px;padding:28px 32px;background:var(--white);text-decoration:none;transition:background .2s;}
+
 .job-card:hover{background:var(--paper);}
+
 .job-main{flex:1;min-width:0;}
+
 .job-title{font-size:1.1875rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.25;margin-bottom:8px;}
+
 .job-desc{font-size:0.875rem;color:var(--ink-dim);line-height:1.6;max-width:64ch;margin-bottom:14px;}
+
 .job-tags{display:flex;flex-wrap:wrap;gap:8px;}
+
 .job-tag{font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 11px;border-radius:100px;background:var(--paper-warm);border:1px solid var(--paper-line);color:var(--ink-dim);}
+
 .job-tag.loc{background:var(--orange-soft);border-color:rgba(232,80,30,.2);color:var(--orange-deep);}
+
 .job-arrow{width:40px;height:40px;border-radius:50%;background:var(--paper-warm);border:1px solid var(--paper-line);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1rem;color:var(--ink);flex-shrink:0;transition:background .2s,color .2s,transform .2s;}
+
 .job-card:hover .job-arrow{background:var(--charcoal);color:var(--white);transform:translateX(3px);}
+
 .jobs-foot{margin-top:28px;font-size:0.9375rem;color:var(--ink-dim);line-height:1.6;}
+
 .jobs-foot a{color:var(--orange);text-decoration:none;font-weight:600;}
+
 .jobs-foot a:hover{color:var(--orange-deep);}
+
 button.job-card{width:100%;text-align:left;font:inherit;border:none;cursor:pointer;}
 
 /* WHO FITS */
+
 .fit{margin-top:20px;background:var(--white);border:1px solid var(--paper-line);border-radius:14px;padding:34px 38px;}
+
 .fit-eyebrow{font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+
 .fit-list{display:flex;flex-direction:column;gap:13px;margin-bottom:24px;}
+
 .fit-item{position:relative;padding-left:22px;font-size:0.9375rem;color:var(--ink-dim);line-height:1.55;}
+
 .fit-item::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--orange);}
+
 .fit-close{font-family:var(--sans);font-size:1.0625rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.4;padding-top:22px;border-top:1px solid var(--paper-line);}
+
 .fit-close em{font-style:normal;color:var(--orange);}
 
 /* APPLICATION MODAL */
+
 .apply-overlay{position:fixed;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:48px 20px;z-index:200;overflow-y:auto;opacity:0;transition:opacity .2s;}
+
 .apply-overlay.open{display:flex;opacity:1;}
+
 .apply-modal{background:var(--paper);border:1px solid var(--paper-line);border-radius:18px;max-width:560px;width:100%;padding:40px;position:relative;box-shadow:0 30px 80px rgba(26,26,26,.32);margin:auto;transform:translateY(8px);transition:transform .2s;}
+
 .apply-overlay.open .apply-modal{transform:none;}
+
 .apply-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--paper-line);background:var(--paper-warm);color:var(--ink-dim);font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,color .18s;}
+
 .apply-close:hover{background:var(--charcoal);color:var(--white);}
+
 .apply-eyebrow{font-family:var(--mono);font-size:0.625rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+
 .apply-role{font-family:var(--sans);font-size:1.375rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin-bottom:26px;padding-right:40px;}
+
 .apply-field{margin-bottom:16px;}
+
 .apply-label{display:block;font-size:0.8125rem;font-weight:600;color:var(--ink);margin-bottom:7px;}
+
 .apply-label span{color:var(--orange);}
+
 .apply-input{width:100%;padding:12px 14px;background:var(--white);border:1px solid var(--paper-line);border-radius:8px;color:var(--ink);font-size:0.9375rem;font-family:var(--sans);transition:border-color .18s;appearance:none;}
+
 .apply-input::placeholder{color:var(--ink-mute);}
+
 .apply-input:focus{outline:none;border-color:var(--orange);}
+
 textarea.apply-input{resize:vertical;min-height:82px;line-height:1.5;}
+
 .apply-drop{border:1.5px dashed var(--paper-line);border-radius:10px;background:var(--white);padding:20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .18s,background .18s;}
+
 .apply-drop:hover,.apply-drop.drag{border-color:var(--orange);background:var(--orange-soft);}
+
 .apply-drop-btn{flex-shrink:0;font-family:var(--sans);font-size:0.8125rem;font-weight:600;padding:9px 16px;border-radius:100px;border:1px solid var(--charcoal);background:var(--white);color:var(--ink);white-space:nowrap;}
+
 .apply-drop-txt{font-size:0.8125rem;color:var(--ink-dim);line-height:1.45;min-width:0;}
+
 .apply-drop-txt b{color:var(--ink);font-weight:600;word-break:break-word;}
+
 .apply-submit{width:100%;margin-top:22px;padding:15px;background:var(--orange);color:var(--white);font-size:0.9375rem;font-weight:600;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);transition:background .18s,transform .15s;}
+
 .apply-submit:hover{background:var(--orange-deep);transform:translateY(-1px);}
+
 .apply-submit:disabled{opacity:.55;cursor:default;transform:none;}
+
 .apply-note{font-size:0.6875rem;color:var(--ink-mute);text-align:center;margin-top:12px;font-family:var(--mono);letter-spacing:.03em;line-height:1.5;}
+
 .apply-note a{color:var(--orange);text-decoration:none;}
 
 /* CTA */
+
 .cta{background:var(--charcoal);padding:112px 48px;position:relative;overflow:hidden;}
+
 .cta-img{position:absolute;inset:0;background-image:url('hero-truck.jpg');background-size:cover;background-position:center 62%;opacity:.28;pointer-events:none;}
+
 .cta-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.72) 55%,rgba(26,26,26,.45) 100%);pointer-events:none;}
+
 .cta::before{content:'';position:absolute;top:50%;left:75%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(232,80,30,.16) 0%,transparent 65%);pointer-events:none;filter:blur(60px);}
+
 .cta-i{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+
 .cl{font-family:var(--mono);font-size:0.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;}
+
 .ch{font-family:var(--sans);font-size:clamp(2.25rem,4vw,3.25rem);font-weight:600;line-height:1.05;letter-spacing:-.018em;margin-bottom:20px;color:var(--white);}
+
 .ch em{font-style:normal;color:var(--orange);}
+
 .cd{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.65;font-weight:400;}
+
 .cf{display:flex;flex-direction:column;gap:12px;}
+
 .fi,.fs{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:var(--white);font-size:0.875rem;font-family:var(--sans);font-weight:400;transition:border-color .18s;appearance:none;}
+
 .fi::placeholder{color:rgba(255,255,255,.4);}
+
 .fs{color:rgba(255,255,255,.4);}
+
 .fs option{background:var(--charcoal-soft);color:white;}
+
 .fi:focus,.fs:focus{outline:none;border-color:var(--orange);}
+
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
 .fsb{padding:15px;background:var(--orange);color:var(--white);font-size:0.875rem;font-weight:600;border:none;border-radius:6px;cursor:pointer;transition:background .18s,transform .15s;margin-top:6px;font-family:var(--sans);}
+
 .fsb:hover{background:var(--orange-deep);transform:translateY(-1px);}
+
 .fno{font-size:0.75rem;color:rgba(255,255,255,.4);text-align:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
 
 footer{background:var(--paper);border-top:1px solid var(--paper-line-soft);padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+
 .ftb{display:flex;align-items:center;gap:10px;font-size:0.9375rem;font-weight:600;color:var(--ink);}
+
 .ftc{font-family:var(--mono);font-size:0.6875rem;color:var(--ink-mute);letter-spacing:.06em;}
+
 .ftm{font-size:0.8125rem;color:var(--ink-dim);max-width:42ch;text-align:center;line-height:1.65;font-weight:400;}
+
 .ftr{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+
 .ftlink{font-size:0.8125rem;color:var(--ink-dim);text-decoration:none;font-weight:500;transition:color .2s;}
+
 .ftlink:hover{color:var(--orange);}
 
 .container{max-width:1160px;margin:0 auto;}
 
 /* Glass metrics ticker inside hero */
+
 .hero-metrics{position:relative;z-index:2;margin:0 auto;will-change:opacity,transform;}
+
 .hero-ticker{display:flex;align-items:stretch;justify-content:center;background:rgba(12,10,8,.56);border:1px solid rgba(255,255,255,.18);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,.35);padding:5px 6px;flex-wrap:wrap;}
+
 .tick{display:flex;align-items:center;gap:12px;padding:15px 30px;border-right:1px solid rgba(255,255,255,.12);}
+
 .tick:last-child{border-right:none;}
+
 .tick-label{font-family:var(--mono);font-size:0.7188rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;}
+
 .tick-value{font-size:1.6875rem;font-weight:600;letter-spacing:-.02em;color:var(--orange);white-space:nowrap;text-shadow:0 2px 12px rgba(232,80,30,.25);}
+
 @media(max-width:1000px){
+
   .hero-metrics .metrics-strip{grid-template-columns:repeat(3,1fr);}
+
   .hero-metrics .metric:nth-child(3n){border-right:none;}
+
   .hero-metrics .metric{border-bottom:1px solid rgba(255,255,255,.10);}
+
 }
+
 @media(max-width:640px){
+
   .hero-metrics .metrics-strip{grid-template-columns:1fr 1fr;}
+
   .hero-wrap{min-height:auto;padding-top:100px;}
+
 }
+
 /* Nav over hero: dark transparent, flips to light glass on scroll */
+
 nav.over-hero{background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,0) 100%);backdrop-filter:none;border-bottom:none;}
+
 nav.over-hero .nb{color:#fff;}
+
 nav.over-hero .nl{color:rgba(255,255,255,.78);}
+
 nav.over-hero .nl:hover{color:#fff;}
+
 nav.over-hero .nc{background:#fff;color:var(--ink);}
+
 nav.over-hero .nc:hover{background:var(--orange);color:#fff;}
 
-
 @keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 @media(max-width:1200px){
+
   .metric{padding:24px 18px;}
+
   .metric-value{font-size:1.75rem;}
+
   .agent-chip{display:none;}
+
 }
+
 @media(max-width:1000px){
+
   .hero-wrap{padding:120px 32px 64px;}
+
   .hero-orbit{display:none;}
+
   .agent-demo-section{padding:80px 32px 96px;}
+
   .metrics-band{padding:0 32px 80px;}
+
   .metrics-strip{grid-template-columns:repeat(3,1fr);}
+
   .metric:nth-child(4),.metric:nth-child(5){grid-column:span 1;}
+
   .how,.features,.cta,.integ,.jobs{padding:80px 32px;}
+
   .fx-band{padding:64px 32px 40px;}
+
   .fx-card-wrap{padding:0 32px 72px;}
+
   .agents-grid{grid-template-columns:repeat(2,1fr);}
+
   .comms-body{grid-template-columns:1fr;}
+
   .think-panel{border-right:none;border-bottom:1px solid var(--paper-line);}
+
   .thread-duo{grid-template-columns:1fr;}
+
   .integ-i{grid-template-columns:1fr;gap:48px;}
+
   .hub{height:360px;}
+
   .hub-sat{width:50px;height:50px;}
+
   .fg{grid-template-columns:1fr;}
+
   .cta-i{grid-template-columns:1fr;gap:48px;}
+
   footer{flex-direction:column;gap:20px;text-align:center;padding:36px 24px;}
+
   .ftr{align-items:center;}
+
   .timeline-row{grid-template-columns:100px 1fr;}
+
   .timeline-days{margin-left:114px;}
+
   .fit-grid{grid-template-columns:repeat(2,1fr);}
+
 }
+
 @media(max-width:640px){
+
   nav{padding:0 24px;}
+
   .hero-inner h1{font-size:2.625rem;}
+
   .agent-demo-title{font-size:2.375rem;}
+
   .metrics-strip{grid-template-columns:1fr;}
+
   .agents-grid{grid-template-columns:1fr;}
+
   .nr .nl{display:none;}
+
   .fr{grid-template-columns:1fr;}
+
   .hero-wrap{padding:100px 20px 48px;}
+
   .hbtns{flex-direction:column;width:100%;}
+
   .hbtns a{width:100%;justify-content:center;}
+
   .chat-bubble{max-width:92%;}
+
   .stat-row{flex-wrap:wrap;}
+
   .lb-row{grid-template-columns:auto 1fr auto;}
+
   .lb-id{display:none;}
+
   .hub{height:300px;}
+
   .jobs{padding:80px 24px;}
+
   .job-card{padding:22px 20px;gap:14px;}
+
   .job-title{font-size:1.0625rem;}
+
   .apply-overlay{padding:20px 12px;}
+
   .apply-modal{padding:28px 22px;}
+
   .apply-role{font-size:1.1875rem;}
+
   .fit{padding:24px 22px;}
+
 }
 
 /* Mobile polish */
+
 @media(max-width:640px){
+
   .hero-inner h1{font-size:2.3rem;line-height:1.08;}
+
   .hero-inner h1 br{display:none;}
+
   .hero-inner{padding-bottom:0;}
+
   .eyebrow{padding:8px 14px;margin-bottom:20px;}
+
   .et{font-size:.625rem;letter-spacing:.08em;white-space:nowrap;}
+
   .hero-wrap{padding:92px 20px 40px;}
+
   .hero-sub{font-size:1rem;margin-bottom:26px;}
+
   .hero-metrics{margin-top:34px;}
+
   .hero-ticker{border-radius:16px;}
+
   .tick{padding:12px 18px;}
+
   .tick-value{font-size:1.35rem;}
+
 }
 
 /* Mobile polish v2 */
+
 @media(max-width:700px){
+
   /* eyebrow: one clean line, dot aligned */
+
   .eyebrow{gap:8px;padding:8px 13px;}
+
   .ed{flex-shrink:0;width:6px;height:6px;}
+
   .et{font-size:.6rem;letter-spacing:.05em;white-space:nowrap;}
+
   /* integrations hub: smaller nodes, decluttered */
+
   .hub{height:330px;}
+
   .hub-center{width:62px;height:62px;border-radius:16px;}
+
   .hub-center svg{width:32px;height:32px;}
+
   .hub-sat{width:42px;height:42px;}
+
   .hub-sat svg{width:15px;height:15px;}
+
   .hub-sat img{width:19px;height:19px;}
+
   .hub-pill{top:76%;font-size:.6rem;padding:5px 10px;}
+
 }
 
 /* Mobile ticker v3: guaranteed stacked rows */
+
 @media(max-width:700px){
+
   .hero-ticker{display:grid;grid-template-columns:1fr;border-radius:18px;padding:6px 16px;}
+
   .tick{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);gap:10px;}
+
   .tick:last-child{border-bottom:none;}
+
   .tick-label{font-size:.66rem;}
+
   .tick-value{font-size:1.35rem;}
+
   .hero-inner h1{font-size:2.15rem;}
-}
-</style>
 
-<style>
-/* Monaco theme — everything below the hero */
-.after-hero{
-  --m-bg:#000;
-  --m-lift:#111113;
-  --m-card:#171717;
-  --m-card2:#1a1a1a;
-  --m-text:#f6f6f6;
-  --m-dim:rgba(246,246,246,.75);
-  --m-mute:rgba(246,246,246,.45);
-  --m-line:rgba(255,255,255,.10);
-  --m-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --m-sans:Inter,system-ui,-apple-system,sans-serif;
-  --m-orange:#E8501E;
-  background:#000;
-  color:#f6f6f6;
-  font-family:var(--m-sans);
-}
-.after-hero .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
-.after-hero .reveal.visible{opacity:1;transform:none;}
-
-/* sections */
-.after-hero .agent-demo-section,
-.after-hero .fx-section,
-.after-hero .section-warm,
-.after-hero .section-paper,
-.after-hero .how,
-.after-hero .features,
-.after-hero .jobs,
-.after-hero .integ{
-  background:#000;
-  color:#f6f6f6;
-  position:relative;
-}
-.after-hero .agent-demo-section{padding:140px 64px 120px;}
-.after-hero .agent-demo-section::before{display:none;}
-.after-hero .how,.after-hero .features,.after-hero .jobs,.after-hero .integ{padding:140px 64px;}
-.after-hero .fx-band{padding:120px 64px 40px;max-width:1160px;}
-.after-hero .fx-card-wrap{padding:0 64px 120px;max-width:1160px;}
-
-/* serif headlines */
-.after-hero .agent-demo-title,
-.after-hero .fx-band-head,
-.after-hero .how-h,
-.after-hero .fhh,
-.after-hero .jobs-h,
-.after-hero .ch,
-.after-hero .apply-role{
-  font-family:var(--m-serif);
-  font-weight:400;
-  color:#f6f6f6;
-  letter-spacing:-.02em;
-  line-height:1.1;
-}
-.after-hero .agent-demo-title{font-size:clamp(32px,4.2vw,56px);margin-bottom:20px;}
-.after-hero .fx-band-head{font-size:clamp(32px,4vw,56px);margin-bottom:20px;}
-.after-hero .how-h,.after-hero .fhh,.after-hero .jobs-h{font-size:clamp(32px,4vw,56px);margin-bottom:20px;max-width:18ch;}
-.after-hero .ch{font-size:clamp(32px,3.6vw,48px);margin-bottom:20px;}
-.after-hero .agent-demo-title em,
-.after-hero .fx-band-head em,
-.after-hero .how-h em,
-.after-hero .fhh em,
-.after-hero .jobs-h em,
-.after-hero .ch em,
-.after-hero .fit-close em{
-  font-style:italic;
-  font-weight:400;
-  color:#f6f6f6;
-}
-
-/* labels */
-.after-hero .agent-demo-label,
-.after-hero .fx-band-label,
-.after-hero .how-eyebrow,
-.after-hero .fl,
-.after-hero .jobs-eyebrow,
-.after-hero .cl,
-.after-hero .fit-eyebrow,
-.after-hero .apply-eyebrow,
-.after-hero .pill-eyebrow{
-  font-family:var(--m-sans);
-  font-size:14px;
-  font-weight:400;
-  letter-spacing:-.02em;
-  text-transform:none;
-  color:var(--m-dim);
-  margin-bottom:20px;
-}
-.after-hero .pill-eyebrow{
-  border:1px solid var(--m-line);
-  background:transparent;
-  color:var(--m-dim);
-  border-radius:80px;
-  padding:8px 16px;
-}
-.after-hero .pill-eyebrow .ed{background:#f6f6f6;}
-
-/* body copy */
-.after-hero .agent-demo-desc,
-.after-hero .fx-band-body,
-.after-hero .how-d,
-.after-hero .jobs-d,
-.after-hero .cd,
-.after-hero .fb,
-.after-hero .ftm,
-.after-hero .job-desc,
-.after-hero .agent-tile-desc{
-  font-family:var(--m-sans);
-  font-size:clamp(14px,.7vw,16px);
-  font-weight:400;
-  color:var(--m-dim);
-  line-height:1.5;
-  letter-spacing:-.02em;
-}
-
-/* cards */
-.after-hero .ui-card,
-.after-hero .agent-card,
-.after-hero .agent-tile,
-.after-hero .fc,
-.after-hero .job-card,
-.after-hero .fit,
-.after-hero .thread-card,
-.after-hero .apply-modal{
-  background:var(--m-card);
-  border:1px solid var(--m-line);
-  box-shadow:none;
-  color:#f6f6f6;
-}
-.after-hero .ui-card{border-radius:16px;overflow:hidden;}
-.after-hero .agent-card{border-radius:16px;}
-.after-hero .apply-modal{background:var(--m-lift);border-radius:20px;box-shadow:none;}
-
-.after-hero .ui-bar{
-  background:var(--m-lift);
-  border-bottom:1px solid var(--m-line);
-}
-.after-hero .ui-dot{background:#3a3a3a;}
-.after-hero .ui-url{color:var(--m-mute);}
-
-.after-hero .agent-card-head,
-.after-hero .agent-card-divider,
-.after-hero .timeline-head,
-.after-hero .comms-top,
-.after-hero .lb-header,
-.after-hero .idle-callout,
-.after-hero .fit-reasoning,
-.after-hero .hero-notify-head{
-  background:var(--m-lift);
-  border-color:var(--m-line);
-  color:#f6f6f6;
-}
-.after-hero .agent-card-title,
-.after-hero .agent-card-divider-title,
-.after-hero .timeline-title,
-.after-hero .comms-top-title,
-.after-hero .lb-title,
-.after-hero .hero-notify-title,
-.after-hero .hero-replan-title,
-.after-hero .think-head,
-.after-hero .comms-thread-name,
-.after-hero .job-title,
-.after-hero .agent-tile-name,
-.after-hero .ftt,
-.after-hero .timeline-truck-name,
-.after-hero .hero-notify-name,
-.after-hero .lb-row-route,
-.after-hero .fit-close{
-  color:#f6f6f6;
-}
-.after-hero .agent-card-meta,
-.after-hero .agent-card-divider-meta,
-.after-hero .timeline-truck-driver,
-.after-hero .comms-top-title span,
-.after-hero .comms-thread-name span,
-.after-hero .hero-notify-sub,
-.after-hero .lb-row-meta,
-.after-hero .lb-id,
-.after-hero .lb-rpm,
-.after-hero .fit-cell-label,
-.after-hero .stat-lab,
-.after-hero .fn,
-.after-hero .agent-tile-num,
-.after-hero .agent-tile-io-line,
-.after-hero .apply-note,
-.after-hero .fno{
-  color:var(--m-mute);
-  font-family:var(--m-sans);
-}
-
-.after-hero .agent-card-body{background:var(--m-card);}
-.after-hero .hero-stage,
-.after-hero .hero-replan,
-.after-hero .hero-notify{background:var(--m-card);color:#f6f6f6;}
-.after-hero .hero-pending{background:rgba(217,164,65,.12);}
-.after-hero .hero-input-wrap{
-  background:#111113;
-  border:1px solid var(--m-line);
-}
-.after-hero .hero-input-wrap.focused{border-color:rgba(255,255,255,.35);background:#1a1a1a;}
-.after-hero .hero-input{color:#f6f6f6;}
-.after-hero .hero-input.placeholder{color:var(--m-mute);}
-.after-hero .hero-input-cursor{background:#f6f6f6;}
-.after-hero .hero-send-btn,
-.after-hero .hero-reopt-btn{
-  background:#fff;
-  color:#000;
-  border-radius:80px;
-  font-weight:400;
-  font-family:var(--m-sans);
-}
-.after-hero .hero-replan-title,
-.after-hero .hero-stage-label,
-.after-hero .hero-replan-eyebrow,
-.after-hero .hero-replan-status{color:var(--m-dim);}
-.after-hero .hero-replan-bar{background:#2a2a2a;}
-.after-hero .hero-replan-fill{background:#fff;}
-.after-hero .hero-notify-card{
-  background:rgba(184,90,82,.12);
-  border-top-color:rgba(184,90,82,.25);
-}
-.after-hero .hero-notify-btn{
-  background:#111113;
-  border-color:var(--m-line);
-  color:#f6f6f6;
-}
-.after-hero .feed-item{border-bottom-color:var(--m-line);}
-.after-hero .feed-item-msg{color:#f6f6f6;}
-.after-hero .feed-item-src{color:var(--m-mute);font-family:var(--m-sans);}
-.after-hero .hero-feed-body{background:var(--m-card);}
-
-/* comms */
-.after-hero .comms-body{background:#111113;}
-.after-hero .think-panel{background:var(--m-card);border-right-color:var(--m-line);}
-.after-hero .think-panel p{color:var(--m-dim);}
-.after-hero .think-panel p strong{color:#f6f6f6;}
-.after-hero .think-pill{
-  background:#111113;
-  border-color:var(--m-line);
-  color:#f6f6f6;
-}
-.after-hero .think-pill.live{background:rgba(232,80,30,.12);border-color:rgba(232,80,30,.28);color:#f6f6f6;}
-.after-hero .stat-box{
-  background:#111113;
-  border:1px solid var(--m-line);
-  border-radius:12px;
-}
-.after-hero .stat-num{color:#f6f6f6;font-family:var(--m-sans);}
-.after-hero .stat-box.hot{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);}
-.after-hero .stat-box.hot .stat-num{color:#f6f6f6;}
-.after-hero .chat-bubble.them{
-  background:#111113;
-  border-color:var(--m-line);
-  color:#f6f6f6;
-}
-.after-hero .chat-bubble.agent{background:#fff;color:#000;}
-.after-hero .comms-foot{
-  background:rgba(255,255,255,.04);
-  border-top:1px solid var(--m-line);
-}
-.after-hero .comms-foot-label,.after-hero .comms-foot-rate{color:var(--m-dim);}
-.after-hero .agent-thought{
-  background:#111113;
-  border-left-color:#fff;
-  color:#f6f6f6;
-}
-.after-hero .agent-thought-head{color:var(--m-dim);font-family:var(--m-sans);}
-
-/* timeline */
-.after-hero .timeline-body{background:var(--m-card);}
-.after-hero .timeline-bar{background:#111113;}
-.after-hero .timeline-days{color:var(--m-mute);}
-.after-hero .timeline-status{color:var(--m-dim);}
-.after-hero .timeline-seg.empty{color:var(--m-mute);}
-
-/* idle / load board */
-.after-hero .lb-body{background:#111113;}
-.after-hero .lb-row{
-  background:var(--m-card);
-  border-color:var(--m-line);
-  box-shadow:none;
-}
-.after-hero .lb-row.winner{
-  background:rgba(255,255,255,.06);
-  border-color:rgba(255,255,255,.28);
-}
-.after-hero .lb-row.winner .lb-rate{color:#fff;}
-.after-hero .lb-rate{color:#f6f6f6;}
-.after-hero .lb-scanning{color:var(--m-dim);}
-.after-hero .idle-callout{background:rgba(217,164,65,.10);border-bottom-color:var(--m-line);}
-.after-hero .idle-callout-msg{color:#f6f6f6;}
-.after-hero .idle-callout-label{color:var(--m-dim);}
-.after-hero .fit-reasoning{background:#111113;border-top-color:var(--m-line);}
-.after-hero .fit-reasoning-head{color:var(--m-dim);font-family:var(--m-sans);}
-.after-hero .fit-grid{background:var(--m-line);}
-.after-hero .fit-cell{background:var(--m-card);}
-.after-hero .fit-cell-value{color:#f6f6f6;}
-.after-hero .fit-cell-value.good{color:#f6f6f6;}
-
-/* agents grid / features */
-.after-hero .agents-grid,
-.after-hero .fg,
-.after-hero .job-list{
-  background:var(--m-line);
-  border:1px solid var(--m-line);
-}
-.after-hero .agent-tile,
-.after-hero .fc{
-  background:var(--m-card);
-  position:relative;
-}
-.after-hero .fc:hover,
-.after-hero .job-card:hover{background:#1c1c1c;}
-.after-hero .agent-tile-icon{
-  background:rgba(255,255,255,.06);
-  color:#f6f6f6;
-}
-.after-hero .agent-tile-status{color:var(--m-dim);}
-.after-hero .agent-tile-io{border-top-color:var(--m-line);}
-.after-hero .fn{color:var(--m-mute);font-family:var(--m-sans);letter-spacing:-.02em;}
-
-/* jobs */
-.after-hero .job-tag{
-  background:transparent;
-  border-color:var(--m-line);
-  color:var(--m-dim);
-}
-.after-hero .job-tag.loc{
-  background:rgba(255,255,255,.06);
-  border-color:rgba(255,255,255,.16);
-  color:#f6f6f6;
-}
-.after-hero .job-arrow{
-  background:#111113;
-  border-color:var(--m-line);
-  color:#f6f6f6;
-}
-.after-hero .job-card:hover .job-arrow{background:#fff;color:#000;}
-.after-hero .fit{
-  background:var(--m-card);
-  border-color:var(--m-line);
-}
-.after-hero .fit-item{color:var(--m-dim);}
-.after-hero .fit-item::before{background:#fff;}
-.after-hero .fit-close{border-top-color:var(--m-line);color:#f6f6f6;}
-.after-hero .jobs-foot{color:var(--m-dim);}
-.after-hero .jobs-foot a{color:#f6f6f6;text-decoration:underline;text-underline-offset:3px;}
-
-/* apply modal */
-.after-hero .apply-overlay{background:rgba(0,0,0,.72);}
-.after-hero .apply-close{
-  background:#111113;
-  border-color:var(--m-line);
-  color:var(--m-dim);
-}
-.after-hero .apply-close:hover{background:#fff;color:#000;}
-.after-hero .apply-label{color:#f6f6f6;}
-.after-hero .apply-input{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-  color:#f6f6f6;
-  border-radius:12px;
-}
-.after-hero .apply-input:focus{border-color:rgba(255,255,255,.4);}
-.after-hero .apply-drop{
-  border-color:rgba(255,255,255,.18);
-  background:rgba(255,255,255,.03);
-}
-.after-hero .apply-drop:hover,.after-hero .apply-drop.drag{
-  border-color:rgba(255,255,255,.4);
-  background:rgba(255,255,255,.06);
-}
-.after-hero .apply-drop-btn{
-  border-color:rgba(255,255,255,.3);
-  background:transparent;
-  color:#f6f6f6;
-}
-.after-hero .apply-drop-txt{color:var(--m-dim);}
-.after-hero .apply-submit{
-  background:#fff;
-  color:#000;
-  border-radius:80px;
-  font-weight:400;
-}
-.after-hero .apply-submit:hover{background:#fff;opacity:.9;transform:none;}
-
-/* integrations */
-.after-hero .hub-bg{
-  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-}
-.after-hero .hub-lines line{stroke:rgba(255,255,255,.18);}
-.after-hero .hub-center{
-  background:#171717;
-  box-shadow:none;
-  border:1px solid var(--m-line);
-}
-.after-hero .hub-sat{
-  background:#171717;
-  border-color:var(--m-line);
-  box-shadow:none;
-  color:#f6f6f6;
-}
-.after-hero .hub-pill{
-  background:#171717;
-  border-color:var(--m-line);
-  color:#f6f6f6;
-  box-shadow:none;
-}
-.after-hero .hub-pill-plus{
-  background:#111113;
-  border-color:var(--m-line);
-  color:var(--m-dim);
-}
-.after-hero .name-chip{
-  background:transparent;
-  border-color:var(--m-line);
-  color:var(--m-dim);
-}
-
-/* CTA — monaco closer */
-.after-hero .cta{
-  background:#000;
-  padding:164px 64px;
-}
-.after-hero .cta-img,
-.after-hero .cta-scrim,
-.after-hero .cta::before{display:none;}
-.after-hero .cta-i{gap:64px;}
-.after-hero .cd{color:var(--m-dim);}
-.after-hero .fi,
-.after-hero .fs{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-  color:#fff;
-  border-radius:12px;
-}
-.after-hero .fi::placeholder{color:rgba(255,255,255,.4);}
-.after-hero .fs{color:rgba(255,255,255,.55);}
-.after-hero .fs option{background:#171717;color:#fff;}
-.after-hero .fi:focus,.after-hero .fs:focus{border-color:rgba(255,255,255,.4);}
-.after-hero .fsb{
-  background:#fff;
-  color:#000;
-  border-radius:80px;
-  font-weight:400;
-  padding:16px 24px;
-}
-.after-hero .fsb:hover{background:#fff;opacity:.9;transform:none;}
-.after-hero .fno{color:var(--m-mute);text-transform:none;letter-spacing:-.02em;font-family:var(--m-sans);}
-
-/* footer */
-.after-hero footer,
-.after-hero + footer,
-footer.after-foot{
-  background:#111113;
-  border-top:none;
-  padding:66px 64px 50px;
-}
-.after-hero footer{
-  background:#111113;
-  border-top:1px solid rgba(255,255,255,.10);
-}
-.after-hero .ftb{color:#f6f6f6;}
-.after-hero .ftm{color:var(--m-dim);text-align:left;}
-.after-hero .ftlink{color:rgba(246,246,246,.8);}
-.after-hero .ftlink:hover{color:#fff;}
-.after-hero .ftc{color:rgba(255,255,255,.25);font-family:var(--m-sans);letter-spacing:-.01em;}
-
-/* hairline between major blocks */
-.after-hero .m-rule{height:1px;background:#d9d9d9;opacity:.3;border:0;margin:0 64px;}
-
-@media(max-width:1000px){
-  .after-hero .agent-demo-section,
-  .after-hero .how,.after-hero .features,.after-hero .jobs,.after-hero .integ,
-  .after-hero .cta{padding:88px 32px;}
-  .after-hero .fx-band{padding:72px 32px 32px;}
-  .after-hero .fx-card-wrap{padding:0 32px 88px;}
-  .after-hero .m-rule{margin:0 32px;}
-}
-@media(max-width:640px){
-  .after-hero .agent-demo-section,
-  .after-hero .how,.after-hero .features,.after-hero .jobs,.after-hero .integ,
-  .after-hero .cta{padding:72px 20px;}
-  .after-hero .fx-band{padding:56px 20px 24px;}
-  .after-hero .fx-card-wrap{padding:0 20px 72px;}
-  .after-hero footer{padding:48px 20px;}
-  .after-hero .m-rule{margin:0 20px;}
 }
 
 </style>
+
 </head>
+
 <body>
 
 <nav class="over-hero" id="topnav">
+
   <div class="nb">
+
     <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+
       <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
+
       <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
       <circle cx="44" cy="14" r="4.5" fill="white"/>
+
     </svg>
+
     TrueMile
+
   </div>
+
   <div class="nr">
+
     <a href="#how" class="nl">Agents</a>
+
     <a href="#integrations" class="nl">Integrations</a>
+
     <a href="#features" class="nl">Product</a>
+
     <a href="#jobs" class="nl">Jobs</a>
+
     <a href="#contact" class="nc">Book demo</a>
+
   </div>
+
 </nav>
 
 <!-- HERO -->
+
 <div class="hero-wrap" id="hero">
+
   <div class="hero-orbit">
+
     <svg class="orbit-svg" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMax slice">
+
       <ellipse cx="700" cy="640" rx="320" ry="230"/>
+
       <ellipse cx="700" cy="640" rx="510" ry="360"/>
+
       <ellipse cx="700" cy="640" rx="700" ry="490"/>
+
     </svg>
+
     <div class="agent-chip chip-1">
+
       <span class="chip-avatar">GS</span>
+
       <span class="chip-body"><span class="chip-t">Driver found</span><span class="chip-s">#1042 · Sandhu</span></span>
+
       <span class="chip-pill">Active</span>
+
     </div>
+
     <div class="agent-chip chip-2">
+
       <span class="chip-avatar">TQ</span>
+
       <span class="chip-body"><span class="chip-t">Negotiating…</span><span class="chip-s">#295735 · TQL</span></span>
+
       <span class="chip-pill">Active</span>
+
     </div>
+
     <div class="agent-chip chip-3">
+
       <span class="chip-avatar teal">BK</span>
+
       <span class="chip-body"><span class="chip-t">Backhaul booked</span><span class="chip-s">$4,450 · PHL→DFW</span></span>
+
       <span class="chip-pill solid">Booked</span>
+
     </div>
+
     <div class="agent-chip chip-4">
+
       <span class="chip-avatar teal">DC</span>
+
       <span class="chip-body"><span class="chip-t">WhatsApp confirmed</span><span class="chip-s">Castro · 4 min</span></span>
+
       <span class="chip-pill">Active</span>
+
     </div>
+
   </div>
+
   <div class="hero-inner">
+
     <div class="eyebrow"><div class="ed"></div><span class="et">A 24/7 operations team for your fleet</span></div>
+
     <h1>AI agents that <em>run</em> your <br>trucking operations.</h1>
+
     <p class="hero-sub">They plan the week, assign loads to drivers, adapt when things break, and handle every driver and broker conversation.</p>
+
     <div class="hbtns">
+
       <a href="#contact" class="bp">Book demo →</a>
+
       <a href="#demo" class="bs">Watch an agent work</a>
+
     </div>
+
   </div>
+
   <div class="hero-metrics">
+
     <div class="hero-ticker">
+
       <div class="tick"><span class="tick-label">Revenue / truck</span><span class="tick-value">+15%</span></div>
+
       <div class="tick"><span class="tick-label">Utilization</span><span class="tick-value">+12%</span></div>
+
       <div class="tick"><span class="tick-label">Rate / mile</span><span class="tick-value">+9%</span></div>
+
       <div class="tick"><span class="tick-label">Driver retention</span><span class="tick-value">+20%</span></div>
+
       <div class="tick"><span class="tick-label">Dispatcher time</span><span class="tick-value">−80%</span></div>
+
     </div>
+
   </div>
+
 </div>
 
-<div class="after-hero">
 <!-- AGENT DEMO -->
+
 <section class="agent-demo-section" id="demo">
+
   <div class="agent-demo-inner">
+
     <div class="agent-demo-head reveal">
+
       <div class="agent-demo-label">Watch the agent work</div>
+
       <div class="agent-demo-title">A driver calls in sick.<br><em>The agent handles it.</em></div>
+
       <div class="agent-demo-desc">Tell the agent what changed. It finds coverage, reassigns the loads, drafts the driver messages and broker notifications — and waits for your approval to send.</div>
+
     </div>
+
     <div class="agent-card-wrap reveal">
+
       <div class="agent-card">
+
         <div class="agent-card-head">
+
           <div class="agent-card-title">
+
             <span class="agent-pulse"></span>
+
             <span id="hero-state-label">Dispatcher · Live</span>
+
           </div>
+
           <span class="agent-card-meta" id="hero-state-meta">375 trucks · monitoring</span>
+
         </div>
 
         <div class="agent-card-body">
+
           <div class="hero-stage" id="hero-stage-1">
+
             <div class="hero-stage-label">Tell the agent what changed</div>
+
             <div class="hero-input-wrap" id="hero-input-wrap">
+
               <div class="hero-input placeholder" id="hero-input"><span id="hero-input-text"></span><span class="hero-input-cursor" id="hero-input-cursor"></span></div>
+
               <button class="hero-send-btn" id="hero-send-btn">Send</button>
+
             </div>
+
           </div>
 
           <div class="hero-pending" id="hero-pending">
+
             <div class="hero-pending-label">1 change pending</div>
+
             <div class="hero-pending-msg"><strong>Max</strong> called in sick · 2 loads need coverage</div>
+
             <button class="hero-reopt-btn" id="hero-reopt-btn">
+
               Handle it
+
               <span style="font-family:monospace;">→</span>
+
             </button>
+
           </div>
 
           <div class="hero-replan" id="hero-replan">
+
             <div class="hero-replan-eyebrow"><span id="hero-replan-eyebrow-text">Agent working</span></div>
+
             <div class="hero-replan-title" id="hero-replan-title">Working the change</div>
+
             <div class="hero-replan-bar">
+
               <div class="hero-replan-fill" id="hero-replan-fill"></div>
+
             </div>
+
             <div class="hero-replan-status" id="hero-replan-status">Reading driver schedules and HOS…</div>
+
             <div class="hero-replan-summary" id="hero-replan-summary">
+
               <span class="hero-replan-summary-check">
+
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#0E8378" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
               </span>
+
               <span><strong id="hero-replan-summary-count">10</strong> drivers rescheduled · messages drafted.</span>
+
             </div>
+
           </div>
 
           <div class="hero-notify" id="hero-notify">
+
             <div class="hero-notify-head">
+
               <div class="hero-notify-eyebrow">
+
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+
                 Plan updates · Ready to send
+
               </div>
+
               <div class="hero-notify-title">Notify queue</div>
+
               <div class="hero-notify-sub">2 changes from this fix — the agent messages every affected party on your approval.</div>
+
             </div>
+
             <div class="hero-notify-card">
+
               <div class="hero-notify-tag">
+
                 <span>↔ Sick callout · Max → Morales</span>
+
                 <span class="hero-notify-tag-count">2 DRIVERS</span>
+
               </div>
+
               <div class="hero-notify-name">Max · Truck #1108</div>
+
               <div class="hero-notify-status">Off · sick</div>
+
               <div class="hero-notify-detail">Loads reassigned across same-terminal drivers. <strong>Morales</strong> covers Mon–Tue · Max resumes Wed.</div>
+
               <div class="hero-notify-actions">
+
                 <span class="hero-notify-btn"><span class="hero-notify-btn-dot"></span> Message driver</span>
+
                 <span class="hero-notify-btn">✉ Notify broker</span>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
 
         <div class="agent-card-divider">
+
           <div class="agent-card-divider-title">
+
             <span class="agent-pulse"></span>
+
             Live agent feed
+
           </div>
+
           <span class="agent-card-divider-meta" id="hero-feed-meta">Watching · 375 trucks</span>
+
         </div>
 
         <div class="hero-feed-body">
+
           <div class="feed-item" id="feed-1">
+
             <div class="feed-item-src">ELD · Hours of service</div>
+
             <div class="feed-item-msg"><strong>G. Sandhu (Truck #1042)</strong> low on hours · Wed break scheduled.</div>
+
           </div>
+
           <div class="feed-item" id="feed-2">
+
             <div class="feed-item-src">Market intelligence</div>
+
             <div class="feed-item-msg">Lane upgrade: <strong>Dallas → Phoenix</strong> spot rates 14% above avg.</div>
+
           </div>
+
           <div class="feed-item" id="feed-3">
+
             <div class="feed-item-src">Broker · Outreach</div>
+
             <div class="feed-item-msg"><strong>Mike Reilly</strong> countered $785 on KC → Tulsa.</div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- 01 BROKER & DRIVER COMMUNICATIONS -->
+
 <div class="fx-section section-warm">
+
   <div class="fx-band reveal">
+
     <div class="fx-band-label">01 · Broker &amp; driver communications</div>
+
     <div class="fx-band-head">Every call, text, and email.<br><em>Worked in parallel.</em></div>
+
     <div class="fx-band-body">When a truck needs a load, the agents work every line at once — calls, emails, texts. They negotiate the rate, hold backups, and confirm your driver on WhatsApp. You approve; they execute.</div>
+
   </div>
+
   <div class="fx-card-wrap reveal">
+
     <div class="ui-card comms-card">
+
       <div class="ui-bar">
+
         <div class="ui-dots"><div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div></div>
+
         <span class="ui-url">truemile.ai/agent/cover-empty-leg</span>
+
       </div>
+
       <div class="comms-top">
+
         <span class="comms-top-title">Covering Truck #2154 <span>Wichita Falls → East · 3 lines active</span></span>
+
         <div class="stat-row">
+
           <div class="stat-box"><div class="stat-num">6</div><div class="stat-lab">Brokers worked</div></div>
+
           <div class="stat-box"><div class="stat-num">2</div><div class="stat-lab">Backups held</div></div>
+
           <div class="stat-box hot"><div class="stat-num">38m</div><div class="stat-lab">To booked</div></div>
+
         </div>
+
       </div>
+
       <div class="comms-body">
+
         <aside class="think-panel">
+
           <div class="think-head"><span class="think-spin"></span> Thinking deeper <span class="think-time">6:08</span></div>
+
           <p>Six brokers run this lane. Calling 2, messaging <strong>the ones that never pick up</strong>.</p>
+
           <div class="think-pill">
+
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+
             6 lines working — calls · email · SMS
+
           </div>
+
           <p><strong>TQL posts this lane weekly</strong> and settles in hundreds. Opening at $4,500.</p>
+
           <div class="think-pill live">
+
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+
             On with TQL — Reilly's line
+
           </div>
+
           <p>Meanwhile — CHR and Coyote fielding <strong>the same gap</strong>. CHR paired backhaul held as backup.</p>
+
           <div class="think-pill">
+
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+
             Option held — CHR paired · PHL→DFW
+
           </div>
+
           <p>He's at <strong>$4,100</strong>. Hold — creep in hundreds.</p>
+
         </aside>
+
         <div class="threads-col">
+
           <div class="thread-card">
+
             <div class="comms-thread-head">
+
               <span class="comms-thread-name">TQL · Mike Reilly <span>Wichita Falls → Philadelphia</span></span>
+
               <div class="comms-tags"><span class="live-badge">Live call · 0:21</span><span class="comms-tag booked">Booked</span></div>
+
             </div>
+
             <div class="chat-row"><div class="chat-bubble them">Wichita Falls to Philly, reefer — I can do $4,100.</div></div>
+
             <div class="chat-row agent"><div class="chat-bubble agent">Lane's running $4,350+. Clean pickup window, no detention history on our side. Can you do $4,500?</div></div>
+
             <div class="chat-row"><div class="chat-bubble them">…$4,450 and we're done.</div></div>
+
           </div>
+
           <div class="thread-duo">
+
             <div class="thread-card">
+
               <div class="comms-thread-head">
+
                 <span class="comms-thread-name">CH Robinson</span>
+
                 <div class="comms-tags"><span class="comms-tag email">Email</span><span class="comms-tag backup">Backup</span></div>
+
               </div>
+
               <div class="chat-row agent"><div class="chat-bubble agent">Truck empty Wed 6 AM, Wichita Falls. Anything paired heading east?</div></div>
+
               <div class="chat-row"><div class="chat-bubble them">PHL → DFW pair releasing tonight — want it held?</div></div>
+
             </div>
+
             <div class="thread-card">
+
               <div class="comms-thread-head">
+
                 <span class="comms-thread-name">Driver · Castro</span>
+
                 <div class="comms-tags"><span class="comms-tag wa">WhatsApp</span><span class="comms-tag booked">Confirmed</span></div>
+
               </div>
+
               <div class="chat-row agent"><div class="chat-bubble agent">Reefer out of Wichita Falls Wed 6 AM, drops Philly Friday. Home Sunday as planned. Good?</div></div>
+
               <div class="chat-row"><div class="chat-bubble them">6 AM works. Send me the pickup details 👍</div></div>
+
             </div>
+
           </div>
+
           <div class="agent-thought" style="margin:0;">
+
             <div class="agent-thought-head">Outreach reasoning</div>
+
             <strong>TQL settles in hundreds — held at $4,450, 8% over lane average.</strong> CHR pair kept as backup for the return. Castro confirmed in 4 minutes; home-time Sunday honored.
+
           </div>
+
         </div>
+
       </div>
+
       <div class="comms-foot">
+
         <div class="comms-foot-label"><span class="agent-pulse"></span> Booked · Dispatcher approved</div>
+
         <div class="comms-foot-rate">RATE $4,450 · 38 MIN</div>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 <!-- 02 SET UP THE WEEK -->
+
 <div class="fx-section section-warm">
+
   <div class="fx-band reveal">
+
     <div class="fx-band-label">02 · Set up the week</div>
+
     <div class="fx-band-head">Reads your data.<br><em>Sets up the week.</em></div>
+
     <div class="fx-band-body">The agents read live data from your ELD and TMS — driver hours, truck positions, customer commitments — and build the week's plan: every truck, every driver, every load. The plan is the setup. The agents run what happens next.</div>
+
   </div>
+
   <div class="fx-card-wrap reveal">
+
     <div class="ui-card" style="max-width:720px;margin:0 auto;">
+
       <div class="ui-bar">
+
         <div class="ui-dots"><div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div></div>
+
         <span class="ui-url">truemile.ai/plan/week-of-may-19</span>
+
       </div>
+
       <div class="timeline-card">
+
         <div class="timeline-head">
+
           <div class="timeline-title">Weekly plan · 375 trucks</div>
+
           <div class="timeline-status"><span class="agent-pulse"></span> Solved 3.7s · 2,908 assignments</div>
+
         </div>
+
         <div class="timeline-body">
+
           <div class="timeline-days">
+
             <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+
           </div>
+
           <div class="timeline-row">
+
             <div class="timeline-truck"><div class="timeline-truck-name">#1042</div><div class="timeline-truck-driver">G. Sandhu</div></div>
+
             <div class="timeline-bar">
+
               <div class="timeline-seg load" style="flex:2;">DAL→PHX</div>
+
               <div class="timeline-seg load-light" style="flex:1;">PHX→KC</div>
+
               <div class="timeline-seg load" style="flex:1.5;">KC→ATL</div>
+
               <div class="timeline-seg home" style="flex:1;">HOME</div>
+
               <div class="timeline-seg home" style="flex:1.5;">HOME</div>
+
             </div>
+
           </div>
+
           <div class="timeline-row">
+
             <div class="timeline-truck"><div class="timeline-truck-name">#2154</div><div class="timeline-truck-driver">D. Castro</div></div>
+
             <div class="timeline-bar">
+
               <div class="timeline-seg load" style="flex:1.5;">TUC→PHX</div>
+
               <div class="timeline-seg load-light" style="flex:2;">PHX→DAL</div>
+
               <div class="timeline-seg load" style="flex:1.5;">DAL→OKC</div>
+
               <div class="timeline-seg home" style="flex:2;">HOME</div>
+
             </div>
+
           </div>
+
           <div class="timeline-row">
+
             <div class="timeline-truck"><div class="timeline-truck-name">#1213</div><div class="timeline-truck-driver">J. Anderson</div></div>
+
             <div class="timeline-bar">
+
               <div class="timeline-seg load" style="flex:1.5;">SEA→PDX</div>
+
               <div class="timeline-seg maint" style="flex:2;">MAINT</div>
+
               <div class="timeline-seg load" style="flex:1.5;">PDX→SLC</div>
+
               <div class="timeline-seg load-light" style="flex:1;">SLC→DEN</div>
+
               <div class="timeline-seg home" style="flex:1;">HOME</div>
+
             </div>
+
           </div>
+
           <div class="timeline-row">
+
             <div class="timeline-truck"><div class="timeline-truck-name">#3024</div><div class="timeline-truck-driver">A. Singh</div></div>
+
             <div class="timeline-bar">
+
               <div class="timeline-seg load" style="flex:2;">CHI→NYC</div>
+
               <div class="timeline-seg load-light" style="flex:1.5;">NYC→BOS</div>
+
               <div class="timeline-seg load" style="flex:2;">BOS→ATL</div>
+
               <div class="timeline-seg home" style="flex:1.5;">HOME</div>
+
             </div>
+
           </div>
+
           <div class="timeline-row">
+
             <div class="timeline-truck"><div class="timeline-truck-name">#4083</div><div class="timeline-truck-driver">T. Jackson</div></div>
+
             <div class="timeline-bar">
+
               <div class="timeline-seg load" style="flex:1.5;">CLT→JAX</div>
+
               <div class="timeline-seg load" style="flex:1.5;">JAX→MIA</div>
+
               <div class="timeline-seg load-light" style="flex:1.5;">MIA→ATL</div>
+
               <div class="timeline-seg load" style="flex:1.5;">ATL→CLT</div>
+
               <div class="timeline-seg home" style="flex:1;">HOME</div>
+
             </div>
+
           </div>
+
         </div>
+
         <div class="agent-thought">
+
           <div class="agent-thought-head">Planner reasoning</div>
+
           <strong>Locked 745 loads against driver cycles and HOS constraints.</strong> Found 8 idle truck-days across Tuesday and Thursday — opportunity surface forwarded to Find &amp; Fill agent. Honored 12 home-time requests. Routed Truck #1213 around Tuesday maintenance window.
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 <!-- 03 FILL IDLE TIME -->
+
 <div class="fx-section section-warm" id="features">
+
   <div class="fx-band reveal">
+
     <div class="fx-band-label">03 · Fill idle time with revenue</div>
+
     <div class="fx-band-head">Idle truck-days.<br><em>Filled with the right load.</em></div>
+
     <div class="fx-band-body">Every gap the planning agent finds is handed to the sourcing agent, which scans every load board and broker network, then ranks loads by fit, not just rate. Home-time windows, market positioning, pickup timing, empty-mile recovery, driver preferences. The right load surfaces automatically.</div>
+
   </div>
+
   <div class="fx-card-wrap reveal">
+
     <div class="ui-card" style="max-width:720px;margin:0 auto;">
+
       <div class="ui-bar">
+
         <div class="ui-dots"><div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div></div>
+
         <span class="ui-url">truemile.ai/idle-gaps</span>
+
       </div>
+
       <div class="idle-callout">
+
         <div class="idle-callout-icon">⚡</div>
+
         <div class="idle-callout-content">
+
           <div class="idle-callout-label">Idle gap detected · Forwarded by Planner</div>
+
           <div class="idle-callout-msg"><strong>Truck #2154 (D. Castro)</strong> · Wed 6 AM empty in Wichita Falls, TX · home-time window Sunday</div>
+
         </div>
+
       </div>
+
       <div class="lb-header">
+
         <span class="lb-title">Live sourcing · ranked by fleet fit</span>
+
         <span class="lb-scanning"><span class="agent-pulse"></span> Best fit found</span>
+
       </div>
+
       <div class="lb-body">
+
         <div class="lb-row">
+
           <span class="lb-tagicon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+
           <div><div class="lb-row-route">Dallas, TX → Portland, OR</div><div class="lb-row-meta">2,134 mi · Reefer · 40k lbs</div></div>
+
           <span class="lb-id">#123…509</span>
+
           <div><div class="lb-rate">$3,600</div><div class="lb-rpm">$1.69/mi</div></div>
+
         </div>
+
         <div class="lb-row">
+
           <span class="lb-tagicon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+
           <div><div class="lb-row-route">Tyler, TX → Sparks, NV</div><div class="lb-row-meta">1,752 mi · Van · 42k lbs</div></div>
+
           <span class="lb-id">#678…012</span>
+
           <div><div class="lb-rate">$3,750</div><div class="lb-rpm">$2.14/mi</div></div>
+
         </div>
+
         <div class="lb-row">
+
           <span class="lb-tagicon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+
           <div><div class="lb-row-route">Dallas, TX → Hartford, CT</div><div class="lb-row-meta">1,664 mi · Reefer · 35k lbs</div></div>
+
           <span class="lb-id">#345…012</span>
+
           <div><div class="lb-rate">$4,300</div><div class="lb-rpm">$2.58/mi</div></div>
+
         </div>
+
         <div class="lb-row winner">
+
           <span class="lb-tagicon" style="color:var(--orange);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+
           <div><div class="lb-row-route" style="font-weight:600;">Wichita Falls, TX → Philadelphia, PA</div><div class="lb-row-meta">1,536 mi · Reefer · 40k lbs</div><span class="lb-badge">✓ Best fit</span></div>
+
           <span class="lb-id">#601…345</span>
+
           <div><div class="lb-rate">$4,501</div><div class="lb-rpm">$2.93/mi</div></div>
+
         </div>
+
       </div>
+
       <div class="fit-reasoning">
+
         <div class="fit-reasoning-head">Why this load · Find &amp; Fill reasoning</div>
+
         <div class="fit-grid">
+
           <div class="fit-cell"><div class="fit-cell-label">Home-time</div><div class="fit-cell-value good">Honors Sun deadline</div></div>
+
           <div class="fit-cell"><div class="fit-cell-label">Pickup</div><div class="fit-cell-value good">2.1 hrs · zero rush</div></div>
+
           <div class="fit-cell"><div class="fit-cell-label">Empty mile</div><div class="fit-cell-value good">Continuation lane available</div></div>
+
           <div class="fit-cell"><div class="fit-cell-label">Market position</div><div class="fit-cell-value good">PHL outbound · strong</div></div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 <!-- INTEGRATIONS — hub & spoke -->
+
 <section class="integ" id="integrations">
+
   <div class="integ-i">
+
     <div class="hub reveal">
+
       <div class="hub-bg"></div>
+
             <svg class="hub-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+
         <line x1="50" y1="50" x2="20" y2="18"/>
+
         <line x1="50" y1="50" x2="50" y2="8"/>
+
         <line x1="50" y1="50" x2="80" y2="18"/>
+
         <line x1="50" y1="50" x2="92" y2="44"/>
+
         <line x1="50" y1="50" x2="84" y2="74"/>
+
         <line x1="50" y1="50" x2="62" y2="90"/>
+
         <line x1="50" y1="50" x2="38" y2="90"/>
+
         <line x1="50" y1="50" x2="16" y2="74"/>
+
         <line x1="50" y1="50" x2="8" y2="44"/>
+
       </svg>
+
       <div class="hub-center">
+
         <svg width="46" height="46" viewBox="0 0 56 56" fill="none">
+
           <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
+
           <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
           <circle cx="44" cy="14" r="4.5" fill="white"/>
+
         </svg>
+
       </div>
+
             <div class="hub-sat" style="left:20%;top:18%;animation-delay:0s;" title="Truckstop">
+
         <img src="truckstop.png" alt="Truckstop" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><line x1=&quot;8&quot; y1=&quot;6&quot; x2=&quot;21&quot; y2=&quot;6&quot;/><line x1=&quot;8&quot; y1=&quot;12&quot; x2=&quot;21&quot; y2=&quot;12&quot;/><line x1=&quot;8&quot; y1=&quot;18&quot; x2=&quot;21&quot; y2=&quot;18&quot;/><line x1=&quot;3&quot; y1=&quot;6&quot; x2=&quot;3.01&quot; y2=&quot;6&quot;/><line x1=&quot;3&quot; y1=&quot;12&quot; x2=&quot;3.01&quot; y2=&quot;12&quot;/><line x1=&quot;3&quot; y1=&quot;18&quot; x2=&quot;3.01&quot; y2=&quot;18&quot;/></svg>'">
+
       </div>
+
       <div class="hub-sat" style="left:50%;top:8%;animation-delay:.7s;" title="EDI">
+
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+
       </div>
+
       <div class="hub-sat" style="left:80%;top:18%;animation-delay:1.4s;" title="WhatsApp">
+
         <img src="whatsapp.png" alt="WhatsApp" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z&quot;/></svg>'">
+
       </div>
+
       <div class="hub-sat" style="left:92%;top:44%;animation-delay:2.1s;" title="Outlook">
+
         <img src="outlook.png" alt="Outlook" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z&quot;/><polyline points=&quot;22,6 12,13 2,6&quot;/></svg>'">
+
       </div>
+
       <div class="hub-sat" style="left:84%;top:74%;animation-delay:2.8s;" title="Highway">
+
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+
       </div>
+
       <div class="hub-sat" style="left:62%;top:90%;animation-delay:3.5s;" title="Maps">
+
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+
       </div>
+
       <div class="hub-sat" style="left:38%;top:90%;animation-delay:4.2s;" title="Microsoft Teams">
+
         <img src="teams.png" alt="Microsoft Teams" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M23 21v-2a4 4 0 0 0-3-3.87&quot;/><path d=&quot;M16 3.13a4 4 0 0 1 0 7.75&quot;/></svg>'">
+
       </div>
+
       <div class="hub-sat" style="left:16%;top:74%;animation-delay:4.9s;" title="Gmail">
+
         <img src="gmail.png" alt="Gmail" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M22 2L11 13&quot;/><path d=&quot;M22 2l-7 20-4-9-9-4 20-7z&quot;/></svg>'">
+
       </div>
+
       <div class="hub-sat" style="left:8%;top:44%;animation-delay:5.6s;" title="Samsara · ELD & telematics">
+
         <img src="samsara.png" alt="Samsara" width="26" height="26" style="object-fit:contain;" onerror="this.outerHTML='<svg width=&quot;19&quot; height=&quot;19&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;22 12 18 12 15 21 9 3 6 12 2 12&quot;/></svg>'">
+
       </div>
 
       <div class="hub-pill" style="left:50%;top:66%;">
+
         <span class="hub-pill-plus">+</span> Your TMS &amp; carrier portals
+
       </div>
+
     </div>
+
     <div>
+
       <div class="pill-eyebrow reveal"><span class="ed"></span> Integrations</div>
+
       <div class="fhh reveal">Plugs into what you<br><em>already run.</em></div>
+
       <div class="how-d reveal" style="margin-top:20px;">Loads in from every source — EDI tenders, load boards, customer portals, email. Live truck and driver signals from your ELD. Comms out on the channels your drivers and brokers already use. No rip-and-replace.</div>
+
       <div class="name-chips reveal">
+
         <span class="name-chip">Truckstop</span>
+
         <span class="name-chip">EDI</span>
+
         <span class="name-chip">Samsara · ELD</span>
+
         <span class="name-chip">Carrier portals</span>
+
         <span class="name-chip">WhatsApp</span>
+
         <span class="name-chip">Microsoft Teams</span>
+
         <span class="name-chip">Outlook</span>
+
         <span class="name-chip">Gmail</span>
+
         <span class="name-chip">Highway</span>
+
         <span class="name-chip">Maps</span>
+
         <span class="name-chip">McLeod · PCS · Aljex</span>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- HOW IT WORKS — FOUR AGENTS -->
+
 <section class="how" id="how">
+
   <div class="container">
+
     <div class="how-top reveal">
+
       <div class="how-eyebrow">How it works</div>
+
       <div class="how-h">Four agents. <em>One fleet.</em></div>
+
       <div class="how-d">Each agent owns a piece of the dispatcher's job. They read live data from your ELD and TMS, talk to each other, and route only the decisions a human needs to make.</div>
+
     </div>
+
     <div class="agents-grid reveal">
+
       <div class="agent-tile">
+
         <div class="agent-tile-header">
+
           <span class="agent-tile-num">01</span>
+
           <span class="agent-tile-status">Active</span>
+
         </div>
+
         <div class="agent-tile-icon">
+
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+
         </div>
+
         <div>
+
           <div class="agent-tile-name">Planner</div>
+
           <div class="agent-tile-desc" style="margin-top:8px;">Sets up the week as one system — locks loads against HOS, home-time, and cost constraints. Then hands the plan to the other agents to run.</div>
+
         </div>
+
         <div class="agent-tile-io">
+
           <div class="agent-tile-io-line in">ELD · TMS · Customer commits</div>
+
           <div class="agent-tile-io-line out">Weekly plan · Idle gaps</div>
+
         </div>
+
       </div>
 
       <div class="agent-tile">
+
         <div class="agent-tile-header">
+
           <span class="agent-tile-num">02</span>
+
           <span class="agent-tile-status">Active</span>
+
         </div>
+
         <div class="agent-tile-icon">
+
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+
         </div>
+
         <div>
+
           <div class="agent-tile-name">Sentinel</div>
+
           <div class="agent-tile-desc" style="margin-top:8px;">Watches live signals. Driver hours, truck health, weather, detention. Triggers a fix before problems become fires.</div>
+
         </div>
+
         <div class="agent-tile-io">
+
           <div class="agent-tile-io-line in">Live ELD · Telematics</div>
+
           <div class="agent-tile-io-line out">Fix triggers</div>
+
         </div>
+
       </div>
 
       <div class="agent-tile">
+
         <div class="agent-tile-header">
+
           <span class="agent-tile-num">03</span>
+
           <span class="agent-tile-status">Active</span>
+
         </div>
+
         <div class="agent-tile-icon">
+
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+
         </div>
+
         <div>
+
           <div class="agent-tile-name">Find &amp; Fill</div>
+
           <div class="agent-tile-desc" style="margin-top:8px;">Scans every load board and broker network. Ranks by fleet fit — home-time, pickup timing, empty-mile, market position.</div>
+
         </div>
+
         <div class="agent-tile-io">
+
           <div class="agent-tile-io-line in">Idle gaps · Load boards</div>
+
           <div class="agent-tile-io-line out">Ranked load candidates</div>
+
         </div>
+
       </div>
 
       <div class="agent-tile">
+
         <div class="agent-tile-header">
+
           <span class="agent-tile-num">04</span>
+
           <span class="agent-tile-status">Active</span>
+
         </div>
+
         <div class="agent-tile-icon">
+
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+
         </div>
+
         <div>
+
           <div class="agent-tile-name">Outreach</div>
+
           <div class="agent-tile-desc" style="margin-top:8px;">Talks to drivers and brokers directly. Confirms availability on WhatsApp, negotiates rates, drafts every message, awaits your approval — then executes.</div>
+
         </div>
+
         <div class="agent-tile-io">
+
           <div class="agent-tile-io-line in">Load picks · Driver assignments</div>
+
           <div class="agent-tile-io-line out">Booked loads · Confirmed drivers</div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- FEATURES -->
+
 <section class="features">
+
   <div class="container">
+
     <div class="fh">
+
       <div class="fl reveal">The dispatcher's day, handled</div>
+
       <div class="fhh reveal">Built for operators<br><em>who run on numbers.</em></div>
+
     </div>
+
     <div class="fg reveal">
+
       <div class="fc"><div class="fn">01</div><div class="ftt">Weekly plan, set up as one system</div><div class="fb">Every truck, every driver, every load — solved together, not load-by-load. The setup the agents run all week.</div></div>
+
       <div class="fc"><div class="fn">02</div><div class="ftt">Fixes when things break</div><div class="fb">When a load cancels or a driver goes down, the agents rebuild the week in seconds and queue every driver and broker message for your approval.</div></div>
+
       <div class="fc"><div class="fn">03</div><div class="ftt">Fleet-fit load ranking</div><div class="fb">Ranks loads by what actually fits your fleet — home-time windows, market positioning, pickup timing, driver preferences. Beyond rate-per-mile.</div></div>
+
       <div class="fc"><div class="fn">04</div><div class="ftt">Idle time recovery</div><div class="fb">Finds the revenue hiding in idle truck-days, trailer-positioning windows, and empty-mile recovery loads you'd otherwise miss.</div></div>
+
       <div class="fc"><div class="fn">05</div><div class="ftt">Broker &amp; driver comms</div><div class="fb">Negotiates with brokers, confirms drivers on WhatsApp, drafts every message. You approve — the agents send, track, and follow up.</div></div>
+
       <div class="fc"><div class="fn">06</div><div class="ftt">Works with your systems</div><div class="fb">Sits on top of your existing TMS and ELD. McLeod, PCS, Aljex, Tailwind — full read/write where supported, read-only fallback elsewhere. No rip-and-replace.</div></div>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- CAREERS / JOBS -->
+
 <section class="jobs" id="jobs">
+
   <div class="container">
+
     <div class="jobs-head">
+
       <div class="jobs-eyebrow reveal">Careers</div>
+
       <div class="jobs-h reveal">Build the operating layer<br><em>for trucking.</em></div>
+
       <div class="jobs-d reveal">Backed by Y Combinator, live with real fleets, built by operators who grew up in the business. Hard problems, fast shipping, real ownership from day one. If that's you, come talk to us.</div>
+
     </div>
+
     <div class="job-list reveal">
+
       <button type="button" class="job-card" data-role="Founding Forward Deployed Engineer / Integrations">
+
         <div class="job-main">
+
           <div class="job-title">Founding Forward Deployed Engineer / Integrations</div>
+
           <div class="job-desc">Own carrier go-lives end to end. Wire up ELDs, TMS, and telematics, tune the agents against live fleet data, and turn pilots into production. You own the last mile from demo to dispatch.</div>
+
           <div class="job-tags">
+
             <span class="job-tag">Engineering</span>
+
             <span class="job-tag loc">San Francisco · On-site</span>
+
             <span class="job-tag">Full-time</span>
+
           </div>
+
         </div>
+
         <span class="job-arrow">→</span>
+
       </button>
+
       <button type="button" class="job-card" data-role="Founding Full-Stack Engineer">
+
         <div class="job-main">
+
           <div class="job-title">Founding Full-Stack Engineer</div>
+
           <div class="job-desc">Ship the product carriers run their day on. Full stack across the entire operation, with the agents wired in behind it. Take features from spec to shipped, and keep them shipped.</div>
+
           <div class="job-tags">
+
             <span class="job-tag">Engineering</span>
+
             <span class="job-tag loc">San Francisco · On-site</span>
+
             <span class="job-tag">Full-time</span>
+
           </div>
+
         </div>
+
         <span class="job-arrow">→</span>
+
       </button>
+
     </div>
+
     <div class="fit reveal">
+
       <div class="fit-eyebrow">Who's a good fit</div>
+
       <div class="fit-list">
+
         <div class="fit-item">Lean team, high standards, real ownership from day one.</div>
+
         <div class="fit-item">Comfortable with Python, TypeScript, and FastAPI.</div>
+
         <div class="fit-item">Hard technical work at a startup or big tech, or ex-founder, or someone who obsesses over projects they've shipped live.</div>
+
       </div>
+
       <div class="fit-close">Grinders who move fast and finish. <em>That's the bar.</em></div>
+
     </div>
+
     <div class="jobs-foot reveal">Don't see your role? Email <a href="mailto:harpreet@truemile.ai">harpreet@truemile.ai</a> and tell us what you'd own.</div>
+
   </div>
+
 </section>
 
 <!-- APPLICATION MODAL -->
+
 <div class="apply-overlay" id="applyOverlay" aria-hidden="true">
+
   <div class="apply-modal" role="dialog" aria-modal="true" aria-labelledby="applyRole">
+
     <button type="button" class="apply-close" id="applyClose" aria-label="Close">✕</button>
+
     <div class="apply-eyebrow">Apply · TrueMile</div>
+
     <div class="apply-role" id="applyRole">Role</div>
 
     <div class="apply-field">
+
       <label class="apply-label" for="applyName">Name <span>*</span></label>
+
       <input class="apply-input" id="applyName" type="text" placeholder="Your name" autocomplete="name"/>
+
     </div>
+
     <div class="apply-field">
+
       <label class="apply-label" for="applyEmail">Email <span>*</span></label>
+
       <input class="apply-input" id="applyEmail" type="email" placeholder="you@example.com" autocomplete="email"/>
+
     </div>
+
     <div class="apply-field">
+
       <label class="apply-label" for="applyLink">LinkedIn / GitHub / portfolio</label>
+
       <input class="apply-input" id="applyLink" type="text" placeholder="Optional, but helps"/>
+
     </div>
+
     <div class="apply-field">
+
       <label class="apply-label" for="applyNote">Why you</label>
+
       <textarea class="apply-input" id="applyNote" placeholder="A few lines. What you've shipped, why carriers."></textarea>
+
     </div>
+
     <div class="apply-field">
+
       <label class="apply-label">Resume <span>*</span></label>
+
       <div class="apply-drop" id="applyDrop">
+
         <span class="apply-drop-btn">Upload file</span>
+
         <span class="apply-drop-txt" id="applyDropTxt">or drag and drop here <b></b></span>
+
       </div>
+
       <input type="file" id="applyFile" accept=".pdf,.doc,.docx" style="display:none"/>
+
     </div>
 
     <button type="button" class="apply-submit" id="applySubmit">Submit application →</button>
+
     <div class="apply-note">Goes straight to <a href="mailto:harpreet@truemile.ai">harpreet@truemile.ai</a>. PDF or Word.</div>
+
   </div>
+
 </div>
 
 <!-- CTA -->
+
 <div class="cta" id="contact">
+
   <div class="cta-img"></div>
+
   <div class="cta-scrim"></div>
+
   <div class="cta-i">
+
     <div>
+
       <div class="cl">Get started</div>
+
       <div class="ch">Put agents on <em>your operation.</em></div>
+
       <div class="cd">Book a demo and see TrueMile run on your actual data. Per-truck pricing. No long-term contracts. Mid-market fleets — 50 to 1,000 trucks.</div>
+
     </div>
+
     <div class="cf">
+
       <input class="fi" id="demoEmail" type="email" placeholder="Work email" required/>
+
       <div class="fr">
+
         <input class="fi" id="demoCompany" type="text" placeholder="Company name" required/>
+
         <select class="fs" id="demoFleet" required>
+
           <option value="" disabled selected>Fleet size</option>
+
           <option>50–100 trucks</option>
+
           <option>100–250 trucks</option>
+
           <option>250–500 trucks</option>
+
           <option>500–1,000 trucks</option>
+
           <option>1,000+ trucks</option>
+
         </select>
+
       </div>
+
       <input class="fi" id="demoMc" type="text" placeholder="MC number"/>
+
       <button class="fsb" id="submitBtn">Book demo →</button>
+
       <div class="fno">Per-truck pricing · No commitment</div>
+
     </div>
+
   </div>
+
 </div>
 
 <footer>
-  <div class="ftb">
-    <svg width="22" height="22" viewBox="0 0 56 56" fill="none">
-      <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
-      <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <circle cx="44" cy="14" r="4.5" fill="white"/>
-    </svg>
-    TrueMile
-  </div>
-  <div class="ftm">AI agents that run trucking operations. Planning, assigning, adapting when things break, and handling every driver and broker conversation.</div>
-  <div class="ftr">
-    <a href="#jobs" class="ftlink">Careers</a>
-    <a href="/privacy" class="ftlink">Privacy Policy</a>
-    <div class="ftc">© 2026 TrueMile</div>
-  </div>
-</footer>
-</div><!-- /after-hero -->
 
+  <div class="ftb">
+
+    <svg width="22" height="22" viewBox="0 0 56 56" fill="none">
+
+      <rect x="0" y="0" width="56" height="56" rx="12" fill="#E8501E"/>
+
+      <path d="M10 42 L 22 30 L 32 38 L 44 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+      <circle cx="44" cy="14" r="4.5" fill="white"/>
+
+    </svg>
+
+    TrueMile
+
+  </div>
+
+  <div class="ftm">AI agents that run trucking operations. Planning, assigning, adapting when things break, and handling every driver and broker conversation.</div>
+
+  <div class="ftr">
+
+    <a href="#jobs" class="ftlink">Careers</a>
+
+    <a href="/privacy" class="ftlink">Privacy Policy</a>
+
+    <div class="ftc">© 2026 TrueMile</div>
+
+  </div>
+
+</footer>
 
 <script>
+
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
+
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // Hero fades out smoothly as you scroll into the page
-(function(){
-  const inner = document.querySelector('.hero-inner');
-  const metrics = document.querySelector('.hero-metrics');
-  const orbit = document.querySelector('.hero-orbit');
-  let ticking = false;
-  function apply(){
-    ticking = false;
-    if(window.matchMedia('(max-width:700px)').matches){
-      [inner, metrics, orbit].forEach(el => { if(el){ el.style.opacity=''; el.style.transform=''; } });
-      return;
-    }
-    const y = window.scrollY;
-    const vh = window.innerHeight;
-    const p = Math.min(1, Math.max(0, y / (vh * 0.55)));
-    const ease = p * p * (3 - 2 * p);
-    if(inner){ inner.style.opacity = 1 - ease; inner.style.transform = 'translateY(' + (-ease * 46) + 'px)'; }
-    if(metrics){ metrics.style.opacity = Math.max(0, 1 - ease * 1.15); metrics.style.transform = 'translateY(' + (-ease * 26) + 'px)'; }
-    if(orbit){ orbit.style.opacity = 0.65 * (1 - ease); }
-  }
-  window.addEventListener('scroll', () => {
-    if(!ticking){ ticking = true; requestAnimationFrame(apply); }
-  }, {passive:true});
-  apply();
-})();
 
+(function(){
+
+  const inner = document.querySelector('.hero-inner');
+
+  const metrics = document.querySelector('.hero-metrics');
+
+  const orbit = document.querySelector('.hero-orbit');
+
+  let ticking = false;
+
+  function apply(){
+
+    ticking = false;
+
+    if(window.matchMedia('(max-width:700px)').matches){
+
+      [inner, metrics, orbit].forEach(el => { if(el){ el.style.opacity=''; el.style.transform=''; } });
+
+      return;
+
+    }
+
+    const y = window.scrollY;
+
+    const vh = window.innerHeight;
+
+    const p = Math.min(1, Math.max(0, y / (vh * 0.55)));
+
+    const ease = p * p * (3 - 2 * p);
+
+    if(inner){ inner.style.opacity = 1 - ease; inner.style.transform = 'translateY(' + (-ease * 46) + 'px)'; }
+
+    if(metrics){ metrics.style.opacity = Math.max(0, 1 - ease * 1.15); metrics.style.transform = 'translateY(' + (-ease * 26) + 'px)'; }
+
+    if(orbit){ orbit.style.opacity = 0.65 * (1 - ease); }
+
+  }
+
+  window.addEventListener('scroll', () => {
+
+    if(!ticking){ ticking = true; requestAnimationFrame(apply); }
+
+  }, {passive:true});
+
+  apply();
+
+})();
 
 // Nav flips from dark-over-hero to light glass on scroll
+
 (function(){
+
   const nav = document.getElementById('topnav');
+
   const flip = () => {
+
     if(window.scrollY > window.innerHeight * 0.7){ nav.classList.remove('over-hero'); }
+
     else { nav.classList.add('over-hero'); }
+
   };
+
   window.addEventListener('scroll', flip, {passive:true});
+
   flip();
+
 })();
 
-
 // Shared Formspree endpoint for demo requests and job applications.
+
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqpzyoaz";
 
 document.getElementById('submitBtn')?.addEventListener('click', async function(e){
+
   e.preventDefault();
+
   const btn = this;
+
   const email = document.getElementById('demoEmail').value.trim();
+
   const company = document.getElementById('demoCompany').value.trim();
+
   const fleet = document.getElementById('demoFleet').value;
+
   const mc = document.getElementById('demoMc').value.trim();
+
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ alert('Add a valid work email.'); return; }
+
   if(!company){ alert('Add your company name.'); return; }
+
   if(!fleet){ alert('Select your fleet size.'); return; }
 
   btn.disabled = true; btn.textContent = 'Sending…';
+
   try{
+
     const fd = new FormData();
+
     fd.append('type', 'Demo request');
+
     fd.append('email', email);
+
     fd.append('company', company);
+
     fd.append('fleet_size', fleet);
+
     fd.append('mc_number', mc || '—');
+
     fd.append('_subject', 'Demo request — ' + company);
+
     const res = await fetch(FORMSPREE_ENDPOINT, { method:'POST', body: fd, headers:{ 'Accept':'application/json' } });
+
     if(!res.ok) throw new Error('bad status');
+
     btn.textContent = 'Submitted ✓';
+
     btn.style.cssText += ';background:#1A1A1A;color:white;';
+
     setTimeout(()=>{
+
       btn.disabled = false; btn.textContent = 'Book demo →'; btn.style.cssText = '';
+
       ['demoEmail','demoCompany','demoMc'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+
       document.getElementById('demoFleet').selectedIndex = 0;
+
     }, 3000);
+
   }catch(err){
+
     btn.disabled = false; btn.textContent = 'Book demo →';
+
     alert('Could not send that. Email harpreet@truemile.ai directly.');
+
   }
+
 });
 
 // ============================================
+
 // CAREERS — application modal + resume upload
+
 // ============================================
+
 (function(){
+
   // Job applications post to the shared Formspree form (resume attached).
+
   // Note: file uploads require a paid Formspree plan; on free tier the text
+
   // fields still send and submit falls back to a pre-filled email to harpreet@.
+
   const APPLY_ENDPOINT = FORMSPREE_ENDPOINT;
+
   const APPLY_EMAIL = "harpreet@truemile.ai";
+
   const APPLY_CONFIGURED = !!APPLY_ENDPOINT;
 
   const overlay = document.getElementById('applyOverlay');
+
   if(!overlay) return;
+
   const roleEl = document.getElementById('applyRole');
+
   const drop = document.getElementById('applyDrop');
+
   const dropTxt = document.querySelector('#applyDropTxt b');
+
   const fileInput = document.getElementById('applyFile');
+
   const submit = document.getElementById('applySubmit');
+
   const nameEl = document.getElementById('applyName');
+
   const emailEl = document.getElementById('applyEmail');
+
   const linkEl = document.getElementById('applyLink');
+
   const noteEl = document.getElementById('applyNote');
+
   let lastFocus = null;
 
   function open(role){
+
     roleEl.textContent = role;
+
     overlay.classList.add('open');
+
     overlay.setAttribute('aria-hidden','false');
+
     document.body.style.overflow = 'hidden';
+
     lastFocus = document.activeElement;
+
     setTimeout(()=>nameEl.focus(), 50);
+
   }
+
   function close(){
+
     overlay.classList.remove('open');
+
     overlay.setAttribute('aria-hidden','true');
+
     document.body.style.overflow = '';
+
     submit.disabled = false;
+
     submit.textContent = 'Submit application →';
+
     if(lastFocus) lastFocus.focus();
+
   }
 
   document.querySelectorAll('.job-card[data-role]').forEach(card=>{
+
     card.addEventListener('click',()=>open(card.getAttribute('data-role')));
+
   });
+
   document.getElementById('applyClose').addEventListener('click',close);
+
   overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && overlay.classList.contains('open')) close(); });
 
   function setFile(f){ if(!f) return; fileInput._file = f; dropTxt.textContent = f.name; }
+
   drop.addEventListener('click',()=>fileInput.click());
+
   fileInput.addEventListener('change',()=>setFile(fileInput.files[0]));
+
   ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag');}));
+
   ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag');}));
+
   drop.addEventListener('drop',e=>{ if(e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]); });
 
   function fail(msg){ submit.disabled=false; submit.textContent='Submit application →'; alert(msg); }
 
   submit.addEventListener('click', async ()=>{
+
     const name = nameEl.value.trim();
+
     const email = emailEl.value.trim();
+
     const file = fileInput._file;
+
     if(!name) return fail('Add your name.');
+
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('Add a valid email.');
+
     if(!file) return fail('Attach your resume.');
 
     submit.disabled = true;
+
     submit.textContent = 'Sending…';
+
     const role = roleEl.textContent;
 
     if(!APPLY_CONFIGURED){
+
       const body =
+
         'Role: ' + role + '\n' +
+
         'Name: ' + name + '\n' +
+
         'Email: ' + email + '\n' +
+
         'Link: ' + (linkEl.value.trim() || '—') + '\n\n' +
+
         (noteEl.value.trim() || '') + '\n\n' +
+
         '(Resume to attach: ' + file.name + ')';
+
       window.location.href = 'mailto:' + APPLY_EMAIL +
+
         '?subject=' + encodeURIComponent('Application — ' + role) +
+
         '&body=' + encodeURIComponent(body);
+
       submit.textContent = 'Opening email…';
+
       setTimeout(()=>{ close(); alert('Your email draft is open. Attach ' + file.name + ' and hit send.'); }, 600);
+
       return;
+
     }
 
     try{
+
       const fd = new FormData();
+
       fd.append('role', role);
+
       fd.append('name', name);
+
       fd.append('email', email);
+
       fd.append('link', linkEl.value.trim());
+
       fd.append('note', noteEl.value.trim());
+
       fd.append('subject', 'Application — ' + role);
+
       fd.append('resume', file, file.name);
+
       const res = await fetch(APPLY_ENDPOINT, { method:'POST', body: fd, headers:{ 'Accept':'application/json' } });
+
       if(!res.ok) throw new Error('bad status');
+
       submit.textContent = 'Submitted ✓';
+
       setTimeout(()=>{ close(); alert('Application sent. Thanks — we read every one.'); }, 700);
+
     }catch(err){
+
       fail('Could not send that. Email ' + APPLY_EMAIL + ' directly.');
+
     }
+
   });
+
 })();
 
 // ============================================
+
 // AGENT DEMO ANIMATION — viewport-gated
+
 // ============================================
+
 (function(){
+
   const stage1 = document.getElementById('hero-stage-1');
+
   const stage2 = document.getElementById('hero-pending');
+
   const stage3 = document.getElementById('hero-replan');
+
   const stage4 = document.getElementById('hero-notify');
 
   const input = document.getElementById('hero-input');
+
   const inputText = document.getElementById('hero-input-text');
+
   const inputWrap = document.getElementById('hero-input-wrap');
+
   const sendBtn = document.getElementById('hero-send-btn');
+
   const reoptBtn = document.getElementById('hero-reopt-btn');
 
   const replanFill = document.getElementById('hero-replan-fill');
+
   const replanStatus = document.getElementById('hero-replan-status');
+
   const replanTitle = document.getElementById('hero-replan-title');
+
   const replanEyebrow = document.getElementById('hero-replan-eyebrow-text');
+
   const replanSummary = document.getElementById('hero-replan-summary');
 
   const stateLabel = document.getElementById('hero-state-label');
+
   const stateMeta = document.getElementById('hero-state-meta');
 
   const stages = [
+
     { at: 0,    text: 'Reading driver schedules and HOS…' },
+
     { at: 0.20, text: 'Finding coverage for 2 loads' },
+
     { at: 0.42, text: 'Re-solving the week · 80,000,000 scenarios' },
+
     { at: 0.65, text: 'HOS feasibility check · all drivers' },
+
     { at: 0.85, text: 'Drafting driver & broker messages' }
+
   ];
 
   const placeholder = 'e.g. "Max called in sick"';
+
   if(inputText) inputText.textContent = placeholder;
 
   let inView = false;
+
   let runId = 0;
 
   function sleep(ms, id){
+
     return new Promise(resolve => {
+
       const start = Date.now();
+
       const tick = () => {
+
         if(id !== runId) return resolve('abort');
+
         if(Date.now() - start >= ms) return resolve();
+
         setTimeout(tick, Math.min(50, ms - (Date.now() - start)));
+
       };
+
       tick();
+
     });
+
   }
 
   function showStage(target){
+
     [stage1, stage2, stage3, stage4].forEach(s => s && s.classList.remove('active'));
+
     if(target) target.classList.add('active');
+
   }
 
   async function typeText(text, id, speed=35){
+
     input.classList.remove('placeholder');
+
     inputText.textContent = '';
+
     for(let i=0; i<=text.length; i++){
+
       if(id !== runId) return 'abort';
+
       inputText.textContent = text.substring(0, i);
+
       const r = await sleep(speed + Math.random()*20, id);
+
       if(r === 'abort') return 'abort';
+
     }
+
   }
 
   function resetState(){
+
     input.classList.add('placeholder');
+
     inputText.textContent = placeholder;
+
     inputWrap.classList.remove('focused');
+
     sendBtn.style.background = '';
+
     sendBtn.style.transform = '';
+
     replanFill.style.width = '0%';
+
     replanEyebrow.textContent = 'Agent working';
+
     replanTitle.textContent = 'Working the change';
+
     replanStatus.textContent = 'Reading driver schedules and HOS…';
+
     replanSummary.classList.remove('show');
+
     reoptBtn.classList.remove('pressed');
+
     stateLabel.textContent = 'Dispatcher · Live';
+
     stateMeta.textContent = '375 trucks · monitoring';
+
     showStage(stage1);
+
   }
 
   async function runFlow(id){
+
     resetState();
+
     let r;
 
     r = await sleep(1500, id); if(r==='abort') return;
 
     inputWrap.classList.add('focused');
+
     r = await sleep(500, id); if(r==='abort') return;
 
     r = await typeText('Max called in sick', id); if(r==='abort') return;
+
     r = await sleep(450, id); if(r==='abort') return;
 
     sendBtn.style.background = 'var(--orange)';
+
     sendBtn.style.transform = 'scale(.96)';
+
     r = await sleep(180, id); if(r==='abort') return;
+
     sendBtn.style.transform = 'scale(1)';
+
     r = await sleep(280, id); if(r==='abort') return;
 
     showStage(stage2);
+
     stateLabel.textContent = '1 change pending';
+
     stateMeta.textContent = 'Agent ready';
+
     r = await sleep(1300, id); if(r==='abort') return;
 
     reoptBtn.classList.add('pressed');
+
     r = await sleep(220, id); if(r==='abort') return;
+
     reoptBtn.classList.remove('pressed');
+
     r = await sleep(180, id); if(r==='abort') return;
 
     showStage(stage3);
+
     stateLabel.textContent = 'Agent working';
+
     stateMeta.textContent = 'Coverage · comms · checks';
 
     const duration = 2600;
+
     const stepMs = 60;
+
     const totalSteps = duration / stepMs;
+
     let lastStageText = '';
 
     for (let i = 0; i <= totalSteps; i++) {
+
       if(id !== runId) return;
+
       const frac = i / totalSteps;
+
       replanFill.style.width = (frac * 100) + '%';
+
       const stage = stages.slice().reverse().find(s => frac >= s.at);
+
       if (stage && stage.text !== lastStageText) {
+
         replanStatus.textContent = stage.text;
+
         lastStageText = stage.text;
+
       }
+
       r = await sleep(stepMs, id); if(r==='abort') return;
+
     }
+
     replanFill.style.width = '100%';
 
     replanEyebrow.textContent = 'Handled';
+
     replanTitle.textContent = 'Change handled';
+
     replanStatus.textContent = 'Queuing messages for approval…';
+
     replanSummary.classList.add('show');
+
     stateLabel.textContent = 'Change handled';
+
     stateMeta.textContent = '10 drivers · 2 brokers';
 
     r = await sleep(1500, id); if(r==='abort') return;
 
     showStage(stage4);
+
     stateLabel.textContent = 'Notify queue';
+
     stateMeta.textContent = '2 messages · awaiting approval';
 
     r = await sleep(4500, id); if(r==='abort') return;
+
   }
 
   async function loop(id){
+
     while(id === runId && inView){
+
       await runFlow(id);
+
     }
+
   }
 
   function start(){
+
     runId++;
+
     const myId = runId;
+
     resetState();
+
     loop(myId);
+
   }
 
   function stop(){
+
     runId++;
+
     resetState();
+
   }
 
   const demoSection = document.getElementById('demo');
+
   if(demoSection && stage1){
+
     const observer = new IntersectionObserver((entries) => {
+
       entries.forEach(entry => {
+
         if(entry.isIntersecting){
+
           if(!inView){
+
             inView = true;
+
             start();
+
           }
+
         } else {
+
           if(inView){
+
             inView = false;
+
             stop();
+
           }
+
         }
+
       });
+
     }, { threshold: 0.35 });
+
     observer.observe(demoSection);
+
   }
 
   document.querySelectorAll('a[href="#demo"]').forEach(link => {
+
     link.addEventListener('click', () => {
+
       setTimeout(() => {
+
         inView = true;
+
         start();
+
       }, 600);
+
     });
+
   });
+
 })();
 
 // ============================================
+
 // LIVE AGENT FEED — constantly cycling alerts
+
 // ============================================
+
 (function(){
+
   const feedItems = [
+
     { id: 'feed-1', kind: 'eld', src: 'ELD · Hours of service', msg: '<strong>G. Sandhu (Truck #1042)</strong> low on hours · Wed break scheduled.' },
+
     { id: 'feed-2', kind: 'mci', src: 'Market intelligence', msg: 'Lane upgrade: <strong>Dallas → Phoenix</strong> spot rates 14% above avg.' },
+
     { id: 'feed-3', kind: 'broker', src: 'Broker · Outreach', msg: '<strong>Mike Reilly</strong> countered $785 on KC → Tulsa.' }
+
   ];
 
   const pool = [
+
     { kind: 'eld', src: 'ELD · Driver tracking', msg: '<strong>J. Morales (Truck #1213)</strong> still unloading in Chicago.' },
+
     { kind: 'maint', src: 'Telematics · Truck health', msg: '<strong>Truck #3024</strong> brake job scheduled · Friday yard return.' },
+
     { kind: 'mci', src: 'Market intelligence', msg: 'Markets to avoid: <strong>Boise, Albuquerque, OKC south</strong> · thin backhaul.' },
+
     { kind: 'broker', src: 'Broker · TQL', msg: '<strong>Sarah Chen</strong> released paired backhaul OKC↔DFW · fits A. Singh.' },
+
     { kind: 'broker', src: 'Driver · WhatsApp', msg: '<strong>Morales</strong> confirmed Mon–Tue coverage · 6:42 AM.' },
+
     { kind: 'eld', src: 'ELD · Hours of service', msg: '<strong>G. Mathews (Truck #1342)</strong> 30 min from 11-hr drive limit.' },
+
     { kind: 'mci', src: 'Market intelligence', msg: 'Strong outbound: <strong>Atlanta, Chicago, Dallas</strong> · position Monday AM.' },
+
     { kind: 'broker', src: 'Broker · JB Hunt', msg: '<strong>Tom Henderson</strong> confirmed Chicago → St. Louis · Thu 8 AM pickup.' },
+
     { kind: 'eld', src: 'ELD · Driver tracking', msg: '<strong>T. Jackson (Truck #4083)</strong> delivered Charlotte · ready for next load.' },
+
     { kind: 'broker', src: 'Driver · WhatsApp', msg: '<strong>Castro</strong> asked for Sunday home-time · plan updated, confirmed back.' },
+
     { kind: 'maint', src: 'Telematics · Truck health', msg: '<strong>Truck #2118</strong> oil pressure trending low · preventive check queued.' },
+
     { kind: 'mci', src: 'Market intelligence', msg: 'Lane softening: <strong>Seattle → SF</strong> rates dropped 8% this week.' },
+
     { kind: 'broker', src: 'Broker · CH Robinson', msg: '<strong>Mike Reilly</strong> reposted SBD → Phoenix · A. Gurung eligible.' },
+
     { kind: 'eld', src: 'ELD · Driver tracking', msg: '<strong>J. Rivera (Truck #2244)</strong> detention 1h 12m at Oakland port.' }
+
   ];
 
   let poolIdx = 0;
@@ -2420,53 +3609,85 @@ document.getElementById('submitBtn')?.addEventListener('click', async function(e
   function getFeedItemEl(id){ return document.getElementById(id); }
 
   async function showInitial(){
+
     for(let i = 0; i < feedItems.length; i++){
+
       await new Promise(r => setTimeout(r, 400));
+
       getFeedItemEl(feedItems[i].id).classList.add('show');
+
     }
+
   }
 
   function renderItem(el, item){
+
     el.classList.remove('eld','maint','mci','broker');
+
     el.classList.add(item.kind);
+
     el.querySelector('.feed-item-src').textContent = item.src;
+
     el.querySelector('.feed-item-msg').innerHTML = item.msg;
+
   }
 
   async function cycleNext(){
+
     const oldest = feedItems.shift();
+
     const newItem = pool[poolIdx % pool.length];
+
     poolIdx++;
 
     const oldEl = getFeedItemEl(oldest.id);
+
     oldEl.classList.remove('show');
+
     await new Promise(r => setTimeout(r, 400));
 
     renderItem(oldEl, newItem);
+
     oldEl.parentNode.appendChild(oldEl);
+
     feedItems.push({ id: oldest.id, ...newItem });
 
     await new Promise(r => setTimeout(r, 100));
+
     oldEl.classList.add('show');
+
   }
 
   async function run(){
+
     await showInitial();
+
     await new Promise(r => setTimeout(r, 3500));
+
     while(true){
+
       await cycleNext();
+
       await new Promise(r => setTimeout(r, 4200 + Math.random()*1500));
+
     }
+
   }
 
   setTimeout(run, 800);
+
 })();
+
 </script>
 
 <!-- Vercel Web Analytics -->
+
 <script defer src="/_vercel/insights/script.js"></script>
+
 <!-- Vercel Speed Insights -->
+
 <script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
+
 </html>
