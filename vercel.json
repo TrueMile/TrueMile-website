@@ -1,6 +1,10 @@
  {
   "rewrites": [
     {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
       "source": "/sms-consent",
       "destination": "/sms-consent.html"
     },
